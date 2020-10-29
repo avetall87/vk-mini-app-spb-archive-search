@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/avetall87/vk-mini-app-swapi/static/css/main.981f7211.chunk.css",
-    "main.js": "/avetall87/vk-mini-app-swapi/static/js/main.d19ca19a.chunk.js",
-    "main.js.map": "/avetall87/vk-mini-app-swapi/static/js/main.d19ca19a.chunk.js.map",
-    "runtime-main.js": "/avetall87/vk-mini-app-swapi/static/js/runtime-main.d65e3354.js",
-    "runtime-main.js.map": "/avetall87/vk-mini-app-swapi/static/js/runtime-main.d65e3354.js.map",
-    "static/css/2.6326594c.chunk.css": "/avetall87/vk-mini-app-swapi/static/css/2.6326594c.chunk.css",
-    "static/js/2.c3da0d3b.chunk.js": "/avetall87/vk-mini-app-swapi/static/js/2.c3da0d3b.chunk.js",
-    "static/js/2.c3da0d3b.chunk.js.map": "/avetall87/vk-mini-app-swapi/static/js/2.c3da0d3b.chunk.js.map",
-    "index.html": "/avetall87/vk-mini-app-swapi/index.html",
-    "precache-manifest.2ec4cd0e7fe846804309ae74345c65b3.js": "/avetall87/vk-mini-app-swapi/precache-manifest.2ec4cd0e7fe846804309ae74345c65b3.js",
-    "service-worker.js": "/avetall87/vk-mini-app-swapi/service-worker.js",
-    "static/css/2.6326594c.chunk.css.map": "/avetall87/vk-mini-app-swapi/static/css/2.6326594c.chunk.css.map",
-    "static/css/main.981f7211.chunk.css.map": "/avetall87/vk-mini-app-swapi/static/css/main.981f7211.chunk.css.map",
-    "static/js/2.c3da0d3b.chunk.js.LICENSE.txt": "/avetall87/vk-mini-app-swapi/static/js/2.c3da0d3b.chunk.js.LICENSE.txt",
-    "static/media/persik.png": "/avetall87/vk-mini-app-swapi/static/media/persik.4e1ec840.png"
+    "main.css": "/vk-mini-app-swapi/static/css/main.981f7211.chunk.css",
+    "main.js": "/vk-mini-app-swapi/static/js/main.d19ca19a.chunk.js",
+    "main.js.map": "/vk-mini-app-swapi/static/js/main.d19ca19a.chunk.js.map",
+    "runtime-main.js": "/vk-mini-app-swapi/static/js/runtime-main.ef9d73bb.js",
+    "runtime-main.js.map": "/vk-mini-app-swapi/static/js/runtime-main.ef9d73bb.js.map",
+    "static/css/2.6326594c.chunk.css": "/vk-mini-app-swapi/static/css/2.6326594c.chunk.css",
+    "static/js/2.d221ac4d.chunk.js": "/vk-mini-app-swapi/static/js/2.d221ac4d.chunk.js",
+    "static/js/2.d221ac4d.chunk.js.map": "/vk-mini-app-swapi/static/js/2.d221ac4d.chunk.js.map",
+    "index.html": "/vk-mini-app-swapi/index.html",
+    "precache-manifest.73657b51ea1fbfdf7668ea35694a802d.js": "/vk-mini-app-swapi/precache-manifest.73657b51ea1fbfdf7668ea35694a802d.js",
+    "service-worker.js": "/vk-mini-app-swapi/service-worker.js",
+    "static/css/2.6326594c.chunk.css.map": "/vk-mini-app-swapi/static/css/2.6326594c.chunk.css.map",
+    "static/css/main.981f7211.chunk.css.map": "/vk-mini-app-swapi/static/css/main.981f7211.chunk.css.map",
+    "static/js/2.d221ac4d.chunk.js.LICENSE.txt": "/vk-mini-app-swapi/static/js/2.d221ac4d.chunk.js.LICENSE.txt",
+    "static/media/persik.png": "/vk-mini-app-swapi/static/media/persik.4e1ec840.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.d65e3354.js",
+    "static/js/runtime-main.ef9d73bb.js",
     "static/css/2.6326594c.chunk.css",
-    "static/js/2.c3da0d3b.chunk.js",
+    "static/js/2.d221ac4d.chunk.js",
     "static/css/main.981f7211.chunk.css",
     "static/js/main.d19ca19a.chunk.js"
   ]
