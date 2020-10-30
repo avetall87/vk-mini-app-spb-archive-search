@@ -2,7 +2,7 @@
   "name": "vk-medal-spbarchives",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/avetall87/vk-mini-app-swapi",
+  "homepage": "https://github.com/vk-mini-app-spb-archive-search",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
@@ -17,6 +17,7 @@
     "cross-env": "^5.2.1",
     "gh-pages": "^3.1.0",
     "react-hot-loader": "^4.13.0",
+    "react-iframe": "^1.8.0",
     "react-scripts": "^3.4.4"
   },
   "dependencies": {
