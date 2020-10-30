@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
 import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
@@ -47,7 +46,7 @@ const Home = ({id, go, fetchedUser}) => {
             <Group>
                 <Div>
                     <h2 align="center">Поиск награжденных медалью</h2>
-                    <Input id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange}/>
+                    <Input id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} placeholder="ФИО, год рождения, место работы"/>
                     <br/>
                     <br/>
                     <div style={{display: "flex", padding: "10px", margin: "10px", justifyContent: "space-between"}}>
