@@ -11,24 +11,23 @@ import Input from "@vkontakte/vkui/dist/components/Input/Input";
 const Home = ({id, go, fetchedUser}) => {
 
     const [getName, setName] = useState('');
-    const [getHumanName, setHumanName] = useState('');
+    const [getSearchParams, setSearchParams] = useState('');
 
     useEffect(() => {
-        //setName('');
         reset();
     }, []);
 
     const search = async () => {
-        window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false`);
+        window.open(`https://medal.spbarchives.ru/search?query=${getSearchParams}&advancedSearch=false`);
     }
 
     const reset = () => {
         setName('');
-        setHumanName('');
+        setSearchParams('');
     }
 
     const onLabelChange = (event) => {
-        setHumanName(event.target.value);
+        setSearchParams(event.target.value);
     };
 
     return (<Panel id={id}>
@@ -46,35 +45,18 @@ const Home = ({id, go, fetchedUser}) => {
             <Group>
                 <Div>
                     <h2 align="center">Поиск награжденных медалью</h2>
-                    <Input id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} placeholder="ФИО, год рождения, место работы"/>
-                    <br/>
-                    <br/>
+                    <Input id="medalSearchId" type="text" value={getSearchParams} onChange={onLabelChange} placeholder="ФИО, год рождения, место работы"/>
+                    {/*<br/>*/}
+                    {/*<br/>*/}
                     <div style={{display: "flex", padding: "10px", margin: "10px", justifyContent: "space-between"}}>
                         <Button size="xl" title="Искать на сайте: Медаль ЗА ОБОРОНУ ЛЕНИИНГРАДА" onClick={search}>
                             Искать
                         </Button>
-
-                        {/*<Button level="2" size="l" title="Сбросить условия поиска"  onClick={reset}>*/}
-                        {/*    Сбросить*/}
-                        {/*</Button>*/}
                     </div>
                 </Div>
             </Group>
         </Panel>
     )
 };
-
-// Home.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     go: PropTypes.func.isRequired,
-//     fetchedUser: PropTypes.shape({
-//         photo_200: PropTypes.string,
-//         first_name: PropTypes.string,
-//         last_name: PropTypes.string,
-//         city: PropTypes.shape({
-//             title: PropTypes.string,
-//         }),
-//     }),
-// };
 
 export default Home;
