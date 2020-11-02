@@ -9,3 +9,22 @@
         font-weight: 500;
     }
 }
+
+.priznanieLogo {
+    padding: 10px;
+
+}
+
+.priznanieLogo:hover {
+    cursor: pointer;
+}
+
+.link {
+    color: #2a5885;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
