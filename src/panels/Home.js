@@ -12,89 +12,88 @@ import './Home.css';
 
 import logo from '../img/medal_32_32.png';
 import priznanie from '../img/narodnoe-priznanie-logotip_150.png';
+import Footer from "@vkontakte/vkui/dist/components/Footer/Footer";
 
 
 const Home = ({id, go, fetchedUser}) => {
 
-	const [getName, setName] = useState('');
-	const [getHumanName, setHumanName] = useState('');
-	const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
-	const IAC_URL = "https://iac.spb.ru";
+    const [getName, setName] = useState('');
+    const [getHumanName, setHumanName] = useState('');
+    const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
+    const IAC_URL = "https://iac.spb.ru";
 
 
-	useEffect(() => {
-		//setName('');
-		reset();
-	}, []);
+    useEffect(() => {
+        //setName('');
+        reset();
+    }, []);
 
-	const supportProject = async () => {
-		window.open(SUPPORT_PROJECT_URL);
-	}
+    const supportProject = async () => {
+        window.open(SUPPORT_PROJECT_URL);
+    }
 
-	const gotoDeveloperSite = async () => {
-		window.open(IAC_URL);
-	}
+    const gotoDeveloperSite = async () => {
+        window.open(IAC_URL);
+    }
 
-	const search = async () => {
-		window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
-	}
+    const search = async () => {
+        window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
+    }
 
-	const _handleKeyDown = (e) => {
-		if (e.key === 'Enter') {
-			window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
-		}
-	}
+    const _handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
+        }
+    }
 
-	const reset = () => {
-		setName('');
-		setHumanName('');
-	}
+    const reset = () => {
+        setName('');
+        setHumanName('');
+    }
 
-	const onLabelChange = (event) => {
-		setHumanName(event.target.value);
-	};
+    const onLabelChange = (event) => {
+        setHumanName(event.target.value);
+    };
 
-	return (<Panel id={id}>
-			<PanelHeader>
+    return (<Panel id={id}>
+            <PanelHeader>
 
-				<PanelHeaderContent
-					// status="В базу внесены данные на 167 785 персоналий. Работа продолжается"
-					before={<Avatar size={36} src={logo} />}
-				>
-					<span class="PageHeaderContent"> Медаль «За оборону Ленинграда»</span>
-				</PanelHeaderContent>
-				{/*Медаль «За оборону Ленинграда»*/}
-			</PanelHeader>
-			<Group>
-				<Div style={{ paddingTop: 0}}>
-					<h3 align="left" style={{ paddingLeft: 16, fontWeight: 500}} >Поиск награжденных медалью</h3>
-					<Search
-						placeholder="ФИО, год рождения, место работы"
-						id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange}  onKeyDown={_handleKeyDown} />
-					<Div>
-						<Button size="xl" className="SearchButton"
-								title="Искать на сайте: Медаль ЗА ОБОРОНУ ЛЕНИИНГРАДА" onClick={search} >
-							Искать
-						</Button>
+                <PanelHeaderContent
+                    // status="В базу внесены данные на 167 785 персоналий. Работа продолжается"
+                    before={<Avatar size={36} src={logo}/>}
+                >
+                    <span class="PageHeaderContent"> Медаль «За оборону Ленинграда»</span>
+                </PanelHeaderContent>
+                {/*Медаль «За оборону Ленинграда»*/}
+            </PanelHeader>
+            <Group>
+                <Div style={{paddingTop: 0}}>
+                    <h3 align="left" style={{paddingLeft: 16, fontWeight: 500}}>Поиск награжденных медалью</h3>
+                    <Search
+                        placeholder="ФИО, год рождения, место работы"
+                        id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
+                    <Div>
+                        <Button size="xl" className="SearchButton"
+                                title="Искать на сайте: Медаль «За оборону Ленинграда»" onClick={search}>
+                            Искать
+                        </Button>
 
-					</Div>
-					<Div style={{ paddingTop: 10, color: 'gray' }}>
-						В базу внесены данные на <b>167&nbsp;785</b> персоналий. Работа продолжается
-					</Div>
+                    </Div>
+                    <Div style={{paddingTop: 10, color: 'gray'}}>
+                        В базу внесены данные на <b>167&nbsp;785</b> персоналий. Работа продолжается
+                    </Div>
 
-					<Div style={{ paddingTop: 45, vAlign: 'top'}}>
-						Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/>
-						<img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
-					</Div>
+                    <br/>
+                    <br/>
 
-					<Div style={{ paddingTop: 0, paddingRight: 30, color: 'gray', fontSize: 14, textAlign: 'right'}}>
-						Разработано <a onClick={gotoDeveloperSite} className="Link">СПБ ГУП «СПБ ИАЦ»</a>.
-					</Div>
-
-				</Div>
-			</Group>
-		</Panel>
-	)
+                    <Div style={{paddingTop: 45, vAlign: 'top', display: "flex", justifyContent: "space-between"}}>
+                        <span>Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
+                        <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
+                    </Div>
+                </Div>
+            </Group>
+        </Panel>
+    )
 };
 
 export default Home;
