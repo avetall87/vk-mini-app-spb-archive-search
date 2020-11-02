@@ -1,0 +1,11 @@
+.PageHeaderContent {
+    /*font-size: 24px;*/
+    font-weight: 500;
+}
+
+@media (max-width: 576px) {
+    .PageHeaderContent {
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
