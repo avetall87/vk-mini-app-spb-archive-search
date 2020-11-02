@@ -77,11 +77,11 @@ const Home = ({id, go, fetchedUser}) => {
 						</Button>
 
 					</Div>
-					<Div style={{ paddingTop: 20, color: 'gray' }}>
+					<Div style={{ paddingTop: 10, color: 'gray' }}>
 						В базу внесены данные на <b>167&nbsp;785</b> персоналий. Работа продолжается
 					</Div>
 
-					<Div style={{ paddingTop: 30, vAlign: 'top'}}>
+					<Div style={{ paddingTop: 45, vAlign: 'top'}}>
 						Вы можете <a onClick={supportProject} className="link">поддержать проект</a> в конкурсе «Народное признание».
 						<img src={priznanie} className="priznanieLogo" onClick={supportProject}/>
 					</Div>
