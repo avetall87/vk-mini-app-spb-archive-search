@@ -72,7 +72,7 @@ const Home = ({id, go, fetchedUser}) => {
 						placeholder="ФИО, год рождения, место работы"
 						id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange}  onKeyDown={_handleKeyDown} />
 					<Div>
-						<Button size="l" className="SearchButton"
+						<Button size="xl" className="SearchButton"
 								title="Искать на сайте: Медаль ЗА ОБОРОНУ ЛЕНИИНГРАДА" onClick={search} >
 							Искать
 						</Button>
