@@ -82,7 +82,7 @@ const Home = ({id, go, fetchedUser}) => {
 					</Div>
 
 					<Div style={{ paddingTop: 45, vAlign: 'top'}}>
-						Вы можете <a onClick={supportProject} className="link">поддержать проект</a> в конкурсе «Народное признание».
+						Вы можете <a onClick={supportProject} className="link">поддержать проект</a> в конкурсе «Народное признание».<br/>
 						<img src={priznanie} className="priznanieLogo" onClick={supportProject}/>
 					</Div>
 
