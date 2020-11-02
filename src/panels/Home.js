@@ -72,7 +72,8 @@ const Home = ({id, go, fetchedUser}) => {
 						placeholder="ФИО, год рождения, место работы"
 						id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange}  onKeyDown={_handleKeyDown} />
 					<Div>
-						<Button size="l" title="Искать на сайте: Медаль ЗА ОБОРОНУ ЛЕНИИНГРАДА" onClick={search}>
+						<Button size="l" className="SearchButton"
+								title="Искать на сайте: Медаль ЗА ОБОРОНУ ЛЕНИИНГРАДА" onClick={search} >
 							Искать
 						</Button>
 
@@ -82,12 +83,12 @@ const Home = ({id, go, fetchedUser}) => {
 					</Div>
 
 					<Div style={{ paddingTop: 45, vAlign: 'top'}}>
-						Вы можете <a onClick={supportProject} className="link">поддержать проект</a> в конкурсе «Народное признание».<br/>
-						<img src={priznanie} className="priznanieLogo" onClick={supportProject}/>
+						Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/>
+						<img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
 					</Div>
 
 					<Div style={{ paddingTop: 0, paddingRight: 30, color: 'gray', fontSize: 14, textAlign: 'right'}}>
-						Разработано <a onClick={gotoDeveloperSite} className="link">СПБ ГУП «СПБ ИАЦ»</a>.
+						Разработано <a onClick={gotoDeveloperSite} className="Link">СПБ ГУП «СПБ ИАЦ»</a>.
 					</Div>
 
 				</Div>
