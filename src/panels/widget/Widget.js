@@ -140,18 +140,18 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                        onChange={onMoreUrlChange}
                        disabled/>
 
-                <FormLayoutGroup top="Выбирите размер изображение" bottom="Необходимо загружать изображения в утроенном размере (например, для картинки с конечным размером 160x160 нужно загружать изображение размером 480x480).">
-                    <Select placeholder="">
-                        <option>24x24</option>
-                        <option>50x50</option>
-                        <option>160x160</option>
-                        <option>160x240</option>
-                        <option>510x128</option>
-                    </Select>
-                    <Div>
-                        <Button mode="primary" title="Добавить изображение" onClick={onAddImage} before={<Icon24Camera/>}>Добавить изображение</Button>
-                    </Div>
-                </FormLayoutGroup>
+                {/*<FormLayoutGroup top="Выбирите размер изображение" bottom="Необходимо загружать изображения в утроенном размере (например, для картинки с конечным размером 160x160 нужно загружать изображение размером 480x480).">*/}
+                {/*    <Select placeholder="">*/}
+                {/*        <option>24x24</option>*/}
+                {/*        <option>50x50</option>*/}
+                {/*        <option>160x160</option>*/}
+                {/*        <option>160x240</option>*/}
+                {/*        <option>510x128</option>*/}
+                {/*    </Select>*/}
+                {/*    <Div>*/}
+                {/*        <Button mode="primary" title="Добавить изображение" onClick={onAddImage} before={<Icon24Camera/>}>Добавить изображение</Button>*/}
+                {/*    </Div>*/}
+                {/*</FormLayoutGroup>*/}
 
                 <Div style={{display: "flex", justifyContent: "space-between"}}>
                     {/*<Button mode="secondary" before={<Icon24Delete/>} size="l">Удалить виджет</Button>*/}
