@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/vk-mini-app-spb-archive-search/static/css/main.c61021fa.chunk.css",
-    "main.js": "/vk-mini-app-spb-archive-search/static/js/main.eba017d1.chunk.js",
-    "main.js.map": "/vk-mini-app-spb-archive-search/static/js/main.eba017d1.chunk.js.map",
+    "main.css": "/vk-mini-app-spb-archive-search/static/css/main.3c1424a7.chunk.css",
+    "main.js": "/vk-mini-app-spb-archive-search/static/js/main.ba316322.chunk.js",
+    "main.js.map": "/vk-mini-app-spb-archive-search/static/js/main.ba316322.chunk.js.map",
     "runtime-main.js": "/vk-mini-app-spb-archive-search/static/js/runtime-main.97140562.js",
     "runtime-main.js.map": "/vk-mini-app-spb-archive-search/static/js/runtime-main.97140562.js.map",
     "static/css/2.6326594c.chunk.css": "/vk-mini-app-spb-archive-search/static/css/2.6326594c.chunk.css",
-    "static/js/2.bc5807e8.chunk.js": "/vk-mini-app-spb-archive-search/static/js/2.bc5807e8.chunk.js",
-    "static/js/2.bc5807e8.chunk.js.map": "/vk-mini-app-spb-archive-search/static/js/2.bc5807e8.chunk.js.map",
+    "static/js/2.3524335f.chunk.js": "/vk-mini-app-spb-archive-search/static/js/2.3524335f.chunk.js",
+    "static/js/2.3524335f.chunk.js.map": "/vk-mini-app-spb-archive-search/static/js/2.3524335f.chunk.js.map",
     "index.html": "/vk-mini-app-spb-archive-search/index.html",
-    "precache-manifest.509fe29d026aeb40f329ccbb85b74481.js": "/vk-mini-app-spb-archive-search/precache-manifest.509fe29d026aeb40f329ccbb85b74481.js",
+    "precache-manifest.399144faf1b146e8e50ba052be6eb845.js": "/vk-mini-app-spb-archive-search/precache-manifest.399144faf1b146e8e50ba052be6eb845.js",
     "service-worker.js": "/vk-mini-app-spb-archive-search/service-worker.js",
     "static/css/2.6326594c.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/2.6326594c.chunk.css.map",
-    "static/css/main.c61021fa.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/main.c61021fa.chunk.css.map",
-    "static/js/2.bc5807e8.chunk.js.LICENSE.txt": "/vk-mini-app-spb-archive-search/static/js/2.bc5807e8.chunk.js.LICENSE.txt",
+    "static/css/main.3c1424a7.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/main.3c1424a7.chunk.css.map",
+    "static/js/2.3524335f.chunk.js.LICENSE.txt": "/vk-mini-app-spb-archive-search/static/js/2.3524335f.chunk.js.LICENSE.txt",
     "static/media/narodnoe-priznanie-logotip_150.png": "/vk-mini-app-spb-archive-search/static/media/narodnoe-priznanie-logotip_150.35abf5ce.png"
   },
   "entrypoints": [
     "static/js/runtime-main.97140562.js",
     "static/css/2.6326594c.chunk.css",
-    "static/js/2.bc5807e8.chunk.js",
-    "static/css/main.c61021fa.chunk.css",
-    "static/js/main.eba017d1.chunk.js"
+    "static/js/2.3524335f.chunk.js",
+    "static/css/main.3c1424a7.chunk.css",
+    "static/js/main.ba316322.chunk.js"
   ]
 }
