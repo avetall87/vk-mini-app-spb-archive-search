@@ -73,7 +73,9 @@ const Home = ({id, go, fetchedUser}) => {
                         placeholder="ФИО, год рождения, место работы"
                         id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
                     <Div>
-                        <Button size="xl" className="SearchButton"
+                        {/* для того, чтобы кнопка растягивалсь на всю ширину только в мобильном добавил класс SearchButton с медиазапросом.
+						От размера xl отказался, чтобы кнопка не была больше поля ввода */}
+                        <Button size="l" className="SearchButton"
                                 title="Искать на сайте: Медаль «За оборону Ленинграда»" onClick={search}>
                             Искать
                         </Button>
