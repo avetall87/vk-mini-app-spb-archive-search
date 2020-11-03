@@ -88,7 +88,7 @@ const Home = ({id, go, fetchedUser}) => {
                     <br/>
                     <br/>
 
-                    <Div style={{paddingTop: 45, vAlign: 'top', display: "flex", justifyContent: "space-between"}}>
+                    <Div style={{paddingTop: 45, vAlign: 'top'}}>
                         <span>Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
                         <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
                     </Div>
