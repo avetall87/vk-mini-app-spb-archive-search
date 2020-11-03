@@ -12,28 +12,20 @@ import './Home.css';
 
 import logo from '../img/medal_32_32.png';
 import priznanie from '../img/narodnoe-priznanie-logotip_150.png';
-import Footer from "@vkontakte/vkui/dist/components/Footer/Footer";
+import Icon28SettingsOutline from "@vkontakte/icons/dist/28/settings_outline";
 
 
-const Home = ({id, go, fetchedUser}) => {
+const Home = ({id, go, vkGroupId}) => {
 
-    const [getName, setName] = useState('');
     const [getHumanName, setHumanName] = useState('');
     const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
-    const IAC_URL = "https://iac.spb.ru";
-
 
     useEffect(() => {
-        //setName('');
-        reset();
+
     }, []);
 
     const supportProject = async () => {
         window.open(SUPPORT_PROJECT_URL);
-    }
-
-    const gotoDeveloperSite = async () => {
-        window.open(IAC_URL);
     }
 
     const search = async () => {
@@ -46,25 +38,22 @@ const Home = ({id, go, fetchedUser}) => {
         }
     }
 
-    const reset = () => {
-        setName('');
-        setHumanName('');
-    }
-
     const onLabelChange = (event) => {
         setHumanName(event.target.value);
     };
 
     return (<Panel id={id}>
-            <PanelHeader>
+            <PanelHeader right={vkGroupId && <Button
+                                                onClick={go} data-to="widget"
+                                                title="Настройки виджета"
+                                                before={<Icon28SettingsOutline/>}
+                                                mode="tertiary">
+                                                Настройки виджета
+                                             </Button>}>
 
-                <PanelHeaderContent
-                    // status="В базу внесены данные на 167 785 персоналий. Работа продолжается"
-                    before={<Avatar size={36} src={logo}/>}
-                >
+                <PanelHeaderContent before={<Avatar size={36} src={logo}/>}>
                     <span class="PageHeaderContent"> Медаль «За оборону Ленинграда»</span>
                 </PanelHeaderContent>
-                {/*Медаль «За оборону Ленинграда»*/}
             </PanelHeader>
             <Group>
                 <Div style={{paddingTop: 0}}>
@@ -73,13 +62,10 @@ const Home = ({id, go, fetchedUser}) => {
                         placeholder="ФИО, год рождения, место работы"
                         id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
                     <Div>
-                        {/* для того, чтобы кнопка растягивалсь на всю ширину только в мобильном добавил класс SearchButton с медиазапросом.
-						От размера xl отказался, чтобы кнопка не была больше поля ввода */}
                         <Button size="l" className="SearchButton"
                                 title="Искать на сайте: Медаль «За оборону Ленинграда»" onClick={search}>
                             Искать
                         </Button>
-
                     </Div>
                     <Div style={{paddingTop: 10, color: 'gray'}}>
                         В базу внесены данные на <b>167&nbsp;785</b> персоналий. Работа продолжается
