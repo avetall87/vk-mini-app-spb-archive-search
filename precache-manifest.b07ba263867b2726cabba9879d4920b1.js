@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2579b5b11b77a69997f388ed86138d20",
+    "revision": "7c691af477411197e36f29d8a5c1d040",
     "url": "/vk-mini-app-spb-archive-search/index.html"
   },
   {
-    "revision": "da0a7151faade70c5664",
+    "revision": "ec599e9e467a2f33d95f",
     "url": "/vk-mini-app-spb-archive-search/static/css/2.6326594c.chunk.css"
   },
   {
-    "revision": "dedcde28226f0867040e",
-    "url": "/vk-mini-app-spb-archive-search/static/css/main.7499331a.chunk.css"
+    "revision": "caa1032ed057d518dd29",
+    "url": "/vk-mini-app-spb-archive-search/static/css/main.7bf7bf7c.chunk.css"
   },
   {
-    "revision": "da0a7151faade70c5664",
-    "url": "/vk-mini-app-spb-archive-search/static/js/2.f94fce4a.chunk.js"
+    "revision": "ec599e9e467a2f33d95f",
+    "url": "/vk-mini-app-spb-archive-search/static/js/2.56b1aad6.chunk.js"
   },
   {
     "revision": "570d362d673dab785e62d2b8563e1118",
-    "url": "/vk-mini-app-spb-archive-search/static/js/2.f94fce4a.chunk.js.LICENSE.txt"
+    "url": "/vk-mini-app-spb-archive-search/static/js/2.56b1aad6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dedcde28226f0867040e",
-    "url": "/vk-mini-app-spb-archive-search/static/js/main.270c457d.chunk.js"
+    "revision": "caa1032ed057d518dd29",
+    "url": "/vk-mini-app-spb-archive-search/static/js/main.844b1c63.chunk.js"
   },
   {
     "revision": "fb9ad18f58c61d4a802f",
