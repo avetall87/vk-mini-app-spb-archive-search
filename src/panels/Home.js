@@ -13,6 +13,7 @@ import './Home.css';
 import logo from '../img/medal_32_32.png';
 import priznanie from '../img/narodnoe-priznanie-logotip_150.png';
 import Icon28SettingsOutline from "@vkontakte/icons/dist/28/settings_outline";
+import bridge from "@vkontakte/vk-bridge";
 
 
 const Home = ({id, go, vkGroupId}) => {
@@ -21,20 +22,39 @@ const Home = ({id, go, vkGroupId}) => {
     const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
 
     useEffect(() => {
+        async function fetchUserData() {
+            const user = await bridge.send('VKWebAppGetUserInfo');
 
+            let lastName = '';
+
+            if (user.last_name !== null
+                && user.last_name !== undefined
+                && user.last_name.length > 0) {
+
+                lastName=user.last_name;
+            }
+            setHumanName(lastName);
+        }
+
+        fetchUserData();
     }, []);
 
     const supportProject = async () => {
         window.open(SUPPORT_PROJECT_URL);
     }
 
+    const openSearchWindow = (searchToken) => {
+
+        window.open(`https://medal.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
+    }
+
     const search = async () => {
-        window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
+        openSearchWindow(getHumanName);
     }
 
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            window.open(`https://medal.spbarchives.ru/search?query=${getHumanName}&advancedSearch=false&from=vk`);
+            openSearchWindow(getHumanName);
         }
     }
 
@@ -56,25 +76,25 @@ const Home = ({id, go, vkGroupId}) => {
                 </PanelHeaderContent>
             </PanelHeader>
             <Group>
-                <Div style={{paddingTop: 0}}>
-                    <h3 align="left" style={{paddingLeft: 16, fontWeight: 500}}>Поиск награжденных медалью</h3>
+                <Div className="MainContainer">
+                    <h3 align="left" className="SearchLabel">Поиск награжденных медалью</h3>
                     <Search
                         placeholder="ФИО, год рождения, место работы"
-                        id="medalSearchId" type="text" value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
+                        id="medalSearchId" type="text"  value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
                     <Div>
                         <Button size="l" className="SearchButton"
                                 title="Искать на сайте: Медаль «За оборону Ленинграда»" onClick={search}>
                             Искать
                         </Button>
                     </Div>
-                    <Div style={{paddingTop: 10, color: 'gray'}}>
+                    <Div className="Description">
                         В базу внесены данные на <b>167&nbsp;785</b> персоналий. Работа продолжается
                     </Div>
 
                     <br/>
                     <br/>
 
-                    <Div style={{paddingTop: 45, vAlign: 'top'}}>
+                    <Div className="PriznanieDiv">
                         <span>Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
                         <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
                     </Div>

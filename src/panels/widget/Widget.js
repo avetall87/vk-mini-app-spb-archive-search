@@ -14,9 +14,6 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {Icon16ErrorCircleFill, Icon24ListAdd} from "@vkontakte/icons";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
-import FormLayoutGroup from "@vkontakte/vkui/dist/components/FormLayoutGroup/FormLayoutGroup";
-import Select from "@vkontakte/vkui/dist/components/Select/Select";
-import Icon24Camera from "@vkontakte/icons/dist/24/camera";
 
 const Widget = ({id, go, vkGroupId, communityToken}) => {
 

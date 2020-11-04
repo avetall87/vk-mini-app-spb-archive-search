@@ -50,14 +50,10 @@ const App = () => {
             const user = await bridge.send('VKWebAppGetUserInfo');
             setUser(user);
             setPopout(null);
-
-
         }
 
         fetchData();
         fetchVkGroupId();
-        // fetchAccessTokenForCommunity();
-
     }, []);
 
     const go = e => {
