@@ -12,7 +12,10 @@
         width: 100%;
     }
 
+    /*input[type='text'] { font-size: 10px; font-family: monospace; }*/
 }
+
+
 
 .MainContainer {
     padding-top: 0px;
@@ -29,12 +32,17 @@
     color: gray
 }
 
-
-.PriznanieLogo {
-    padding: 10px;
+.PriznanieLink {
+    margin-top: 10px;
 }
 
-.PriznanieDiv {
+.PriznanieLogo {
+    padding-left: 10px;
+}
+
+.PriznanieContainer {
+    display: flex;
+    justifyContent: space-between;
     padding-top: 45px;
     vertical-align: top
 }

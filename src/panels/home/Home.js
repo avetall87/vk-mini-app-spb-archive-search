@@ -10,8 +10,8 @@ import Search from '@vkontakte/vkui/dist/components/Search/Search';
 
 import './Home.css';
 
-import logo from '../img/medal_32_32.png';
-import priznanie from '../img/narodnoe-priznanie-logotip_150.png';
+import logo from '../../img/medal_32_32.png';
+import priznanie from '../../img/narodnoe-priznanie-logotip_150.png';
 import Icon28SettingsOutline from "@vkontakte/icons/dist/28/settings_outline";
 import bridge from "@vkontakte/vk-bridge";
 
@@ -62,6 +62,22 @@ const Home = ({id, go, vkGroupId}) => {
         setHumanName(event.target.value);
     };
 
+    const getSearchField = () => {
+        let placeHolder = "ФИО, год рождения";
+
+        if (document.body.clientWidth >= 576) {
+            placeHolder += ", место работы";
+        }
+
+        return <Search
+            placeholder={placeHolder}
+            id="medalSearchId"
+            type="text"
+            value={getHumanName}
+            onChange={onLabelChange}
+            onKeyDown={_handleKeyDown}/>;
+    }
+
     return (<Panel id={id}>
             <PanelHeader right={vkGroupId && <Button
                                                 onClick={go} data-to="widget"
@@ -78,9 +94,7 @@ const Home = ({id, go, vkGroupId}) => {
             <Group>
                 <Div className="MainContainer">
                     <h3 align="left" className="SearchLabel">Поиск награжденных медалью</h3>
-                    <Search
-                        placeholder="ФИО, год рождения, место работы"
-                        id="medalSearchId" type="text"  value={getHumanName} onChange={onLabelChange} onKeyDown={_handleKeyDown}/>
+                    {getSearchField()}
                     <Div>
                         <Button size="l" className="SearchButton"
                                 title="Искать на сайте: Медаль «За оборону Ленинграда»" onClick={search}>
@@ -94,8 +108,8 @@ const Home = ({id, go, vkGroupId}) => {
                     <br/>
                     <br/>
 
-                    <Div className="PriznanieDiv">
-                        <span>Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
+                    <Div className="PriznanieContainer">
+                        <span className="PriznanieLink">Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
                         <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
                     </Div>
                 </Div>
