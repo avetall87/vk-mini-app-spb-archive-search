@@ -18,6 +18,8 @@ import bridge from "@vkontakte/vk-bridge";
 
 const Home = ({id, go, vkGroupId}) => {
 
+    const MAX_MOBILE_SCREEN_WIDTH = 576;
+
     const [getHumanName, setHumanName] = useState('');
     const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
 
@@ -62,10 +64,22 @@ const Home = ({id, go, vkGroupId}) => {
         setHumanName(event.target.value);
     };
 
+    const isMobileDevice = () => {
+        return document.body.clientWidth <= MAX_MOBILE_SCREEN_WIDTH;
+    }
+
+    const getApplicationLabel = () => {
+        if (isMobileDevice()) {
+            return <h4 align="left" className="SearchLabel">Поиск награжденных медалью</h4>;
+        } else {
+            return <h3 align="left" className="SearchLabel">Поиск награжденных медалью</h3>;
+        }
+    }
+
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
 
-        if (document.body.clientWidth >= 576) {
+        if (!isMobileDevice()) {
             placeHolder += ", место работы";
         }
 
@@ -93,7 +107,7 @@ const Home = ({id, go, vkGroupId}) => {
             </PanelHeader>
             <Group>
                 <Div className="MainContainer">
-                    <h3 align="left" className="SearchLabel">Поиск награжденных медалью</h3>
+                    {getApplicationLabel()}
                     {getSearchField()}
                     <Div>
                         <Button size="l" className="SearchButton"
