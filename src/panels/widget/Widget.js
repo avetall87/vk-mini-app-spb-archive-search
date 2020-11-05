@@ -49,13 +49,6 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
 
     const onAddImage = () => {
 
-        // bridge.send("VKWebAppGetGroupInfo", {"group_id": Number(vkGroupId)})
-        //     .then(response=> alert("1"+JSON.stringify(response)))
-        //     .catch(e=>alert("2"+JSON.stringify(e)));
-
-         // fetch(`https://api.vk.com/method/appWidgets.getGroupImageUploadServer?image_type=160x160&access_token=7db5c2e2fd34c19a35475e1022983a2ec660364df07ca76d52c5e5440cd3141b349b2f85e933567361c11&v=5.124`)
-         //     .then(res => console.log(JSON.stringify(res)))
-         //     .catch(e => console.log(JSON.stringify(e)));
     }
 
     const onDeleteImage = () => {
@@ -78,13 +71,17 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                 {"group_id": groupId, "type": "text", "code": `return ${JSON.stringify(widgetData)};`})
                 .then(r => console.log(r.result))
                 .catch(e => {
-                    setWidgetError(true);
-                    console.log(e);
+                    if (e.error_data.error_code !== 4) {
+                        setWidgetError(true);
+                        console.log(e);
+                    }
                 });
 
-        } catch (ex) {
-            setWidgetError(true);
-            console.log(ex);
+        } catch (e) {
+            if (e.error_data.error_code !== 4) {
+                setWidgetError(true);
+                console.log(e);
+            }
         }
     }
 
@@ -138,11 +135,7 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                        disabled/>
 
                 {/*<FormLayoutGroup top="Выбирите размер изображение" bottom="Необходимо загружать изображения в утроенном размере (например, для картинки с конечным размером 160x160 нужно загружать изображение размером 480x480).">*/}
-                {/*    <Select placeholder="">*/}
-                {/*        <option>24x24</option>*/}
-                {/*        <option>50x50</option>*/}
-                {/*        <option>160x160</option>*/}
-                {/*        <option>160x240</option>*/}
+                {/*    <Select>*/}
                 {/*        <option>510x128</option>*/}
                 {/*    </Select>*/}
                 {/*    <Div>*/}

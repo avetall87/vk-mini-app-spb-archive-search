@@ -46,7 +46,6 @@ const Home = ({id, go, vkGroupId}) => {
     }
 
     const openSearchWindow = (searchToken) => {
-
         window.open(`https://medal.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
     }
 
@@ -92,6 +91,20 @@ const Home = ({id, go, vkGroupId}) => {
             onKeyDown={_handleKeyDown}/>;
     }
 
+    const getPriznanieContainerLink = ()=> {
+
+        let classNameValue = "PriznanieContainer";
+
+        if (isMobileDevice()) {
+            classNameValue = "PriznanieContainerMobile";
+        }
+
+        return <Div className={classNameValue}>
+                 <span className="PriznanieLink">Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
+                 <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
+               </Div>;
+    }
+
     return (<Panel id={id}>
             <PanelHeader right={vkGroupId && <Button
                                                 onClick={go} data-to="widget"
@@ -121,11 +134,7 @@ const Home = ({id, go, vkGroupId}) => {
 
                     <br/>
                     <br/>
-
-                    <Div className="PriznanieContainer">
-                        <span className="PriznanieLink">Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
-                        <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
-                    </Div>
+                    {getPriznanieContainerLink()}
                 </Div>
             </Group>
         </Panel>
