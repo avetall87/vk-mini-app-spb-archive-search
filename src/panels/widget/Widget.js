@@ -25,7 +25,7 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
     const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
     const [text, setText] = useState('Архивные документы о награжденных медалью');
     const [descr, setDescr] = useState('В базу внесены данные на 167 939 персоналий. Работа продолжается');
-    const [more, setMore] = useState('Найти своих однофамильцев в архивных документах');
+    const [more, setMore] = useState('найди своих однофамильцев в архивных документах');
     const [moreUrl, setMoreUrl] = useState(APP_LINK);
 
     const onTitleChange = (event) => {
@@ -60,16 +60,14 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
         try {
             let groupId = Number(vkGroupId);
 
-            let widgetData = {
-                title: title,
-                text: text,
-                descr: descr,
-                more: more,
-                more_url: moreUrl
-            };
-
             bridge.send("VKWebAppShowCommunityWidgetPreviewBox",
-                {"group_id": groupId, "type": "text", "code": `return ${JSON.stringify(widgetData)};`})
+                {"group_id": groupId, "type": "text", "code": `var first_name = API.users.get({})@.first_name;
+                                                                      if (first_name) { 
+                                                                        first_name = first_name + ", ";
+                                                                      } else {
+                                                                        first_name = "";
+                                                                      }
+                                                                      return { title: '${title}', title_url: '${moreUrl}', text: '${text}', descr: '${descr}', more: first_name + '${more}', more_url: '${moreUrl}' };`})
                 .then(r => console.log(r.result))
                 .catch(e => {
                     if (e.error_data.error_code === 6) {
