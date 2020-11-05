@@ -1,0 +1,62 @@
+.PageHeaderContent {
+    font-weight: 500;
+}
+
+@media (max-width: 576px) {
+    .PageHeaderContent {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .SearchButton {
+        width: 100%;
+    }
+
+    /*input[type='text'] { font-size: 10px; font-family: monospace; }*/
+}
+
+
+
+.MainContainer {
+    padding-top: 0px;
+}
+
+.SearchLabel {
+    margin-left: 16px;
+    font-weight: 500;
+}
+
+
+.Description {
+    padding-top: 10px;
+    color: gray
+}
+
+.PriznanieLink {
+    margin-top: 10px;
+}
+
+.PriznanieLogo {
+    padding-left: 10px;
+}
+
+.PriznanieContainer {
+    display: flex;
+    justifyContent: space-between;
+    padding-top: 45px;
+    vertical-align: top
+}
+
+.PriznanieLogo:hover {
+    cursor: pointer;
+}
+
+.Link {
+    color: #2a5885;
+    text-decoration: none;
+}
+
+.Link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
