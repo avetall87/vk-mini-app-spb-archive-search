@@ -11,8 +11,6 @@
     .SearchButton {
         width: 100%;
     }
-
-    /*input[type='text'] { font-size: 10px; font-family: monospace; }*/
 }
 
 
@@ -43,6 +41,11 @@
 .PriznanieContainer {
     display: flex;
     justifyContent: space-between;
+    padding-top: 45px;
+    vertical-align: top
+}
+
+.PriznanieContainerMobile {
     padding-top: 45px;
     vertical-align: top
 }

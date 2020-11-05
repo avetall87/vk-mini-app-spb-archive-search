@@ -26,20 +26,6 @@ const App = () => {
             }
         });
 
-        // function fetchAccessTokenForCommunity() {
-        //     bridge.send("VKWebAppGetCommunityToken", {"app_id": Number(7643740), "group_id": Number(199830693), "scope": "app_widget"})
-        //         .then(response => {
-        //             console.log(`response - ${JSON.stringify(response)}`);
-        //             setCommunityToken(response.hasOwnProperty("data").hasOwnProperty("access_token"));
-        //             alert(0);
-        //         })
-        //         // TODO: добавить обработку ошибок ...
-        //         .catch(e=> {
-        //             alert(JSON.stringify(e));
-        //             console.log(e);
-        //         });
-        // }
-
         async function fetchVkGroupId() {
             const fetchData = await window.location.href.split('&').filter(value => value.includes("vk_group_id")).map(value => value.split('=')[1]);
             console.log(fetchData[0]);
