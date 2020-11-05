@@ -11,7 +11,7 @@ import Input from "@vkontakte/vkui/dist/components/Input/Input";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
 import Textarea from "@vkontakte/vkui/dist/components/Textarea/Textarea";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
-import {Icon16ErrorCircleFill, Icon24ListAdd} from "@vkontakte/icons";
+import {Icon16ErrorCircleFill, Icon16InfoCirle, Icon24ListAdd} from "@vkontakte/icons";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
 
@@ -20,6 +20,7 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
     const APP_LINK = "https://vk.com/app7643740";
 
     const [widgetError, setWidgetError] = useState(false);
+    const [unsupportedPlatform, setUnsupportedPlatform] = useState(false);
 
     const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
     const [text, setText] = useState('Архивные документы о награжденных медалью');
@@ -71,6 +72,11 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                 {"group_id": groupId, "type": "text", "code": `return ${JSON.stringify(widgetData)};`})
                 .then(r => console.log(r.result))
                 .catch(e => {
+                    if (e.error_data.error_code === 6) {
+                        setUnsupportedPlatform(true);
+                        return;
+                    }
+
                     if (e.error_data.error_code !== 4) {
                         setWidgetError(true);
                         console.log(e);
@@ -78,6 +84,11 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                 });
 
         } catch (e) {
+            if (e.error_data.error_code === 6) {
+                setUnsupportedPlatform(true);
+                return;
+            }
+
             if (e.error_data.error_code !== 4) {
                 setWidgetError(true);
                 console.log(e);
@@ -156,6 +167,16 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                 before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
                 Произошла ошибка при добавлении виджета !
+            </Snackbar>
+            }
+
+            {unsupportedPlatform &&
+            <Snackbar
+                layout='vertical'
+                onClose={() => setWidgetError(null)}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16InfoCirle fill='#fff' width={16} height={16}/></Avatar>}
+                duration={10000}>
+                Данная платформа не поддерживается
             </Snackbar>
             }
 
