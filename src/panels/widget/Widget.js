@@ -24,7 +24,7 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
     const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
     const [text, setText] = useState('Архивные документы о награжденных медалью');
     const [descr, setDescr] = useState('В базу внесены данные на 167 939 персоналий. Работа продолжается');
-    const [more, setMore] = useState('Найти архивные документы');
+    const [more, setMore] = useState('Найти своих однофамильцев в архивных документах');
     const [moreUrl, setMoreUrl] = useState(APP_LINK);
 
     const onTitleChange = (event) => {
