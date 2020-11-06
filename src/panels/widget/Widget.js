@@ -65,7 +65,7 @@ const Widget = ({id, go, vkGroupId, communityToken}) => {
                                                                       if (first_name) { 
                                                                         first_name = first_name + ", ";
                                                                       } else {
-                                                                        first_name = "";
+                                                                        first_name = "Авторизуйся и ";
                                                                       }
                                                                       return { title: '${title}', title_url: '${moreUrl}', text: '${text}', descr: '${descr}', more: first_name + '${more}', more_url: '${moreUrl}' };`})
                 .then(r => console.log(r.result))
