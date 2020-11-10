@@ -16,12 +16,11 @@ import Icon28SettingsOutline from "@vkontakte/icons/dist/28/settings_outline";
 import bridge from "@vkontakte/vk-bridge";
 
 
-const Home = ({id, go, vkGroupId}) => {
+const Home = ({id, go, vkGroupId, isCommunityAdmin}) => {
 
     const MAX_MOBILE_SCREEN_WIDTH = 576;
 
     const [getHumanName, setHumanName] = useState('');
-    const SUPPORT_PROJECT_URL = "http://2020.prof-it.d-russia.ru/medal-za-oborony-leningrada";
 
     useEffect(() => {
         async function fetchUserData() {
@@ -40,10 +39,6 @@ const Home = ({id, go, vkGroupId}) => {
 
         fetchUserData();
     }, []);
-
-    const supportProject = async () => {
-        window.open(SUPPORT_PROJECT_URL);
-    }
 
     const openSearchWindow = (searchToken) => {
         window.open(`https://medal.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
@@ -91,28 +86,18 @@ const Home = ({id, go, vkGroupId}) => {
             onKeyDown={_handleKeyDown}/>;
     }
 
-    const getPriznanieContainerLink = ()=> {
-
-        let classNameValue = "PriznanieContainer";
-
-        if (isMobileDevice()) {
-            classNameValue = "PriznanieContainerMobile";
-        }
-
-        return <Div className={classNameValue}>
-                 <span className="PriznanieLink">Вы можете <a onClick={supportProject} className="Link">поддержать проект</a> в конкурсе «Народное признание».<br/></span>
-                 <img src={priznanie} className="PriznanieLogo" onClick={supportProject}/>
-               </Div>;
+    const showWidgetConfiguration = () => {
+        return vkGroupId && isCommunityAdmin;
     }
 
     return (<Panel id={id}>
-            <PanelHeader right={vkGroupId && <Button
-                                                onClick={go} data-to="widget"
-                                                title="Настройки виджета"
-                                                before={<Icon28SettingsOutline/>}
-                                                mode="tertiary">
-                                                Настройки виджета
-                                             </Button>}>
+            <PanelHeader right={showWidgetConfiguration() && <Button
+                                                                    onClick={go} data-to="widget"
+                                                                    title="Настройки виджета"
+                                                                    before={<Icon28SettingsOutline/>}
+                                                                    mode="tertiary">
+                                                                    Настройки виджета
+                                                             </Button>}>
 
                 <PanelHeaderContent before={<Avatar size={36} src={logo}/>}>
                     <span class="PageHeaderContent"> Медаль «За оборону Ленинграда»</span>
@@ -131,10 +116,6 @@ const Home = ({id, go, vkGroupId}) => {
                     <Div className="Description">
                         В базу внесены данные на <b>167&nbsp;939</b> персоналий. Работа продолжается
                     </Div>
-
-                    <br/>
-                    <br/>
-                    {getPriznanieContainerLink()}
                 </Div>
             </Group>
         </Panel>

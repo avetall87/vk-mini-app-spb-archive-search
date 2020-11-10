@@ -10,6 +10,7 @@ import Widget from "./panels/widget/Widget";
 const App = () => {
 
     const [vkGroupId, setVkGroupId] = useState(-1);
+    const [isCommunityAdmin, setCommunityAdmin] = useState(false);
     const [activePanel, setActivePanel] = useState('home');
     const [communityToken, setCommunityToken] = useState('');
     const [fetchedUser, setUser] = useState(null);
@@ -26,9 +27,15 @@ const App = () => {
             }
         });
 
-        async function fetchVkGroupId() {
-            const fetchData = await window.location.href.split('&').filter(value => value.includes("vk_group_id")).map(value => value.split('=')[1]);
-            console.log(fetchData[0]);
+        async function fetchLunchParameters() {
+
+            const splitData = await window.location.href.split('&');
+
+            if (splitData && splitData.filter(value=> value.includes("vk_viewer_group_role")).map(value => value.split('=')[1])[0] === 'admin') {
+                setCommunityAdmin(true);
+            }
+
+            const fetchData = await splitData.filter(value => value.includes("vk_group_id")).map(value => value.split('=')[1]);
             setVkGroupId(fetchData[0]);
         }
 
@@ -39,7 +46,7 @@ const App = () => {
         }
 
         fetchData();
-        fetchVkGroupId();
+        fetchLunchParameters();
     }, []);
 
     const go = e => {
@@ -48,7 +55,7 @@ const App = () => {
 
     return (
         <View activePanel={activePanel} popout={popout}>
-            <Home id='home' fetchedUser={fetchedUser} go={go} vkGroupId={vkGroupId}/>
+            <Home id='home' fetchedUser={fetchedUser} go={go} vkGroupId={vkGroupId} isCommunityAdmin={isCommunityAdmin}/>
             <Widget id='widget' go={go} vkGroupId={vkGroupId} communityToken={communityToken}/>
         </View>
     );
