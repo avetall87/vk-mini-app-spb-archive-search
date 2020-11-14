@@ -92,11 +92,10 @@ const Home = ({id, go, vkGroupId, isCommunityAdmin}) => {
 
     return (<Panel id={id}>
             <PanelHeader right={showWidgetConfiguration() && <Button
-                                                                    onClick={go} data-to="widget"
+                                                                    onClick={go} data-to="configuration"
                                                                     title="Настройки виджета"
                                                                     before={<Icon28SettingsOutline/>}
                                                                     mode="tertiary">
-                                                                    Настройки виджета
                                                              </Button>}>
 
                 <PanelHeaderContent before={<Avatar size={36} src={logo}/>}>
