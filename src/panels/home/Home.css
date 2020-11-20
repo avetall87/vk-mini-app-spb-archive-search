@@ -10,9 +10,13 @@
 
     .SearchButton {
         width: 100%;
+        cursor: pointer;
     }
 }
 
+.SearchButton {
+    cursor: pointer;
+}
 
 
 .MainContainer {

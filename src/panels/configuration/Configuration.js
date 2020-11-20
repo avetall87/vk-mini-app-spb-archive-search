@@ -28,7 +28,7 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
 
     const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
     const [text, setText] = useState('Архивные документы о награжденных медалью');
-    const [descr, setDescr] = useState('В базу внесены данные на 167 939 персоналий. Работа продолжается');
+    const [descr, setDescr] = useState('В базу внесены данные на 168 923 гражданских лиц');
     const [more, setMore] = useState('найди своих однофамильцев в архивных документах');
     const [activeTab, setActiveTab] = useState('widget');
     const [moreUrl, setMoreUrl] = useState(APP_LINK);

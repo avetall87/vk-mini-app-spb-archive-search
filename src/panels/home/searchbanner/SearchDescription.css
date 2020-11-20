@@ -1,0 +1,14 @@
+.DescriptionPersonCount {
+    color: gray;
+    margin-left: 3px;
+}
+
+.Link {
+    color: #2a5885;
+    text-decoration: none;
+}
+
+.Link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
