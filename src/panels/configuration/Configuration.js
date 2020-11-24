@@ -19,7 +19,7 @@ import TabsItem from "@vkontakte/vkui/dist/components/TabsItem/TabsItem";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import Icon24Linked from "@vkontakte/icons/dist/24/linked";
 
-const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage}) => {
+const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage, personTotalCount}) => {
 
     const APP_LINK = "https://vk.com/app7643740";
 
@@ -28,7 +28,7 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
 
     const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
     const [text, setText] = useState('Архивные документы о награжденных медалью');
-    const [descr, setDescr] = useState('В базу внесены данные на 168 923 гражданских лиц');
+    const [descr, setDescr] = useState(`В базу внесены данные на ${personTotalCount} гражданских лиц`);
     const [more, setMore] = useState('найди своих однофамильцев в архивных документах');
     const [activeTab, setActiveTab] = useState('widget');
     const [moreUrl, setMoreUrl] = useState(APP_LINK);

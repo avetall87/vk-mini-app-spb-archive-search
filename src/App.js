@@ -21,6 +21,8 @@ const App = () => {
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
     const [bridgeError, setBridgeError] = useState(false);
     const [bridgeErrorMessage, setBridgeErrorMessage] = useState('');
+    const [personTotalCount, setPersonTotalCount] = useState(0);
+
 
 
 
@@ -55,6 +57,20 @@ const App = () => {
                 setWidgetCommunityTokenStorageKey(storageKey);
 
                 await fetchStorageData(storageKey);
+            }
+
+            try {
+                let response = await fetch(`https://medal.spbarchives.ru/api/v1/person/total/count/`);
+                let json = await response.json();
+
+                if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {
+                    let formattedResult = new Intl.NumberFormat('ru-RU').format(json.count);
+
+                    setPersonTotalCount(formattedResult);
+                    console.log(formattedResult)
+                }
+            } catch (e) {
+                console.log("Fail to fetch persons count by last_name" + e);
             }
         }
 
@@ -112,14 +128,23 @@ const App = () => {
 
     return (
         <View activePanel={activePanel} popout={popout}>
-            <Home id='home' fetchedUser={fetchedUser} go={go} vkGroupId={vkGroupId} isCommunityAdmin={isCommunityAdmin}/>
+
+            <Home id='home'
+                  fetchedUser={fetchedUser}
+                  go={go}
+                  vkGroupId={vkGroupId}
+                  isCommunityAdmin={isCommunityAdmin}
+                  personTotalCount={personTotalCount}/>
+
             <Configuration id='configuration' go={go}
                            vkGroupId={vkGroupId}
                            communityToken={communityToken}
                            vkAppId={vkAppId}
                            getCommunityAccessToken={getCommunityAccessToken}
                            bridgeError={bridgeError}
-                           bridgeErrorMessage={bridgeErrorMessage}/>
+                           bridgeErrorMessage={bridgeErrorMessage}
+                           personTotalCount={personTotalCount}/>
+
         </View>
     );
 }

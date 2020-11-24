@@ -5,7 +5,7 @@ import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './SearchBlock.css';
 
-const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton}) => {
+const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton, personTotalCount}) => {
 
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
@@ -22,10 +22,18 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
             onKeyDown={handleKeyDown}/>;
     }
 
+    const getSearchTitle = () => {
+        if (personTotalCount !== null && personTotalCount!== undefined && personTotalCount !== '0') {
+            return <span>В базу внесены данные на {personTotalCount} гражданских лиц</span>;
+        } else {
+            return <span>В базу внесены данные по гражданским лицам</span>;
+        }
+    }
+
     return (
         <Div>
             <Div>
-                <span>В базу внесены данные на 168 923 гражданских лиц</span>
+                {getSearchTitle()}
             </Div>
             {getSearchField()}
             <Div>

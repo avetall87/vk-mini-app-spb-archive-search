@@ -21,7 +21,7 @@ import Caption from "@vkontakte/vkui/dist/components/Typography/Caption/Caption"
 import Text from "@vkontakte/vkui/dist/components/Typography/Text/Text";
 
 
-const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin}) => {
+const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCount}) => {
 
     const MAX_MOBILE_SCREEN_WIDTH = 576;
 
@@ -129,7 +129,8 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin}) => {
                     <SearchBlock searchButton={search}
                                  handleKeyDown={_handleKeyDown}
                                  isMobileDevice={isMobileDevice}
-                                 onLabelChange={onLabelChange}/>
+                                 onLabelChange={onLabelChange}
+                                 personTotalCount={personTotalCount}/>
                 </Div>
             </Group>
             {widgetError &&
