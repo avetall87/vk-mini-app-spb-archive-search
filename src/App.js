@@ -6,6 +6,9 @@ import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/home/Home';
 import Configuration from "./panels/configuration/Configuration";
+import Post from "./panels/post/Post";
+
+import "./panels/post/Post.css"
 
 const App = () => {
 
@@ -22,8 +25,8 @@ const App = () => {
     const [bridgeError, setBridgeError] = useState(false);
     const [bridgeErrorMessage, setBridgeErrorMessage] = useState('');
     const [personTotalCount, setPersonTotalCount] = useState(0);
-
-
+    const [urlPostLink, setUrlPostLink] = useState('');
+    const [urlPostTitle, setUrlPostTitle] = useState('');
 
 
     useEffect(() => {
@@ -36,10 +39,9 @@ const App = () => {
         });
 
         async function fetchLunchParameters() {
-
             const splitData = await window.location.href.split('&');
 
-            if (splitData && splitData.filter(value=> value.includes("vk_viewer_group_role")).map(value => value.split('=')[1])[0] === 'admin') {
+            if (splitData && splitData.filter(value => value.includes("vk_viewer_group_role")).map(value => value.split('=')[1])[0] === 'admin') {
                 setCommunityAdmin(true);
             }
 
@@ -50,6 +52,22 @@ const App = () => {
             const fetchAppId = await splitData.filter(value => value.includes("vk_app_id")).map(value => value.split('=')[1]);
             const appId = fetchAppId[0];
             setVkAppId(appId);
+
+
+            // получение параметров из адресной строки в браузере после симвода #
+            if (window.location.href.includes('#')) {
+                const urlParamsSplitData = await window.location.href.split('#');
+
+                if (urlParamsSplitData && urlParamsSplitData.length > 0) {
+                    urlParamsSplitData[1].split('&').forEach(element => {
+                        if (element.includes("active_panel")) {
+                            let splitElement = element.replaceAll("active_panel=", "");
+                            setActivePanel(splitElement);
+                        }
+                    })
+                }
+
+            }
 
             if (appId !== null && groupId !== null) {
                 const storageKey = appId + "_" + groupId + "_" + STORE_WIDGET_SCOPE;
@@ -101,6 +119,11 @@ const App = () => {
 
         }
 
+
+        async function fetchUrlParameters() {
+
+        }
+
         fetchData();
         fetchLunchParameters();
     }, []);
@@ -110,16 +133,16 @@ const App = () => {
     };
 
     const getCommunityAccessToken = () => {
-        bridge.send("VKWebAppGetCommunityToken", {"app_id": Number(vkAppId), "group_id": Number(vkGroupId), "scope": STORE_WIDGET_SCOPE}).then(result=> {
+        bridge.send("VKWebAppGetCommunityToken", {"app_id": Number(vkAppId), "group_id": Number(vkGroupId), "scope": STORE_WIDGET_SCOPE}).then(result => {
             const token = result.access_token;
-            bridge.send("VKWebAppStorageSet", {"key": widgetCommunityTokenStorageKey, "value": token}).then(()=>{
+            bridge.send("VKWebAppStorageSet", {"key": widgetCommunityTokenStorageKey, "value": token}).then(() => {
                 setCommunityToken(token);
-            }).catch(e=> {
+            }).catch(e => {
                 setBridgeError(true);
                 setBridgeErrorMessage('Ошибка при сохранении сгенерированного токена в хранилище');
                 console.log(JSON.stringify(e));
             });
-        }).catch(e=> {
+        }).catch(e => {
             setBridgeError(true);
             setBridgeErrorMessage('Ошибка при получении токена доступа для сообщества');
             console.log(JSON.stringify(e));
@@ -128,6 +151,11 @@ const App = () => {
 
     return (
         <View activePanel={activePanel} popout={popout}>
+
+            <Post id='post'
+                  go={go}
+                  postTitle={urlPostTitle}
+                  postLink={urlPostLink}/>
 
             <Home id='home'
                   fetchedUser={fetchedUser}

@@ -1,9 +1,6 @@
 import React from "react";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
-import Banner from "@vkontakte/vkui/dist/components/Banner/Banner";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
-import FixedLayout from "@vkontakte/vkui/dist/components/FixedLayout/FixedLayout";
-import PromoBanner from "@vkontakte/vkui/dist/components/PromoBanner/PromoBanner";
 
 const SearchBanner = ({firstName, lastName, personCount, searchButton}) => {
 
