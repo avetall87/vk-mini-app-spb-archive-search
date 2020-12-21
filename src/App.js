@@ -9,6 +9,7 @@ import Configuration from "./panels/configuration/Configuration";
 import Post from "./panels/post/Post";
 
 import "./panels/post/Post.css"
+import Notification from "./panels/notification/Notification";
 
 const App = () => {
 
@@ -137,11 +138,6 @@ const App = () => {
 
         }
 
-
-        async function fetchUrlParameters() {
-
-        }
-
         fetchData();
         fetchLaunchParameters();
     }, []);
@@ -169,6 +165,11 @@ const App = () => {
 
     return (
         <View activePanel={activePanel} popout={popout}>
+
+            <Notification id='notification'
+                          go={go}
+                          searchQuery='Иванов Иван Петрович'/>
+
 
             <Post id='post'
                   go={go}
