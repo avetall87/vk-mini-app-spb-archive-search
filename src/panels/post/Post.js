@@ -15,32 +15,14 @@ import {Icon16ErrorCircleFill} from "@vkontakte/icons";
 
 const Post = ({id, go, postTitle, postLink}) => {
 
-    const [link, setLink] = useState(postLink);
-    const [title, setTitle] = useState(postTitle);
+    const [link, setLink] = useState(null);
+    const [title, setTitle] = useState(null);
     const [bridgePostError, setBridgePostError] = useState(false);
 
 
     useEffect(() => {
-        // получение параметров из адресной строки в браузере после симвода #
-        if (window.location.href.includes('#')) {
-            const urlParamsSplitData = window.location.href.split('#');
-
-            if (urlParamsSplitData && urlParamsSplitData.length > 0) {
-                urlParamsSplitData[1].split('&').forEach(element => {
-
-                    if (element.includes("post_title")) {
-                        let splitElement = element.replaceAll("post_title=", "");
-                        setTitle(decodeURI(splitElement));
-                    }
-
-                    if (element.includes("post_link")) {
-                        let splitElement = element.replaceAll("post_link=", "");
-                        setLink(splitElement);
-                    }
-                })
-            }
-
-        }
+        setTitle(postTitle);
+        setLink(postLink);
     })
 
     const doPost = () => {

@@ -27,6 +27,7 @@ const App = () => {
     const [personTotalCount, setPersonTotalCount] = useState(0);
     const [urlPostLink, setUrlPostLink] = useState('');
     const [urlPostTitle, setUrlPostTitle] = useState('');
+    const [hashParameters, setHashParameters] = useState({});
 
 
     useEffect(() => {
@@ -38,7 +39,21 @@ const App = () => {
             }
         });
 
-        async function fetchLunchParameters() {
+        function getLocationHash() {
+            return window.location.hash.replace('#','');
+        }
+
+        function getParametersFromHash(string) {
+            let search = string
+            let objectUrl = search === "" ? null : search.split("&").reduce((prev, curr) => {
+                const [key, value] = curr.split("=");
+                prev[decodeURIComponent(key)] = decodeURIComponent(value);
+                return prev;
+            }, {});
+            return objectUrl
+        }
+
+        async function fetchLaunchParameters() {
             const splitData = await window.location.href.split('&');
 
             if (splitData && splitData.filter(value => value.includes("vk_viewer_group_role")).map(value => value.split('=')[1])[0] === 'admin') {
@@ -53,20 +68,23 @@ const App = () => {
             const appId = fetchAppId[0];
             setVkAppId(appId);
 
+            let locationHash = getLocationHash();
+            let hashParameters = getParametersFromHash(locationHash);
 
-            // получение параметров из адресной строки в браузере после симвода #
-            if (window.location.href.includes('#')) {
-                const urlParamsSplitData = await window.location.href.split('#');
+            setHashParameters(hashParameters);
 
-                if (urlParamsSplitData && urlParamsSplitData.length > 0) {
-                    urlParamsSplitData[1].split('&').forEach(element => {
-                        if (element.includes("active_panel")) {
-                            let splitElement = element.replaceAll("active_panel=", "");
-                            setActivePanel(splitElement);
-                        }
-                    })
+            if (hashParameters !== null) {
+                if (hashParameters.hasOwnProperty('active_panel')) {
+                    setActivePanel(hashParameters.active_panel);
                 }
 
+                if (hashParameters.hasOwnProperty('post_title')) {
+                    setUrlPostTitle(hashParameters.post_title);
+                }
+
+                if (hashParameters.hasOwnProperty('post_link')) {
+                    setUrlPostLink(hashParameters.post_link);
+                }
             }
 
             if (appId !== null && groupId !== null) {
@@ -125,7 +143,7 @@ const App = () => {
         }
 
         fetchData();
-        fetchLunchParameters();
+        fetchLaunchParameters();
     }, []);
 
     const go = e => {
