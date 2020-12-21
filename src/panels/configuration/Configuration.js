@@ -98,7 +98,7 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
     return (<Panel id={id}>
             <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
                 <PanelHeaderContent>
-                    <span class="PageHeaderContent">Настройки</span>
+                    <span className="PageHeaderContent">Настройки</span>
                 </PanelHeaderContent>
             </PanelHeader>
             <Tabs>
