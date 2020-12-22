@@ -28,6 +28,7 @@ const App = () => {
     const [personTotalCount, setPersonTotalCount] = useState(0);
     const [urlPostLink, setUrlPostLink] = useState('');
     const [urlPostTitle, setUrlPostTitle] = useState('');
+    const [notificationSearchQuery, setNotificationSearchQuery] = useState('');
     const [hashParameters, setHashParameters] = useState({});
 
 
@@ -85,6 +86,10 @@ const App = () => {
 
                 if (hashParameters.hasOwnProperty('post_link')) {
                     setUrlPostLink(hashParameters.post_link);
+                }
+
+                if (hashParameters.hasOwnProperty('notify_search_query')) {
+                    setNotificationSearchQuery(hashParameters.notify_search_query);
                 }
             }
 
@@ -168,8 +173,7 @@ const App = () => {
 
             <Notification id='notification'
                           go={go}
-                          searchQuery='Иванов Иван Петрович'/>
-
+                          searchQuery={notificationSearchQuery}/>
 
             <Post id='post'
                   go={go}
