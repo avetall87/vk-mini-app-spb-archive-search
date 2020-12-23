@@ -6,11 +6,11 @@ export class NotificationApiService {
 
     }
 
-    async subscribeToNotification(userId, searchQuery) {
+    async subscribeToNotification(vkUserId, searchQuery) {
 
         const notification = {
             ...JSON.parse(searchQuery),
-            vkUserid: userId
+            vkUserId
         }
 
         const api = new RemoteAPI();
