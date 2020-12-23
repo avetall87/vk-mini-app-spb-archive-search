@@ -1,10 +1,12 @@
+import {RemoteAPI} from '../../utils/RemoteAPI';
+
 export class NotificationApiService {
 
     constructor() {
 
     }
 
-    async subscribeToNotification(userId, searchQuery) {
+    async subscribeToNotification(vkUserId, searchQuery) {
 
         const notification = {
             ...JSON.parse(searchQuery),
