@@ -21,7 +21,7 @@ import Icon24Linked from "@vkontakte/icons/dist/24/linked";
 
 const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage, personTotalCount}) => {
 
-    const APP_LINK = "https://vk.com/app7643740";
+    const APP_LINK = `https://vk.com/app${vkAppId}`;
 
     const [widgetError, setWidgetError] = useState(false);
     const [unsupportedPlatform, setUnsupportedPlatform] = useState(false);

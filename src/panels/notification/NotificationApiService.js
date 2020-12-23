@@ -4,17 +4,17 @@ export class NotificationApiService {
 
     }
 
-    async subscribeToNotification (userId, searchQuery) {
+    async subscribeToNotification(userId, searchQuery) {
 
         let notification = {
             userId: userId,
-            searchQuery: searchQuery,
-            requestId: 123
+            searchQuery: searchQuery
         }
 
-        /*  const response = await fetch(url, {
+        // вынести в общий метод POST
+        return await fetch('https://special.spbarchives.ru/api/v1/vk/notification/add', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'same-origin', // no-cors, *cors, same-origin
+            mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             headers: {
@@ -22,13 +22,7 @@ export class NotificationApiService {
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *client
-            body: JSON.stringify(userNotification) // body data type must match "Content-Type" header
-        });
-
-        return await response.json();*/
-
-        console.log(JSON.stringify(notification));
-
-        return "success";
+            body: JSON.stringify(notification) // body data type must match "Content-Type" header
+        })
     }
 }

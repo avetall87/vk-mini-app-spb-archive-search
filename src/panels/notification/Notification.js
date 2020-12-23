@@ -8,17 +8,20 @@ import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import bridge from "@vkontakte/vk-bridge";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
-import {Icon16ErrorCircleFill} from "@vkontakte/icons";
+import {Icon16Done, Icon16ErrorCircleFill, Icon56MoneyTransferOutline} from "@vkontakte/icons";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
+import {PopoutWrapper} from "@vkontakte/vkui";
+import {ModalCard, ModalRoot} from "@vkontakte/vkui/dist/es6";
 
 const Notification = ({id, go, searchQuery}) => {
 
     const [error, setError] = useState(null);
     const [firstName, setFirstName] = useState(null);
     const [vkUserId, setVkUserId] = useState(null);
+    const [notificationIsAdded, setNotificationIsAdded] = useState(false);
 
     useEffect(() => {
         async function fetchUserData() {
@@ -47,6 +50,11 @@ const Notification = ({id, go, searchQuery}) => {
                 service.subscribeToNotification(vkUserId, searchQuery)
                     .then(response => {
                             // вызов модального окна или snackbar
+                            if (!response.ok) {
+                                setError("Ошибка в процессе подписки на уведопление!");
+                            }
+
+                            setNotificationIsAdded(true);
                             console.log(response);
                         }
                     )
@@ -65,7 +73,7 @@ const Notification = ({id, go, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
+            <PanelHeader left={<PanelHeaderBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
                 <PanelHeaderContent>
                     <span className="PageHeaderContent">Уведомления</span>
                 </PanelHeaderContent>
@@ -93,6 +101,16 @@ const Notification = ({id, go, searchQuery}) => {
                 before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
                 {error}
+            </Snackbar>
+            }
+
+            {notificationIsAdded &&
+            <Snackbar
+                layout='vertical'
+                onClose={() => setNotificationIsAdded(null)}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16Done fill='#fff' width={16} height={16}/></Avatar>}
+                duration={10000}>
+                Подписка на уведомление успешно завершена!
             </Snackbar>
             }
 
