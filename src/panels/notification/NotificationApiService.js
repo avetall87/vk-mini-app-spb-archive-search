@@ -12,23 +12,30 @@ export class NotificationApiService {
             requestId: 123
         }
 
-        /*  const response = await fetch(url, {
+        const url = 'https://special.spbarchives.ru/api/v1/vk/notification/add'
+        const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'same-origin', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            // mode: 'same-origin', // no-cors, *cors, same-origin
+            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, *same-origin, omit
             headers: {
                 'Content-Type': 'application/json'
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *client
-            body: JSON.stringify(userNotification) // body data type must match "Content-Type" header
+            body: notification // body data type must match "Content-Type" header
         });
 
-        return await response.json();*/
+        if (response.ok) { // если HTTP-статус в диапазоне 200-299
+                           // получаем тело ответа (см. про этот метод ниже)
+            return await response.json();
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+            return null;
+        }
 
-        console.log(JSON.stringify(notification));
+        // console.log(JSON.stringify(notification));
 
-        return "success";
+        // return "success";
     }
 }
