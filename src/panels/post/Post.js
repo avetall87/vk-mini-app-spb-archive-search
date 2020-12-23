@@ -45,10 +45,6 @@ const Post = ({id, go, postTitle, postLink}) => {
         bridge.send("VKWebAppAllowNotifications").then(response => console.log(JSON.stringify(response))).catch(e => console.log(JSON.stringify(e)));
     }
 
-    const removeNotificationPermission = () => {
-        // .....
-    }
-
     const handleTitle = (event) => {
         setTitle(event.target.value)
     }

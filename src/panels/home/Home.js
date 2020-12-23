@@ -19,6 +19,9 @@ import SearchBlock from "./searchblock/SearchBlock";
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
 import Caption from "@vkontakte/vkui/dist/components/Typography/Caption/Caption";
 import Text from "@vkontakte/vkui/dist/components/Typography/Text/Text";
+import axios from "axios";
+import {SearchApiService} from "./SearchApiService";
+import {RemoteAPI} from "../../utils/RemoteAPI";
 
 
 const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCount}) => {
@@ -36,6 +39,7 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
     useEffect(() => {
         async function fetchUserData() {
             const user = await bridge.send('VKWebAppGetUserInfo');
+            const api = new RemoteAPI();
 
             let lastName = '';
 
@@ -56,7 +60,7 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
             setLastName(lastName);
 
             try {
-                let response = await fetch(`https://medal.spbarchives.ru/api/v1/person/count/${lastName}/`);
+                let response = await api.get(`/api/v1/person/count/${lastName}/`);
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {
@@ -74,7 +78,7 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
     }, []);
 
     const openSearchWindow = (searchToken) => {
-        window.open(`https://medal.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
+        new RemoteAPI().openSearchWindow(searchToken);
     }
 
     const showFoundedRecords = async () => {

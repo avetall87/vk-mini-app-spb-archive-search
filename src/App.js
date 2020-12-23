@@ -7,9 +7,12 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Home from './panels/home/Home';
 import Configuration from "./panels/configuration/Configuration";
 import Post from "./panels/post/Post";
+import Notification from "./panels/notification/Notification";
 
 import "./panels/post/Post.css"
-import Notification from "./panels/notification/Notification";
+import {ModalCard, ModalRoot} from "@vkontakte/vkui/dist/es6";
+import {Icon56MoneyTransferOutline} from "@vkontakte/icons";
+import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 
 const App = () => {
 
@@ -47,12 +50,11 @@ const App = () => {
 
         function getParametersFromHash(string) {
             let search = string
-            let objectUrl = search === "" ? null : search.split("&").reduce((prev, curr) => {
+            return search === "" ? null : search.split("&").reduce((prev, curr) => {
                 const [key, value] = curr.split("=");
                 prev[decodeURIComponent(key)] = decodeURIComponent(value);
                 return prev;
-            }, {});
-            return objectUrl
+            }, {})
         }
 
         async function fetchLaunchParameters() {
