@@ -50,7 +50,7 @@ const Notification = ({id, go, searchQuery}) => {
                     .then(response => {
                             // вызов модального окна или snackbar
                             if (!response.ok) {
-                                setError("Ошибка в процессе подписки на уведопление!");
+                                setError("Ошибка в процессе подписки на уведомление!");
                             }
 
                             setNotificationIsAdded(true);
@@ -58,7 +58,7 @@ const Notification = ({id, go, searchQuery}) => {
                         }
                     )
                     .catch(e => {
-                        setError("Ошибка в процессе подписки на уведопление: " + e);
+                        setError("Ошибка в процессе подписки на уведомление: " + e);
                     });
 
             })

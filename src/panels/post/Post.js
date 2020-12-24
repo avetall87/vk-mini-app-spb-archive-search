@@ -9,13 +9,14 @@ import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
-import {Icon16ErrorCircleFill} from "@vkontakte/icons";
+import {Icon16Done, Icon16ErrorCircleFill} from "@vkontakte/icons";
 import Banner from "@vkontakte/vkui/dist/components/Banner/Banner";
 import Link from "@vkontakte/vkui/dist/components/Link/Link";
 import Radio from "@vkontakte/vkui/dist/components/Radio/Radio";
 import {FormItem} from "@vkontakte/vkui";
 import MixedTags from "@yaireo/tagify/dist/react.tagify"
 import "@yaireo/tagify/dist/tagify.css"
+import BridgeErrorHandler from "../../utils/BridgeErrorHandler";
 
 const tagifySettings = {
   mode: "mix"
@@ -27,13 +28,15 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
     const [link, setLink] = useState('');
     const [title, setTitle] = useState('');
     const [imageLink, setImageLink] = useState('');
-    const [bridgePostError, setBridgePostError] = useState(false);
+
+    const [error, setError] = useState(null);
+    const [postWasPosted, setPostWasPosted] = useState(false);
 
     useEffect(() => {
         setLink(personLink);
         setTitle(snippetTitle);
         setImageLink(snippetImageLink);
-    })
+    }, [personLink, snippetTitle, snippetImageLink])
 
     const doPost = () => {
         bridge.send("VKWebAppShowWallPostBox", {
@@ -41,19 +44,29 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
                 link
             ],
             "message": `${postMessage}`
-        }).then(response => console.log(JSON.stringify(response)))
-            .catch(e => {
-                console.log("Ошибка: " + JSON.stringify(e));
-                if (e.error_data.error_code !== 4) {
-                    setBridgePostError(true);
-                    console.log(e);
-                }
-            });
+        })
+        .then(response => {
+          setPostWasPosted(true);
+        })
+        .catch(e => {
+          let errorCode = e.error_data.error_code;
+
+          if (errorCode !== 4) {
+            setError(BridgeErrorHandler.getClientErrorDescriptionByErrorCode(errorCode));
+          }
+        });
     }
 
     const handlePostMessage = (event) => {
       setPostMessage(event.detail.textContent);
     }
+
+  const getDefaultPostMessage = () => {
+    let newLineCharacter = '&#10;';
+    let readonlyHashtag = '[[{"value":"#medalspb", "readonly":true}]]';
+
+    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtag;
+  }
 
     return (<Panel id={id}>
         <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
@@ -73,9 +86,7 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
                 <MixedTags
                     settings={tagifySettings}
                     onInput={handlePostMessage}
-                    value={`&#10;&#10;&#10;
-[[{"value":"#medalspb", "readonly":true}]]
-        `}
+                    value={getDefaultPostMessage()}
                 />
               </FormItem>
 
@@ -86,20 +97,30 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
               </Link>
 
               <div className="buttonWrapper">
-                <Button size="l" onClick={doPost}>Опубликовать в VK</Button>
+                <Button size="l" onClick={doPost}>Отправить</Button>
               </div>
 
             </FormLayout>
 
-            {bridgePostError &&
+            {error &&
             <Snackbar
                 layout='vertical'
-                onClose={() => setBridgePostError(null)}
+                onClose={() => setError(null)}
                 before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
-                Произошла ошибка при публикации поста !
+              {error}
             </Snackbar>
             }
+
+          {postWasPosted &&
+          <Snackbar
+              layout='vertical'
+              onClose={() => setPostWasPosted(null)}
+              before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16Done fill='#fff' width={16} height={16}/></Avatar>}
+              duration={10000}>
+            Пост успешно опубликован!
+          </Snackbar>
+          }
         </Group>
     </Panel>)
 }
