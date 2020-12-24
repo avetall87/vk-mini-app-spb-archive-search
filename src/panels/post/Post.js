@@ -7,22 +7,32 @@ import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderConte
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
-import Input from "@vkontakte/vkui/dist/components/Input/Input";
-import Textarea from "@vkontakte/vkui/dist/components/Textarea/Textarea";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
 import {Icon16ErrorCircleFill} from "@vkontakte/icons";
+import Banner from "@vkontakte/vkui/dist/components/Banner/Banner";
+import Link from "@vkontakte/vkui/dist/components/Link/Link";
+import Radio from "@vkontakte/vkui/dist/components/Radio/Radio";
+import {FormItem} from "@vkontakte/vkui";
+import MixedTags from "@yaireo/tagify/dist/react.tagify"
+import "@yaireo/tagify/dist/tagify.css"
 
-const Post = ({id, go, postTitle, postLink}) => {
+const tagifySettings = {
+  mode: "mix"
+}
 
-    const [link, setLink] = useState(null);
-    const [title, setTitle] = useState(null);
+const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
+
+    const [postMessage, setPostMessage] = useState('#medalspb');
+    const [link, setLink] = useState('');
+    const [title, setTitle] = useState('');
+    const [imageLink, setImageLink] = useState('');
     const [bridgePostError, setBridgePostError] = useState(false);
 
-
     useEffect(() => {
-        setTitle(postTitle);
-        setLink(postLink);
+        setLink(personLink);
+        setTitle(snippetTitle);
+        setImageLink(snippetImageLink);
     })
 
     const doPost = () => {
@@ -30,7 +40,7 @@ const Post = ({id, go, postTitle, postLink}) => {
             "attachments": [
                 link
             ],
-            "message": `${title}`
+            "message": `${postMessage}`
         }).then(response => console.log(JSON.stringify(response)))
             .catch(e => {
                 console.log("Ошибка: " + JSON.stringify(e));
@@ -41,38 +51,44 @@ const Post = ({id, go, postTitle, postLink}) => {
             });
     }
 
-    const getPermissionForNotification = () => {
-        bridge.send("VKWebAppAllowNotifications").then(response => console.log(JSON.stringify(response))).catch(e => console.log(JSON.stringify(e)));
-    }
-
-    const handleTitle = (event) => {
-        setTitle(event.target.value)
-    }
-
-    const handleLink = (event) => {
-        setLink(event.target.value)
+    const handlePostMessage = (event) => {
+      setPostMessage(event.detail.textContent);
     }
 
     return (<Panel id={id}>
         <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
             <PanelHeaderContent>
-                <span class="PageHeaderContent">Посты</span>
+                <span class="PageHeaderContent">Рассказ о герое</span>
             </PanelHeaderContent>
         </PanelHeader>
         <Group>
             <FormLayout>
-                <Textarea id="messageId"
-                          top="Сообщение"
-                          onChange={handleTitle}
-                          value={title}/>
 
-                <Input id="linkId"
-                       top="Ссылка на внешний ресурс"
-                       onChange={handleLink}
-                       value={link}/>
+              <FormItem top="Запись будет доступна" style={{display: 'none'}}>
+                <Radio name="radio" value="1" defaultChecked>Друзья и подписчики</Radio>
+                <Radio name="radio" value="2">Отправить личным сообщением</Radio>
+              </FormItem>
 
-                <Button size="xl" onClick={doPost}>Опубликовать</Button>
-                <Button mode="outline" size="xl" onClick={getPermissionForNotification}>Получить права на уведомление</Button>
+              <FormItem>
+                <MixedTags
+                    settings={tagifySettings}
+                    onInput={handlePostMessage}
+                    value={`&#10;&#10;&#10;
+[[{"value":"#medalspb", "readonly":true}]]
+        `}
+                />
+              </FormItem>
+
+              <Link href={link} target="_blank"><Banner
+                    before={<Avatar size={90} mode="image" src={imageLink} />}
+                    header={title}
+                    subheader="medal.spbarchives.ru"/>
+              </Link>
+
+              <div className="buttonWrapper">
+                <Button size="l" onClick={doPost}>Опубликовать в VK</Button>
+              </div>
+
             </FormLayout>
 
             {bridgePostError &&

@@ -1,3 +1,26 @@
 .Button {
     cursor: pointer;
 }
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.tagify__tag[readonly]>div::before {
+    background: none;
+}
+
+.tagify__tag-text {
+    color: var(--accent);
+}
+
+.tagify__input .tagify__tag>div {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.Banner__content {
+    justify-content: start;
+}
+

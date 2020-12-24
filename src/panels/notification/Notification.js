@@ -14,7 +14,6 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
 import {PopoutWrapper} from "@vkontakte/vkui";
-import {ModalCard, ModalRoot} from "@vkontakte/vkui/dist/es6";
 
 const Notification = ({id, go, searchQuery}) => {
 
