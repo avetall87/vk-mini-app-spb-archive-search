@@ -10,7 +10,6 @@ import Post from "./panels/post/Post";
 import Notification from "./panels/notification/Notification";
 
 import "./panels/post/Post.css"
-import {ModalCard, ModalRoot} from "@vkontakte/vkui/dist/es6";
 import {Icon56MoneyTransferOutline} from "@vkontakte/icons";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 
@@ -29,8 +28,9 @@ const App = () => {
     const [bridgeError, setBridgeError] = useState(false);
     const [bridgeErrorMessage, setBridgeErrorMessage] = useState('');
     const [personTotalCount, setPersonTotalCount] = useState(0);
-    const [urlPostLink, setUrlPostLink] = useState('');
-    const [urlPostTitle, setUrlPostTitle] = useState('');
+    const [urlPersonLink, setUrlPersonLink] = useState('');
+    const [urlSnippetTitle, setUrlSnippetTitle] = useState('');
+    const [urlSnippetImageLink, setUrlSnippetImageLink] = useState('');
     const [notificationSearchQuery, setNotificationSearchQuery] = useState('');
     const [hashParameters, setHashParameters] = useState({});
 
@@ -82,12 +82,16 @@ const App = () => {
                     setActivePanel(hashParameters.active_panel);
                 }
 
-                if (hashParameters.hasOwnProperty('post_title')) {
-                    setUrlPostTitle(hashParameters.post_title);
+                if (hashParameters.hasOwnProperty('person_link')) {
+                    setUrlPersonLink(hashParameters.person_link);
                 }
 
-                if (hashParameters.hasOwnProperty('post_link')) {
-                    setUrlPostLink(hashParameters.post_link);
+                if (hashParameters.hasOwnProperty('snippet_title')) {
+                    setUrlSnippetTitle(hashParameters.snippet_title);
+                }
+
+                if (hashParameters.hasOwnProperty('snippet_image_link')) {
+                    setUrlSnippetImageLink(hashParameters.snippet_image_link);
                 }
 
                 if (hashParameters.hasOwnProperty('notify_search_query')) {
@@ -179,8 +183,9 @@ const App = () => {
 
             <Post id='post'
                   go={go}
-                  postTitle={urlPostTitle}
-                  postLink={urlPostLink}/>
+                  personLink={urlPersonLink}
+                  snippetTitle={urlSnippetTitle}
+                  snippetImageLink={urlSnippetImageLink}/>
 
             <Home id='home'
                   fetchedUser={fetchedUser}

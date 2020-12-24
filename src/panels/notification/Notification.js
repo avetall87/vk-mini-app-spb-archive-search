@@ -14,7 +14,6 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
 import {PopoutWrapper} from "@vkontakte/vkui";
-import {ModalCard, ModalRoot} from "@vkontakte/vkui/dist/es6";
 
 const Notification = ({id, go, searchQuery}) => {
 
@@ -51,7 +50,7 @@ const Notification = ({id, go, searchQuery}) => {
                     .then(response => {
                             // вызов модального окна или snackbar
                             if (!response.ok) {
-                                setError("Ошибка в процессе подписки на уведопление!");
+                                setError("Ошибка в процессе подписки на уведомление!");
                             }
 
                             setNotificationIsAdded(true);
@@ -59,7 +58,7 @@ const Notification = ({id, go, searchQuery}) => {
                         }
                     )
                     .catch(e => {
-                        setError("Ошибка в процессе подписки на уведопление: " + e);
+                        setError("Ошибка в процессе подписки на уведомление: " + e);
                     });
 
             })
