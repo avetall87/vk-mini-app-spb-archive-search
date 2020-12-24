@@ -2,19 +2,14 @@ import {RemoteAPI} from '../../utils/RemoteAPI';
 import _ from 'lodash';
 
 export class NotificationApiService {
-
-  constructor() {
-
-  }
-
-  async subscribeToNotification(vkUserId, searchQuery) {
+  static async subscribeToNotification(vkUserId, searchQuery) {
     const query = JSON.parse(searchQuery);
     _.forEach(
         _.keys(query),
         key => query[key] = decodeURIComponent(query[key]));
 
     const notification = {
-      ...query,
+      searchQuery: query,
       vkUserId,
     };
 
