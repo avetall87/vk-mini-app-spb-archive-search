@@ -18,8 +18,6 @@ export class NotificationApiService {
       vkUserId,
     };
 
-    const api = new RemoteAPI();
-
-    return await api.post('/api/v1/vk/notification/add', notification);
+    return await RemoteAPI.post('/api/v1/vk/notification/add', notification);
   }
 }
