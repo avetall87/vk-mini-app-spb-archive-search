@@ -1,15 +1,12 @@
+const url = "https://special.spbarchives.ru";
+
 export class RemoteAPI {
-
-    constructor() {
-        this.url = "https://special.spbarchives.ru";
+    static get (subUrl) {
+        return fetch(url + subUrl);
     }
 
-    get (subUrl) {
-        return fetch(this.url + subUrl);
-    }
-
-    post(subUrl, body) {
-        return fetch(this.url + subUrl, {
+    static post(subUrl, body) {
+        return fetch(url + subUrl, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -23,7 +20,7 @@ export class RemoteAPI {
         })
     }
 
-    openSearchWindow (searchToken) {
+    static openSearchWindow (searchToken) {
         window.open(`https://special.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
     }
 

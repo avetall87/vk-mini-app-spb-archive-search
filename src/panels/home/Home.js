@@ -39,7 +39,6 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
     useEffect(() => {
         async function fetchUserData() {
             const user = await bridge.send('VKWebAppGetUserInfo');
-            const api = new RemoteAPI();
 
             let lastName = '';
 
@@ -60,7 +59,7 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
             setLastName(lastName);
 
             try {
-                let response = await api.get(`/api/v1/person/count/${lastName}/`);
+                let response = await RemoteAPI.get(`/api/v1/person/count/${lastName}/`);
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {
@@ -78,7 +77,7 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
     }, []);
 
     const openSearchWindow = (searchToken) => {
-        new RemoteAPI().openSearchWindow(searchToken);
+        RemoteAPI.openSearchWindow(searchToken);
     }
 
     const showFoundedRecords = async () => {
