@@ -97,7 +97,7 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
               </Link>
 
               <div className="buttonWrapper">
-                <Button size="l" onClick={doPost}>Отправить</Button>
+                <Button size="l" onClick={doPost}>Опубликовать в VK</Button>
               </div>
 
             </FormLayout>
