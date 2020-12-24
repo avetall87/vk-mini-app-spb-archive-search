@@ -14,6 +14,7 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
 import {PopoutWrapper} from "@vkontakte/vkui";
+import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 
 const Notification = ({id, go, searchQuery}) => {
 
@@ -72,7 +73,7 @@ const Notification = ({id, go, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<PanelHeaderBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
+            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
                 <PanelHeaderContent>
                     <span className="PageHeaderContent">Уведомления</span>
                 </PanelHeaderContent>

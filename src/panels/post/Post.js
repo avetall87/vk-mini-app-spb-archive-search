@@ -17,6 +17,7 @@ import {FormItem} from "@vkontakte/vkui";
 import MixedTags from "@yaireo/tagify/dist/react.tagify"
 import "@yaireo/tagify/dist/tagify.css"
 import BridgeErrorHandler from "../../utils/BridgeErrorHandler";
+import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 
 const tagifySettings = {
   mode: "mix"
@@ -69,7 +70,7 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
   }
 
     return (<Panel id={id}>
-        <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
+        <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
             <PanelHeaderContent>
                 <span class="PageHeaderContent">Рассказ о герое</span>
             </PanelHeaderContent>
