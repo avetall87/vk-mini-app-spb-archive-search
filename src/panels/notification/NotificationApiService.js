@@ -10,9 +10,10 @@ export class NotificationApiService {
 
     const notification = {
       searchQuery: query,
-      vkUserId,
+      value: vkUserId,
+      type: 'VK'
     };
 
-    return await RemoteAPI.post('/api/v1/vk/notification/add', notification);
+    return await RemoteAPI.post('/api/v1/notification/add', notification);
   }
 }
