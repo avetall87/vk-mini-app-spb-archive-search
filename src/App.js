@@ -10,8 +10,7 @@ import Post from "./panels/post/Post";
 import Notification from "./panels/notification/Notification";
 
 import "./panels/post/Post.css"
-import {Icon56MoneyTransferOutline} from "@vkontakte/icons";
-import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
+import {UserInfoService} from "./utils/UserInfoService";
 
 const App = () => {
 
@@ -23,7 +22,7 @@ const App = () => {
     const [activePanel, setActivePanel] = useState('home');
     const [communityToken, setCommunityToken] = useState('');
     const [widgetCommunityTokenStorageKey, setWidgetCommunityTokenStorageKey] = useState('');
-    const [fetchedUser, setUser] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
     const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
     const [bridgeError, setBridgeError] = useState(false);
     const [bridgeErrorMessage, setBridgeErrorMessage] = useState('');
@@ -55,6 +54,17 @@ const App = () => {
                 prev[decodeURIComponent(key)] = decodeURIComponent(value);
                 return prev;
             }, {})
+        }
+
+        function fetchUserInfo() {
+            UserInfoService.getUserInfoPromise().then(data => {
+                setUserInfo(data);
+                setPopout(null);
+            })
+            .catch(e => {
+                console.log("Ошибка при получении данных о пользователе");
+                console.log(JSON.stringify(e));
+            });
         }
 
         async function fetchLaunchParameters() {
@@ -122,12 +132,6 @@ const App = () => {
             }
         }
 
-        async function fetchData() {
-            const user = await bridge.send('VKWebAppGetUserInfo');
-            setUser(user);
-            setPopout(null);
-        }
-
         async function fetchStorageData(storageKey) {
             try {
                 const fetchWidgetCommunityStorageToken = await bridge.send("VKWebAppStorageGet", {"keys": [`${storageKey}`]});
@@ -149,7 +153,7 @@ const App = () => {
 
         }
 
-        fetchData();
+        fetchUserInfo();
         fetchLaunchParameters();
     }, []);
 
@@ -179,17 +183,19 @@ const App = () => {
 
             <Notification id='notification'
                           go={go}
+                          userInfo={userInfo}
                           searchQuery={notificationSearchQuery}/>
 
             <Post id='post'
                   go={go}
+                  userInfo={userInfo}
                   personLink={urlPersonLink}
                   snippetTitle={urlSnippetTitle}
                   snippetImageLink={urlSnippetImageLink}/>
 
             <Home id='home'
-                  fetchedUser={fetchedUser}
                   go={go}
+                  userInfo={userInfo}
                   vkGroupId={vkGroupId}
                   isCommunityAdmin={isCommunityAdmin}
                   personTotalCount={personTotalCount}/>
