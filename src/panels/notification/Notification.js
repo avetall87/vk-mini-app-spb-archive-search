@@ -26,9 +26,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     const doNotification = () => {
         bridge.send("VKWebAppAllowNotifications")
             .then(() => {
-                // call Notification API
-                const service = new NotificationApiService();
-                service.subscribeToNotification(vkUserId, searchQuery)
+                NotificationApiService.subscribeToNotification(vkUserId, searchQuery)
                     .then(response => {
                             // вызов модального окна или snackbar
                             if (!response.ok) {
