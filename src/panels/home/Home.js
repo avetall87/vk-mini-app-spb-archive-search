@@ -22,42 +22,23 @@ import Text from "@vkontakte/vkui/dist/components/Typography/Text/Text";
 import axios from "axios";
 import {SearchApiService} from "./SearchApiService";
 import {RemoteAPI} from "../../utils/RemoteAPI";
+import {UserInfoService} from "../../utils/UserInfoService";
 
 
-const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCount}) => {
+const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount}) => {
 
     const MAX_MOBILE_SCREEN_WIDTH = 576;
 
-    const [getLastName, setLastName] = useState('');
-    const [getFirstName, setFirstName] = useState('');
     const [personCount, setPersonCount] = useState(0);
     const [searchText, setSearchTest] = useState('');
 
     const [widgetError, setWidgetError] = useState(false);
     const [widgetErrorMessage, setWidgetErrorMessage] = useState(false);
 
-    useEffect(() => {
-        async function fetchUserData() {
-            const user = await bridge.send('VKWebAppGetUserInfo');
+    const firstName = UserInfoService.getUserFirstName(userInfo);
+    const lastName = UserInfoService.getUserLastName(userInfo);
 
-            let lastName = '';
-
-            if (user.last_name !== null
-                && user.last_name !== undefined
-                && user.last_name.length > 0) {
-
-                lastName = user.last_name;
-            }
-
-            if (user.first_name !== null
-                && user.first_name !== undefined
-                && user.first_name.length > 0) {
-
-                setFirstName(user.first_name);
-            }
-
-            setLastName(lastName);
-
+    async function fetchUserData() {
             try {
                 let response = await RemoteAPI.get(`/api/v1/person/count/${lastName}/`);
                 let json = await response.json();
@@ -71,17 +52,18 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
                 setWidgetError(true);
                 setWidgetErrorMessage("Произошла ошибка в процессе получения кол-ва однофамильцев");
             }
-        }
+    }
 
-        fetchUserData();
-    }, []);
+    fetchUserData().catch(e => {
+        console.log(e);
+    });
 
     const openSearchWindow = (searchToken) => {
         RemoteAPI.openSearchWindow(searchToken);
     }
 
     const showFoundedRecords = async () => {
-        openSearchWindow(getLastName);
+        openSearchWindow(lastName);
     }
 
     const search = async () => {
@@ -122,8 +104,8 @@ const Home = ({id, fetchedUser, go, vkGroupId, isCommunityAdmin, personTotalCoun
                 <Div className="MainContainer">
 
                     {personCount > 0 &&
-                    <SearchBanner firstName={getFirstName}
-                                  lastName={getLastName}
+                    <SearchBanner firstName={firstName}
+                                  lastName={lastName}
                                   personCount={personCount}
                                   searchButton={showFoundedRecords}/>}
 

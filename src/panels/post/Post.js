@@ -18,26 +18,24 @@ import MixedTags from "@yaireo/tagify/dist/react.tagify"
 import "@yaireo/tagify/dist/tagify.css"
 import BridgeErrorHandler from "../../utils/BridgeErrorHandler";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
+import {UserInfoService} from "../../utils/UserInfoService";
+import {PostApiService} from "./PostApiService";
 
 const tagifySettings = {
   mode: "mix"
 }
 
-const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
+const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
     const [postMessage, setPostMessage] = useState('#medalspb');
-    const [link, setLink] = useState('');
-    const [title, setTitle] = useState('');
-    const [imageLink, setImageLink] = useState('');
 
     const [error, setError] = useState(null);
     const [postWasPosted, setPostWasPosted] = useState(false);
 
-    useEffect(() => {
-        setLink(personLink);
-        setTitle(snippetTitle);
-        setImageLink(snippetImageLink);
-    }, [personLink, snippetTitle, snippetImageLink])
+    const vkUserId = UserInfoService.getUserId(userInfo);
+    const link = personLink;
+    const title = snippetTitle;
+    const imageLink = snippetImageLink;
 
     const doPost = () => {
         bridge.send("VKWebAppShowWallPostBox", {
@@ -47,6 +45,12 @@ const Post = ({id, go, personLink, snippetTitle, snippetImageLink}) => {
             "message": `${postMessage}`
         })
         .then(response => {
+          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage, link)
+          .catch(e => {
+            console.log("Ошибка при сохранении информации о посте");
+            console.log(JSON.stringify(e));
+          });
+
           setPostWasPosted(true);
         })
         .catch(e => {

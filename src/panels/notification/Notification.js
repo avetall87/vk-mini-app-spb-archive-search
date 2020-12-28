@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderBack from "@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack";
 import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
@@ -13,34 +12,16 @@ import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
-import {PopoutWrapper} from "@vkontakte/vkui";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
+import {UserInfoService} from "../../utils/UserInfoService";
 
-const Notification = ({id, go, searchQuery}) => {
+const Notification = ({id, go, userInfo, searchQuery}) => {
 
     const [error, setError] = useState(null);
-    const [firstName, setFirstName] = useState(null);
-    const [vkUserId, setVkUserId] = useState(null);
     const [notificationIsAdded, setNotificationIsAdded] = useState(false);
 
-    useEffect(() => {
-        async function fetchUserData() {
-            const user = await bridge.send('VKWebAppGetUserInfo');
-
-            if (user.first_name !== null
-                && user.first_name !== undefined
-                && user.first_name.length > 0) {
-
-                setFirstName(user.first_name);
-            }
-
-            if (user.id && user.id > 0) {
-                setVkUserId(user.id);
-            }
-        }
-
-        fetchUserData();
-    }, []);
+    const firstName = UserInfoService.getUserFirstName(userInfo);
+    const vkUserId = UserInfoService.getUserId(userInfo);
 
     const doNotification = () => {
         bridge.send("VKWebAppAllowNotifications")
