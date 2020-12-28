@@ -16,7 +16,7 @@ import {UserInfoService} from "../../utils/UserInfoService";
 
 import './Notification.css'
 
-import BackgroundImage from './../../img/background_search.jpg'
+import BackgroundImage from './../../img/background_search_main.jpg'
 
 const Notification = ({id, go, userInfo, searchQuery}) => {
 
