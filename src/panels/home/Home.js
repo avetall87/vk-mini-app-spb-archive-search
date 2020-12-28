@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
@@ -11,16 +11,11 @@ import './Home.css';
 
 import logo from '../../img/medal_32_32.png';
 import Icon28SettingsOutline from "@vkontakte/icons/dist/28/settings_outline";
-import bridge from "@vkontakte/vk-bridge";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import {Icon16ErrorCircleFill} from "@vkontakte/icons";
 import SearchBanner from "./searchbanner/SearchBanner";
 import SearchBlock from "./searchblock/SearchBlock";
 import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
-import Caption from "@vkontakte/vkui/dist/components/Typography/Caption/Caption";
-import Text from "@vkontakte/vkui/dist/components/Typography/Text/Text";
-import axios from "axios";
-import {SearchApiService} from "./SearchApiService";
 import {RemoteAPI} from "../../utils/RemoteAPI";
 import {UserInfoService} from "../../utils/UserInfoService";
 

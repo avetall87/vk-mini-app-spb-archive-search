@@ -1,4 +1,5 @@
 .PageHeaderContent {
+    text-align: center;
     font-weight: 500;
 }
 
@@ -20,7 +21,7 @@
 }
 
 .MainContainer {
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 .SearchLabel {
