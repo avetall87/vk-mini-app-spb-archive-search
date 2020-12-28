@@ -81,7 +81,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"/*, color: "#B33D2F"*/}} onClick={go} data-to="home"/>}>
+            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
                 <PanelHeaderContent>
                     <span className="PageHeaderContent">Уведомления</span>
                 </PanelHeaderContent>
