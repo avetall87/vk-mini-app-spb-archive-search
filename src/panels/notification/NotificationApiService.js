@@ -9,7 +9,7 @@ export class NotificationApiService {
         key => query[key] = decodeURIComponent(query[key]));
 
     const notification = {
-      searchQuery: query,
+      searchCondition: query,
       value: vkUserId,
       type: 'VK'
     };
