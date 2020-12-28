@@ -62,6 +62,7 @@ const App = () => {
                 setPopout(null);
             })
             .catch(e => {
+                //TODO: вывод snake bar с ощибкой !
                 console.log("Ошибка при получении данных о пользователе");
                 console.log(JSON.stringify(e));
             });
