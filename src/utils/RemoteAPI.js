@@ -21,7 +21,7 @@ export class RemoteAPI {
     }
 
     static openSearchWindow (searchToken) {
-        window.open(`https://special.spbarchives.ru/search?query=${searchToken}&advancedSearch=false&from=vk`);
+        window.open(`${url}/search?query=${searchToken}&advancedSearch=false&from=vk`);
     }
 
 }

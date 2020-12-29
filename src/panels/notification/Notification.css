@@ -1,0 +1,14 @@
+.NotificationDescription {
+    text-align: center;
+}
+
+.notification-error-snake-bar-color {
+    background-color: var(--accent)
+}
+
+.ChevronBack {
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+

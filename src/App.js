@@ -11,6 +11,7 @@ import Notification from "./panels/notification/Notification";
 
 import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
+import {RemoteAPI} from "./utils/RemoteAPI";
 
 const App = () => {
 
@@ -38,7 +39,9 @@ const App = () => {
         bridge.subscribe(({detail: {type, data}}) => {
             if (type === 'VKWebAppUpdateConfig') {
                 const schemeAttribute = document.createAttribute('scheme');
-                schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+                // TODO: при включении темной темы не весь контейнер меняет цвет на темный, часть остается светлой (в модильном отображении) !!!
+                // schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+                schemeAttribute.value = 'client_light';
                 document.body.attributes.setNamedItem(schemeAttribute);
             }
         });
@@ -62,6 +65,7 @@ const App = () => {
                 setPopout(null);
             })
             .catch(e => {
+                //TODO: вывод snake bar с ощибкой !
                 console.log("Ошибка при получении данных о пользователе");
                 console.log(JSON.stringify(e));
             });
@@ -118,7 +122,7 @@ const App = () => {
             }
 
             try {
-                let response = await fetch(`https://medal.spbarchives.ru/api/v1/person/total/count/`);
+                let response = await RemoteAPI.get('/api/v1/person/total/count/')
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {

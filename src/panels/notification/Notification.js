@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import bridge from "@vkontakte/vk-bridge";
 import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
-import {Icon16Done, Icon16ErrorCircleFill, Icon56MoneyTransferOutline} from "@vkontakte/icons";
+import {Icon16ErrorCircleFill, Icon28CheckCircleFill} from "@vkontakte/icons";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
-import Separator from "@vkontakte/vkui/dist/components/Separator/Separator";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
+
+import './Notification.css'
+
+import BackgroundImage from './../../img/background_search_main.jpg'
 
 const Notification = ({id, go, userInfo, searchQuery}) => {
 
@@ -31,18 +33,20 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                             // вызов модального окна или snackbar
                             if (!response.ok) {
                                 setError("Ошибка в процессе подписки на уведомление!");
+                            } else {
+                                setNotificationIsAdded(true);
+                                console.log(response);
                             }
-
-                            setNotificationIsAdded(true);
-                            console.log(response);
                         }
                     )
                     .catch(e => {
                         setError("Ошибка в процессе подписки на уведомление: " + e);
+                        console.log(e);
                     });
 
             })
             .catch(e => {
+                console.log(e);
                 if (e.error_data.error_code !== 4) {
                     setError('Ошибка в процессе получения согласия на уведомления!');
                     console.log(e);
@@ -50,26 +54,42 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             });
     }
 
+    const notificationContent = () => {
+        if (!notificationIsAdded) {
+            return <Div className="pt-0 mt-4">
+                <Div className="NotificationDescription">
+                    <Div className="pt-0 pb-0">
+                        <span className="semibold">{firstName}</span>, Вы можете подписаться на уведомления!
+                    </Div>
+                    <Div className="pt-0 mt-3 pb-0">
+                        Вам придет оповещение, как только <span className="semibold">по Вашему запросу</span> появятся новые данные.
+                    </Div>
+                </Div>
+
+                <Div className=" pt-0 mt-4 d-flex justify-content-center">
+                    <Button size="l" onClick={doNotification}>Уведомить о новых записях</Button>
+                </Div>
+            </Div>;
+        } else {
+            return <Div className="pt-4 pb-0 d-flex justify-content-center">
+                <Div className="p-0 m-0"> <Icon28CheckCircleFill fill='#fff' width={40} height={40}/> </Div>
+                <Div className="pl-3 pt-2 m-0"> <span className="p-0 semibold">{firstName}</span>, Вы успешно подписаны на уведомления! </Div>
+            </Div>
+        }
+    }
+
     return (
         <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
-                <PanelHeaderContent>
+            <PanelHeader left={<Icon28ChevronBack className="ChevronBack"
+                                                  onClick={go}
+                                                  data-to="home"/>}>
                     <span className="PageHeaderContent">Уведомления</span>
-                </PanelHeaderContent>
             </PanelHeader>
+
             <Group>
                 <FormLayout>
-                    <Div>
-                        <Div>
-                            <span>{firstName}, Вы можете подписаться на уведомления!</span>
-                            <br/>
-                            <span>Вам придет уведомление как только по вашему запросу появятся новые данные.</span>
-                        </Div>
-                        <Separator/>
-                        <Div>
-                            <Button className="SearchButton" size="l" onClick={doNotification}>Уведомить о новых записях</Button>
-                        </Div>
-                    </Div>
+                    <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
+                    {notificationContent()}
                 </FormLayout>
             </Group>
 
@@ -77,19 +97,9 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             <Snackbar
                 layout='vertical'
                 onClose={() => setError(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} className="notification-error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
                 {error}
-            </Snackbar>
-            }
-
-            {notificationIsAdded &&
-            <Snackbar
-                layout='vertical'
-                onClose={() => setNotificationIsAdded(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16Done fill='#fff' width={16} height={16}/></Avatar>}
-                duration={10000}>
-                Подписка на уведомление успешно завершена!
             </Snackbar>
             }
 
