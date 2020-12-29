@@ -88,8 +88,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
             <Group>
                 <FormLayout>
-                    <img className="photo p-0 m-0" src={BackgroundImage} alt="Logo"/>
-                    {/*{<ScreenSpinner size='large'/>}*/}
+                    <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
                     {notificationContent()}
                 </FormLayout>
             </Group>
@@ -98,7 +97,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             <Snackbar
                 layout='vertical'
                 onClose={() => setError(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} className="notification-error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
                 {error}
             </Snackbar>

@@ -2,8 +2,8 @@
     text-align: center;
 }
 
-.photo {
-    width: 100%;
+.notification-error-snake-bar-color {
+    background-color: var(--accent)
 }
 
 .ChevronBack {
