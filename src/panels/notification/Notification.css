@@ -1,9 +1,14 @@
-.notification-description {
+.NotificationDescription {
     text-align: center;
 }
 
 .photo {
     width: 100%;
+}
+
+.ChevronBack {
+    cursor: pointer;
+    margin-left: 2rem;
 }
 
 

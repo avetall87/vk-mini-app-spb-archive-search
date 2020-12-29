@@ -57,7 +57,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     const notificationContent = () => {
         if (!notificationIsAdded) {
             return <Div className="pt-0 mt-4">
-                <Div className="notification-description">
+                <Div className="NotificationDescription">
                     <Div className="pt-0 pb-0">
                         <span className="semibold">{firstName}</span>, Вы можете подписаться на уведомления!
                     </Div>
@@ -81,7 +81,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     return (
         <Panel id={id}>
             <PanelHeader style={{textAlign: "center"}}
-                         left={<Icon28ChevronBack style={{cursor: "pointer"}}
+                         left={<Icon28ChevronBack className="ChevronBack"
                                                   onClick={go}
                                                   data-to="home"/>}>
                     <span className="PageHeaderContent">Уведомления</span>
