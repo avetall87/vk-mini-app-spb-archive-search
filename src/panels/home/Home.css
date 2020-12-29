@@ -1,6 +1,6 @@
 .PageHeaderContent {
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @media (max-width: 576px) {
@@ -26,7 +26,7 @@
 
 .SearchLabel {
     margin-left: 16px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 

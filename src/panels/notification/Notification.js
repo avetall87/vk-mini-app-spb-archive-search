@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
@@ -73,22 +72,25 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             </Div>;
         } else {
             return <Div className="pt-4 pb-0 d-flex justify-content-center">
-                        <Div className="p-0 m-0"> <Icon28CheckCircleFill fill='#fff' width={40} height={40}/> </Div>
-                        <Div className="pl-3 pt-2 m-0"> <span className="p-0 semibold">{firstName}</span>, Вы успешно подписаны на уведомления! </Div>
-                   </Div>
+                <Div className="p-0 m-0"> <Icon28CheckCircleFill fill='#fff' width={40} height={40}/> </Div>
+                <Div className="pl-3 pt-2 m-0"> <span className="p-0 semibold">{firstName}</span>, Вы успешно подписаны на уведомления! </Div>
+            </Div>
         }
     }
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
-                <PanelHeaderContent>
+            <PanelHeader style={{textAlign: "center"}}
+                         left={<Icon28ChevronBack style={{cursor: "pointer"}}
+                                                  onClick={go}
+                                                  data-to="home"/>}>
                     <span className="PageHeaderContent">Уведомления</span>
-                </PanelHeaderContent>
             </PanelHeader>
+
             <Group>
                 <FormLayout>
                     <img className="photo p-0 m-0" src={BackgroundImage} alt="Logo"/>
+                    {/*{<ScreenSpinner size='large'/>}*/}
                     {notificationContent()}
                 </FormLayout>
             </Group>
