@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/vk-mini-app-spb-archive-search/static/css/main.3e72ae1c.chunk.css",
-    "main.js": "/vk-mini-app-spb-archive-search/static/js/main.e9addc74.chunk.js",
-    "main.js.map": "/vk-mini-app-spb-archive-search/static/js/main.e9addc74.chunk.js.map",
+    "main.js": "/vk-mini-app-spb-archive-search/static/js/main.6a506c42.chunk.js",
+    "main.js.map": "/vk-mini-app-spb-archive-search/static/js/main.6a506c42.chunk.js.map",
     "runtime-main.js": "/vk-mini-app-spb-archive-search/static/js/runtime-main.97140562.js",
     "runtime-main.js.map": "/vk-mini-app-spb-archive-search/static/js/runtime-main.97140562.js.map",
-    "static/css/2.6326594c.chunk.css": "/vk-mini-app-spb-archive-search/static/css/2.6326594c.chunk.css",
-    "static/js/2.0e9b0fc0.chunk.js": "/vk-mini-app-spb-archive-search/static/js/2.0e9b0fc0.chunk.js",
-    "static/js/2.0e9b0fc0.chunk.js.map": "/vk-mini-app-spb-archive-search/static/js/2.0e9b0fc0.chunk.js.map",
+    "static/css/2.eff834ed.chunk.css": "/vk-mini-app-spb-archive-search/static/css/2.eff834ed.chunk.css",
+    "static/js/2.fbac5152.chunk.js": "/vk-mini-app-spb-archive-search/static/js/2.fbac5152.chunk.js",
+    "static/js/2.fbac5152.chunk.js.map": "/vk-mini-app-spb-archive-search/static/js/2.fbac5152.chunk.js.map",
     "index.html": "/vk-mini-app-spb-archive-search/index.html",
-    "precache-manifest.e4baa4e89b8046f7de89535ce6cd1465.js": "/vk-mini-app-spb-archive-search/precache-manifest.e4baa4e89b8046f7de89535ce6cd1465.js",
+    "precache-manifest.906150a5f56b522eeb2b83245d4a499a.js": "/vk-mini-app-spb-archive-search/precache-manifest.906150a5f56b522eeb2b83245d4a499a.js",
     "service-worker.js": "/vk-mini-app-spb-archive-search/service-worker.js",
-    "static/css/2.6326594c.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/2.6326594c.chunk.css.map",
+    "static/css/2.eff834ed.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/2.eff834ed.chunk.css.map",
     "static/css/main.3e72ae1c.chunk.css.map": "/vk-mini-app-spb-archive-search/static/css/main.3e72ae1c.chunk.css.map",
-    "static/js/2.0e9b0fc0.chunk.js.LICENSE.txt": "/vk-mini-app-spb-archive-search/static/js/2.0e9b0fc0.chunk.js.LICENSE.txt"
+    "static/js/2.fbac5152.chunk.js.LICENSE.txt": "/vk-mini-app-spb-archive-search/static/js/2.fbac5152.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.97140562.js",
-    "static/css/2.6326594c.chunk.css",
-    "static/js/2.0e9b0fc0.chunk.js",
+    "static/css/2.eff834ed.chunk.css",
+    "static/js/2.fbac5152.chunk.js",
     "static/css/main.3e72ae1c.chunk.css",
-    "static/js/main.e9addc74.chunk.js"
+    "static/js/main.6a506c42.chunk.js"
   ]
 }
