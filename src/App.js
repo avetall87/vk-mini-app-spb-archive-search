@@ -11,6 +11,7 @@ import Notification from "./panels/notification/Notification";
 
 import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
+import {RemoteAPI} from "./utils/RemoteAPI";
 
 const App = () => {
 
@@ -121,7 +122,7 @@ const App = () => {
             }
 
             try {
-                let response = await fetch(`https://medal.spbarchives.ru/api/v1/person/total/count/`);
+                let response = await RemoteAPI.get('/api/v1/person/total/count/')
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {

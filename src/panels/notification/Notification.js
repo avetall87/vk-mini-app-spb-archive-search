@@ -80,8 +80,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader style={{textAlign: "center"}}
-                         left={<Icon28ChevronBack className="ChevronBack"
+            <PanelHeader left={<Icon28ChevronBack className="ChevronBack"
                                                   onClick={go}
                                                   data-to="home"/>}>
                     <span className="PageHeaderContent">Уведомления</span>
