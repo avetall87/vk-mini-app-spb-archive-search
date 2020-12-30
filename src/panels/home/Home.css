@@ -21,6 +21,7 @@
 }
 
 .MainContainer {
+    margin-top: 0;
     padding-top: 0;
 }
 
@@ -67,4 +68,11 @@
 .Link:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

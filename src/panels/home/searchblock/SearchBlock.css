@@ -22,6 +22,11 @@
     }
 }
 
+.main-search-button {
+    width: 100%;
+    height: 33px;
+}
+
 .SearchLabel {
     margin-left: 16px;
     font-weight: 500;
@@ -41,4 +46,10 @@
 .Link:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+
+.shadow {
+    box-shadow: 0 0 10px rgba(0,4,4,0); /* Параметры тени */
+    padding: 10px;
 }

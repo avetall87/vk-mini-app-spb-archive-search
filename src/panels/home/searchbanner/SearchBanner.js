@@ -20,13 +20,16 @@ const SearchBanner = ({firstName, lastName, personCount, searchButton}) => {
     }
 
     return (
-        <Div>
-            <Div>
-                <span>{firstName}, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}</span>
+        <Div className="mt-0 pt-0">
+            <Div className="pl-0 mt-0 pt-0">
+                <span>
+                    <span className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
+                </span>
             </Div>
-            <Div>
+            <Div className="pl-0">
                 <Button size="l"
                         className="SearchButton"
+                        mode="outline"
                         title="Посмотреть однофамильцев"
                         onClick={searchButton}>
                     Посмотреть однофамильцев

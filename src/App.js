@@ -12,6 +12,7 @@ import Notification from "./panels/notification/Notification";
 import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
 import {RemoteAPI} from "./utils/RemoteAPI";
+import {HashParameterHandler} from "./utils/HashParameterHandler";
 
 const App = () => {
 
@@ -46,18 +47,7 @@ const App = () => {
             }
         });
 
-        function getLocationHash() {
-            return window.location.hash.replace('#','');
-        }
 
-        function getParametersFromHash(string) {
-            let search = string
-            return search === "" ? null : search.split("&").reduce((prev, curr) => {
-                const [key, value] = curr.split("=");
-                prev[decodeURIComponent(key)] = decodeURIComponent(value);
-                return prev;
-            }, {})
-        }
 
         function fetchUserInfo() {
             UserInfoService.getUserInfoPromise().then(data => {
@@ -86,8 +76,7 @@ const App = () => {
             const appId = fetchAppId[0];
             setVkAppId(appId);
 
-            let locationHash = getLocationHash();
-            let hashParameters = getParametersFromHash(locationHash);
+            let hashParameters = HashParameterHandler.getParametersFromHash(HashParameterHandler.getLocationHash());
 
             setHashParameters(hashParameters);
 
@@ -115,9 +104,7 @@ const App = () => {
 
             if (appId !== null && groupId !== null) {
                 const storageKey = appId + "_" + groupId + "_" + STORE_WIDGET_SCOPE;
-
                 setWidgetCommunityTokenStorageKey(storageKey);
-
                 await fetchStorageData(storageKey);
             }
 

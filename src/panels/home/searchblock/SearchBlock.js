@@ -15,6 +15,7 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
         }
 
         return <Search
+            className="pl-4 pr-3"
             placeholder={placeHolder}
             id="medalSearchId"
             type="text"
@@ -23,26 +24,29 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
     }
 
     const getSearchTitle = () => {
-        if (personTotalCount !== null && personTotalCount!== undefined && personTotalCount !== '0') {
-            return <span>В базу внесены данные на {personTotalCount} гражданских лиц</span>;
+        if (personTotalCount !== null && personTotalCount !== undefined && personTotalCount !== '0') {
+            return <span className="description-search">В базу внесены данные на <span className="semibold">{personTotalCount}</span> из 600 тысяч награжденных медалью <span className="semibold">гражданских лиц</span> </span>;
         } else {
-            return <span>В базу внесены данные по гражданским лицам</span>;
+            return <span className="description-search">В базу внесены данные по гражданским лицам</span>;
         }
     }
 
     return (
-        <Div>
-            <Div>
+        <Div className="shadow d-flex flex-column align-items-center m-0 p-0">
+            <Div className="pt-3 pb-2">
                 {getSearchTitle()}
             </Div>
-            {getSearchField()}
-            <Div>
-                <Button size="l" className="SearchButton"
-                        mode="outline"
-                        title="Искать на сайте: Медаль «За оборону Ленинграда»"
-                        onClick={searchButton}>
-                    Найти награжденных
-                </Button>
+            <Div className="w-100 row m-0 pt-0 pl-0 pr-0 pb-3 d-flex justify-content-xl-between">
+                <Div className="col-10 m-0 p-0">
+                    {getSearchField()}
+                </Div>
+                <Div className="col-2 m-0 pl-0 pt-0 pb-0 pr-4">
+                    <Button className="SearchButton main-search-button mt-1"
+                            title="Искать на сайте: Медаль «За оборону Ленинграда»"
+                            onClick={searchButton}>
+                        Искать
+                    </Button>
+                </Div>
             </Div>
         </Div>
     )

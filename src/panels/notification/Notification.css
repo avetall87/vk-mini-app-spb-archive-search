@@ -1,12 +1,8 @@
-.NotificationDescription {
+.notification-description {
     text-align: center;
 }
 
-.notification-error-snake-bar-color {
-    background-color: var(--accent)
-}
-
-.ChevronBack {
+.chevron-back {
     cursor: pointer;
     margin-left: 2rem;
 }
