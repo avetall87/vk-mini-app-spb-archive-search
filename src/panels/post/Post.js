@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import bridge from "@vkontakte/vk-bridge";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderBack from "@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack";
 import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
@@ -89,6 +88,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
               <FormItem>
                 <MixedTags
+                    autoFocus={true}
                     settings={tagifySettings}
                     onInput={handlePostMessage}
                     value={getDefaultPostMessage()}
