@@ -111,7 +111,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
                 <Div className="MainContainer d-flex justify-content-between">
                     {document.body.clientWidth >= MAX_MOBILE_SCREEN_WIDTH &&
-                    <Div className="col-3 pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
+                    <Div className="col-md-3 pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                         <Div className="pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                             <Div className="pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                                 <img style={{width: "188px", height: "309px"}} src={MedalImage} alt="Logo"/>
@@ -120,14 +120,14 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                     </Div>
                     }
 
-                    <Div className="col-9 mt-0 pt-0">
+                    <Div className="col-md-9 col-sm-12 mt-0 pt-0">
                         {personCount > 0 &&
                         <SearchBanner firstName={firstName}
                                       lastName={lastName}
                                       personCount={personCount}
                                       searchButton={showFoundedRecords}/>}
 
-                        <ul className="mt-5 ml-0 mr-0">
+                        <ul className="mt-4 ml-0 mr-0">
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
                             <li>Рассказ истории о награжденном герое.</li>
                             <li className="pt-1">Подписка на уведомление о появлении новых данных.</li>

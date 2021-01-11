@@ -47,8 +47,6 @@ const App = () => {
             }
         });
 
-
-
         function fetchUserInfo() {
             UserInfoService.getUserInfoPromise().then(data => {
                 setUserInfo(data);
@@ -113,10 +111,8 @@ const App = () => {
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {
-                    let formattedResult = new Intl.NumberFormat('ru-RU').format(json.count);
-
-                    setPersonTotalCount(formattedResult);
-                    console.log(formattedResult)
+                    setPersonTotalCount(new Intl.NumberFormat('ru-RU').format(json.count));
+                    console.log(personTotalCount)
                 }
             } catch (e) {
                 console.log("Fail to fetch persons count by last_name" + e);
