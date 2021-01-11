@@ -26,7 +26,7 @@ const tagifySettings = {
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
-    const [postMessage, setPostMessage] = useState('#medalspb');
+    const [postMessage, setPostMessage] = useState('#МедальЗаОборонуЛенинграда #MedalSpb');
 
     const [error, setError] = useState(null);
     const [postWasPosted, setPostWasPosted] = useState(false);
@@ -67,9 +67,9 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
   const getDefaultPostMessage = () => {
     let newLineCharacter = '&#10;';
-    let readonlyHashtag = '[[{"value":"#medalspb", "readonly":true}]]';
+    let readonlyHashtags = '[[{"value":"#МедальЗаОборонуЛенинграда", "readonly":true}]] [[{"value":"#MedalSpb", "readonly":true}]]';
 
-    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtag;
+    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtags;
   }
 
     return (<Panel id={id}>
