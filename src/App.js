@@ -40,7 +40,7 @@ const App = () => {
         bridge.subscribe(({detail: {type, data}}) => {
             if (type === 'VKWebAppUpdateConfig') {
                 const schemeAttribute = document.createAttribute('scheme');
-                // TODO: при включении темной темы не весь контейнер меняет цвет на темный, часть остается светлой (в модильном отображении) !!!
+                // TODO: при включении темной темы не весь контейнер меняет цвет на темный, часть остается светлой (в мобильном отображении) !!!
                 // schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
                 schemeAttribute.value = 'client_light';
                 document.body.attributes.setNamedItem(schemeAttribute);
