@@ -188,7 +188,8 @@ const App = () => {
             <Notification id='notification'
                           go={go}
                           userInfo={userInfo}
-                          searchQuery={notificationSearchQuery}/>
+                          searchQuery={notificationSearchQuery}
+                          setPopout={setPopout}/>
 
             <Post id='post'
                   go={go}
