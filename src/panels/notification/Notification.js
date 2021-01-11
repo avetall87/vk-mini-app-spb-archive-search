@@ -16,6 +16,8 @@ import {UserInfoService} from "../../utils/UserInfoService";
 import './Notification.css'
 
 import BackgroundImage from './../../img/background_search_main.jpg'
+import {View} from "@vkontakte/vkui";
+import ScreenSpinner from "@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner";
 
 const Notification = ({id, go, userInfo, searchQuery}) => {
 
@@ -25,9 +27,12 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     const firstName = UserInfoService.getUserFirstName(userInfo);
     const vkUserId = UserInfoService.getUserId(userInfo);
 
+    const [popout, setPopout] = useState(null);
+
     const doNotification = () => {
         bridge.send("VKWebAppAllowNotifications")
             .then(() => {
+                setPopout(<ScreenSpinner size='large'/>);
                 NotificationApiService.subscribeToNotification(vkUserId, searchQuery)
                     .then(response => {
                             // вызов модального окна или snackbar
@@ -37,11 +42,14 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                                 setNotificationIsAdded(true);
                                 console.log(response);
                             }
+
+                            setPopout(null);
                         }
                     )
                     .catch(e => {
                         setError("Ошибка в процессе подписки на уведомление: " + e);
                         console.log(e);
+                        setPopout(null);
                     });
 
             })
@@ -51,6 +59,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                     setError('Ошибка в процессе получения согласия на уведомления!');
                     console.log(e);
                 }
+                setPopout(null);
             });
     }
 
@@ -79,31 +88,33 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     }
 
     return (
-        <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack className="ChevronBack"
-                                                  onClick={go}
-                                                  data-to="home"/>}>
+        <View activePanel={id} popout={popout}>
+            <Panel id={id}>
+                <PanelHeader left={<Icon28ChevronBack className="ChevronBack"
+                                                      onClick={go}
+                                                      data-to="home"/>}>
                     <span className="PageHeaderContent">Уведомления</span>
-            </PanelHeader>
+                </PanelHeader>
 
-            <Group>
-                <FormLayout>
-                    <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
-                    {notificationContent()}
-                </FormLayout>
-            </Group>
+                <Group>
+                    <FormLayout>
+                        <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
+                        {notificationContent()}
+                    </FormLayout>
+                </Group>
 
-            {error &&
-            <Snackbar
-                layout='vertical'
-                onClose={() => setError(null)}
-                before={<Avatar size={16} className="notification-error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
-                duration={10000}>
-                {error}
-            </Snackbar>
-            }
+                {error &&
+                <Snackbar
+                    layout='vertical'
+                    onClose={() => setError(null)}
+                    before={<Avatar size={16} className="notification-error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                    duration={10000}>
+                    {error}
+                </Snackbar>
+                }
 
-        </Panel>
+            </Panel>
+        </View>
     );
 }
 
