@@ -2,6 +2,11 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+
 .PanelHeader__separator {
     display: none;
+}
+
+.spinner-loading {
+    margin: 20% 0
 }
