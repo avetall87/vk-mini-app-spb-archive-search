@@ -127,7 +127,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                                       personCount={personCount}
                                       searchButton={showFoundedRecords}/>}
 
-                        <ul className="mt-4 ml-0 mr-0">
+                        <ul className="mt-2 ml-0 mr-0">
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
                             <li>Рассказ истории о награжденном герое.</li>
                             <li className="pt-1">Подписка на уведомление о появлении новых данных.</li>
