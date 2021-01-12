@@ -100,7 +100,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                     <Div className="m-0 p-0" style={{zIndex: 1}}>
                         <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
                     </Div>
-                    <Div className="m-0 p-0" style={{zIndex: 2, position: "relative", bottom: "65px", backgroundColor: "white", width: "82%", borderRadius: "4px"}}>
+                    <Div className="m-0 p-0 SearchBlock-wrapper">
                         <SearchBlock searchButton={search}
                                      handleKeyDown={_handleKeyDown}
                                      isMobileDevice={isMobileDevice}
@@ -110,7 +110,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
                 </Div>
 
-                <Div className="MainContainer d-flex justify-content-between px-38">
+                <Div className={classNames("MainContainer d-flex justify-content-between", {"px-38": !isMobileDevice()})}>
                     {document.body.clientWidth >= MAX_MOBILE_SCREEN_WIDTH &&
                     <Div className="col-md-3 pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                         <Div className="pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
@@ -123,12 +123,13 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
                     <Div className="col-md-9 col-sm-12 mt-0 pt-0">
                         {personCount > 0 &&
-                        <SearchBanner firstName={firstName}
+                        <SearchBanner isMobileDevice={isMobileDevice}
+                                      firstName={firstName}
                                       lastName={lastName}
                                       personCount={personCount}
                                       searchButton={showFoundedRecords}/>}
 
-                        <ul className={classNames("mt-0 ml-0 mr-0 pl-20", {"pt-112": personCount <= 0})}>
+                        <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !isMobileDevice(), "pt-112": !isMobileDevice() && (personCount <= 0)})}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
                             <li>Рассказ истории о награжденном герое.</li>
                             <li className="pt-1">Подписка на уведомление о появлении новых данных.</li>

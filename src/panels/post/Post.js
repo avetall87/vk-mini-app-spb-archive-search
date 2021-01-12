@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import bridge from "@vkontakte/vk-bridge";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";

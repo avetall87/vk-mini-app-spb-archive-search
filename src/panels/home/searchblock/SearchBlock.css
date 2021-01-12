@@ -27,6 +27,13 @@
     height: 100%;
 }
 
+@media (max-width: 576px) {
+    .main-search-button {
+        width: 100%;
+        height: 33px;
+    }
+}
+
 .SearchLabel {
     margin-left: 16px;
     font-weight: 500;
@@ -54,7 +61,9 @@
     padding: 10px;
 }
 
-.Search {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+@media (min-width: 576px) {
+    .Search {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
 }
