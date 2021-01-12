@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import bridge from "@vkontakte/vk-bridge";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderBack from "@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack";
 import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
@@ -27,7 +26,7 @@ const tagifySettings = {
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
-    const [postMessage, setPostMessage] = useState('#medalspb');
+    const [postMessage, setPostMessage] = useState('#МедальЗаОборонуЛенинграда #MedalSpb');
 
     const [error, setError] = useState(null);
     const [postWasPosted, setPostWasPosted] = useState(false);
@@ -68,9 +67,9 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
   const getDefaultPostMessage = () => {
     let newLineCharacter = '&#10;';
-    let readonlyHashtag = '[[{"value":"#medalspb", "readonly":true}]]';
+    let readonlyHashtags = '[[{"value":"#МедальЗаОборонуЛенинграда", "readonly":true}]] [[{"value":"#MedalSpb", "readonly":true}]]';
 
-    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtag;
+    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtags;
   }
 
     return (<Panel id={id}>
@@ -89,6 +88,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
               <FormItem>
                 <MixedTags
+                    autoFocus={true}
                     settings={tagifySettings}
                     onInput={handlePostMessage}
                     value={getDefaultPostMessage()}

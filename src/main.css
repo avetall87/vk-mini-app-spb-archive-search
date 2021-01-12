@@ -12,3 +12,7 @@
 .error-snake-bar-color {
     background-color: var(--accent)
 }
+
+.spinner-loading {
+    margin: 20% 0
+}

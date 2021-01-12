@@ -16,18 +16,22 @@ import {UserInfoService} from "../../utils/UserInfoService";
 import './Notification.css'
 
 import BackgroundImage from './../../img/background_search_main.jpg'
+import {Spinner} from "@vkontakte/vkui";
 
 const Notification = ({id, go, userInfo, searchQuery}) => {
 
     const [error, setError] = useState(null);
     const [notificationIsAdded, setNotificationIsAdded] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const firstName = UserInfoService.getUserFirstName(userInfo);
     const vkUserId = UserInfoService.getUserId(userInfo);
 
+
     const doNotification = () => {
         bridge.send("VKWebAppAllowNotifications")
             .then(() => {
+                setLoading(true);
                 NotificationApiService.subscribeToNotification(vkUserId, searchQuery)
                     .then(response => {
                             // вызов модального окна или snackbar
@@ -37,11 +41,14 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                                 setNotificationIsAdded(true);
                                 console.log(response);
                             }
+
+                            setLoading(null);
                         }
                     )
                     .catch(e => {
                         setError("Ошибка в процессе подписки на уведомление: " + e);
                         console.log(e);
+                        setLoading(null);
                     });
 
             })
@@ -51,6 +58,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                     setError('Ошибка в процессе получения согласия на уведомления!');
                     console.log(e);
                 }
+                setLoading(null);
             });
     }
 
@@ -83,13 +91,12 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             <PanelHeader left={<Icon28ChevronBack className="chevron-back"
                                                   onClick={go}
                                                   data-to="home"/>}>
-                    <span className="PageHeaderContent">Уведомления</span>
+                <span className="PageHeaderContent">Уведомления</span>
             </PanelHeader>
-
             <Group>
                 <FormLayout>
                     <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
-                    {notificationContent()}
+                    {loading ? <Spinner size="large" className="spinner-loading"/> : notificationContent()}
                 </FormLayout>
             </Group>
 
