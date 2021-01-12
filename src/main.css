@@ -16,3 +16,24 @@
 .spinner-loading {
     margin: 20% 0
 }
+
+.px-38 {
+    padding-left: 2.375rem !important;
+    padding-right: 2.375rem !important;
+}
+
+.pl-20 {
+    padding-left: 1.25rem !important;
+}
+
+.pb-20 {
+    padding-bottom: 1.25rem !important;
+}
+
+.pb-40 {
+    padding-bottom: 2.5rem !important;
+}
+
+.pt-112 {
+    padding-top: 7rem !important;
+}

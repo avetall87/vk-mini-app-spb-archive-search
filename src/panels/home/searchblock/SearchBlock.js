@@ -14,7 +14,7 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
             placeHolder += ", место работы";
         }
 
-        return <Search
+        return <Search style={{paddingTop: "0"}}
             placeholder={placeHolder}
             id="medalSearchId"
             type="text"
@@ -31,16 +31,16 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
     }
 
     return (
-        <Div className="shadow d-flex flex-column align-items-center m-0 p-0">
-            <Div className="pt-3 pb-2">
+        <Div className="shadow d-flex flex-column align-items-center m-0 p-0" style={{borderRadius: "4px"}}>
+            <Div className="pt-4 pb-3">
                 {getSearchTitle()}
             </Div>
-            <Div className="w-100 row m-0 pt-0 pl-0 pr-0 pb-3 d-flex justify-content-xl-between">
+            <Div className="w-100 row m-0 pt-0 pl-0 pr-0 pb-4 d-flex justify-content-xl-between">
                 <Div className="col-12 col-md-10 m-0 p-0">
                     {getSearchField()}
                 </Div>
-                <Div className="col-12 col-md-2 m-0 pt-0 pb-0">
-                    <Button className="SearchButton main-search-button mt-1"
+                <Div className="col-12 col-md-2 m-0 pt-0 pb-0 pl-0">
+                    <Button className="SearchButton main-search-button"
                             title="Искать на сайте: Медаль «За оборону Ленинграда»"
                             onClick={searchButton}>
                         Искать

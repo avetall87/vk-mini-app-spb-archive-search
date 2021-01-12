@@ -23,6 +23,8 @@
 .MainContainer {
     margin-top: 0;
     padding-top: 0;
+    position: relative;
+    bottom: 27px;
 }
 
 .SearchLabel {
