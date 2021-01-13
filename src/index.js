@@ -4,6 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
 import App from "./App";
+import 'bootstrap/dist/css/bootstrap.css';
+import './typography.css';
+import './main.css';
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit");

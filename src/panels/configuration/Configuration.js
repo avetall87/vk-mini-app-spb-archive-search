@@ -5,7 +5,6 @@ import PanelHeaderContent from '@vkontakte/vkui/dist/components/PanelHeaderConte
 import bridge from '@vkontakte/vk-bridge';
 
 import './Configuration.css';
-import PanelHeaderBack from "@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Input from "@vkontakte/vkui/dist/components/Input/Input";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
@@ -18,10 +17,12 @@ import Tabs from "@vkontakte/vkui/dist/components/Tabs/Tabs";
 import TabsItem from "@vkontakte/vkui/dist/components/TabsItem/TabsItem";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import Icon24Linked from "@vkontakte/icons/dist/24/linked";
+import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
+import {FormItem} from "@vkontakte/vkui";
 
 const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage, personTotalCount}) => {
 
-    const APP_LINK = "https://vk.com/app7643740";
+    const APP_LINK = `https://vk.com/app${vkAppId}`;
 
     const [widgetError, setWidgetError] = useState(false);
     const [unsupportedPlatform, setUnsupportedPlatform] = useState(false);
@@ -96,9 +97,9 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
     }
 
     return (<Panel id={id}>
-            <PanelHeader left={<PanelHeaderBack onClick={go} data-to="home"/>}>
+            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
                 <PanelHeaderContent>
-                    <span class="PageHeaderContent">Настройки</span>
+                    Настройки
                 </PanelHeaderContent>
             </PanelHeader>
             <Tabs>
@@ -117,46 +118,46 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
             <Group>
                 {activeTab === 'widget' &&
                 <FormLayout>
-                    <Input id="titleId"
-                           top="Заголовок виджета, до 100 символов"
-                           maxLength="100"
-                           value={title}
-                           status={title ? 'valid' : 'error'}
-                           bottom={title ? '' : 'Пожалуйста, укажите что-то в заголовке виджета'}
-                           onChange={onTitleChange}/>
+                    <FormItem top="Заголовок виджета, до 100 символов" bottom={title ? '' : 'Пожалуйста, укажите что-то в заголовке виджета'}
+                              status={title ? 'valid' : 'error'}>
+                        <Input id="titleId"
+                               maxLength="100"
+                               value={title}
+                               onChange={onTitleChange}/>
+                    </FormItem>
 
-                    <Textarea id="textId"
-                              top="Текст для отображения в виджете, до 200 символов"
-                              maxLength="200"
-                              value={text}
-                              status={text ? 'valid' : 'error'}
-                              bottom={text ? '' : 'Пожалуйста, заполните текст в виджите'}
-                              onChange={onTextChange}/>
+                    <FormItem top="Текст для отображения в виджете, до 200 символов" bottom={text ? '' : 'Пожалуйста, заполните текст в виджите'}
+                              status={text ? 'valid' : 'error'}>
+                        <Textarea id="textId"
+                                  maxLength="200"
+                                  value={text}
+                                  onChange={onTextChange}/>
+                    </FormItem>
 
-                    <Textarea id="descrId"
-                              top="Описание для отображения в виджете, до 200 символов"
-                              maxLength="200"
-                              value={descr}
-                              status={descr ? 'valid' : 'error'}
-                              bottom={descr ? '' : 'Пожалуйста, заполните описание'}
-                              onChange={onDescrChange}/>
+                    <FormItem top="Описание для отображения в виджете, до 200 символов" bottom={descr ? '' : 'Пожалуйста, заполните описание'}
+                              status={descr ? 'valid' : 'error'}>
+                        <Textarea id="descrId"
+                                  maxLength="200"
+                                  value={descr}
+                                  onChange={onDescrChange}/>
+                    </FormItem>
 
-                    <Input id="moreId"
-                           top="Текст в футере, до 100 символов"
-                           maxLength="100"
-                           value={more}
-                           status={more ? 'valid' : 'error'}
-                           bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
-                           onChange={onMoreChange}/>
+                    <FormItem top="Текст в футере, до 100 символов" bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
+                              status={more ? 'valid' : 'error'}>
+                        <Input id="moreId"
+                               maxLength="100"
+                               value={more}
+                               onChange={onMoreChange}/>
+                    </FormItem>
 
-                    <Input id="moreUrlId"
-                           maxLength="10000"
-                           top="URL для футера. Обязателен, если указан текст в футере"
-                           value={moreUrl}
-                           status={moreUrl ? 'valid' : 'error'}
-                           bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
-                           onChange={onMoreUrlChange}
-                           disabled/>
+                    <FormItem top="URL для футера. Обязателен, если указан текст в футере" bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
+                              status={moreUrl ? 'valid' : 'error'}>
+                        <Input id="moreUrlId"
+                               maxLength="10000"
+                               value={moreUrl}
+                               onChange={onMoreUrlChange}
+                               disabled/>
+                    </FormItem>
 
                     <Div style={{display: "flex", justifyContent: "space-between"}}>
                         <Button mode="primary" size="l" className="SearchButton" title="Опубликовать виджет" onClick={addWidget} before={<Icon24ListAdd/>}>Опубликовать виджет</Button>
@@ -164,25 +165,28 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                 </FormLayout>}
                 {activeTab === 'appConfig' &&
                 <FormLayout>
-                    <Input id="appId"
-                           top="Идентификатор приложения"
-                           value={vkAppId}/>
+                    <FormItem top="Идентификатор приложения">
+                        <Input id="appId"
+                               value={vkAppId}/>
+                    </FormItem>
 
-                    <Input id="groupId"
-                              top="Идентификатор группы"
-                              value={vkGroupId}/>
+                    <FormItem top="Идентификатор группы">
+                        <Input id="groupId"
+                               value={vkGroupId}/>
+                    </FormItem>
 
-                    <Input id="tokenId"
-                              top="Токен доступа - для обновления виджета"
-                              value={communityToken}/>
+                    <FormItem top="Токен доступа - для обновления виджета">
+                        <Input id="tokenId"
+                               value={communityToken}/>
+                    </FormItem>
 
                     <Div style={{display: "flex", justifyContent: "space-between"}}>
                         <Button mode="primary"
                                 size="l"
                                 className="SearchButton"
-                                title="Получить и сохранить токен доступа в хринилище"
+                                title="Получить и сохранить токен доступа в хранилище"
                                 onClick={getCommunityAccessToken}
-                                before={<Icon24Linked/>}>Получить и сохранить токен доступа в хринилище</Button>
+                                before={<Icon24Linked/>}>Получить и сохранить токен доступа в хранилище113</Button>
                     </Div>
                 </FormLayout>}
             </Group>
