@@ -89,7 +89,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             if (result.endsWith(delimiter)) {
                 result = result.substr(0,result.lastIndexOf(delimiter));
             }
-            result = '"' + result + '"';
+            result = '«' + result + '».';
         }
 
         return result;
