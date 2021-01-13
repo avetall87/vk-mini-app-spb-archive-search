@@ -86,14 +86,14 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
 
     return (<Panel id={id}>
-            <PanelHeader right={showWidgetConfiguration() &&
+            <PanelHeader left={showWidgetConfiguration() &&
             <Button
                 onClick={go} data-to="configuration"
                 title="Настройки виджета"
                 before={<Icon28SettingsOutline/>}
                 mode="tertiary">
             </Button>}>
-                    <span className="PageHeaderContent"> Медаль «За оборону Ленинграда»</span>
+                <span className={classNames({"HomeHeader-mobile": isMobileDevice()})}>Медаль «За оборону Ленинграда»</span>
             </PanelHeader>
             <Group>
                 <Div className="m-0 p-0 search-container h-100">

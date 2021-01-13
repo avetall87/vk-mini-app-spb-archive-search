@@ -17,6 +17,32 @@
     margin: 20% 0
 }
 
+.PanelHeader__content {
+    text-align: center;
+    font-weight: 600;
+    flex-grow: 0 !important;
+}
+
+.PanelHeaderContent__children-in {
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 576px) {
+    .PanelHeader__content, .PanelHeaderContent__children-in {
+        font-weight: 500;
+    }
+}
+
+.PanelHeader__in {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.HomeHeader-mobile {
+    font-size: 14px;
+}
+
 .px-38 {
     padding-left: 2.375rem !important;
     padding-right: 2.375rem !important;

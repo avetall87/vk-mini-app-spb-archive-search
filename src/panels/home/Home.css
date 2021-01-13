@@ -1,14 +1,4 @@
-.PageHeaderContent {
-    text-align: center;
-    font-weight: 600;
-}
-
 @media (max-width: 576px) {
-    .PageHeaderContent {
-        font-size: 13px;
-        font-weight: 500;
-    }
-
     .SearchButton {
         width: 100%;
         cursor: pointer;

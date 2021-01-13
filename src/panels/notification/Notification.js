@@ -91,7 +91,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             <PanelHeader left={<Icon28ChevronBack className="chevron-back"
                                                   onClick={go}
                                                   data-to="home"/>}>
-                <span className="PageHeaderContent">Уведомления</span>
+                Уведомления
             </PanelHeader>
             <Group>
                 <FormLayout>
