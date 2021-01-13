@@ -7,7 +7,9 @@
     "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "vk-miniapps-deploy"
+    "deploy": "vk-miniapps-deploy",
+    "deployDev": "cpx config/dev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
+    "deployProd": "cpx config/prod/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://medal.spbarchives.ru' react-scripts build && vk-miniapps-deploy"
   },
   "keywords": [],
   "author": "",
@@ -40,7 +42,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "shards-react": "^1.0.3"
+    "shards-react": "^1.0.3",
+    "cpx": "^1.5.0"
   },
   "browserslist": {
     "production": [
