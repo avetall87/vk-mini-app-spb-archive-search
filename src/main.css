@@ -12,9 +12,9 @@
 }
 
 .mt-46 {
-    margin-top: 2.875rem;
+    margin-top: 2.875rem; !important;
 }
 
 .pt-46 {
-    padding-top: 2.875rem;
+    padding-top: 2.875rem; !important;
 }
