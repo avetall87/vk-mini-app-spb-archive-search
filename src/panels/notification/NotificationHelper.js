@@ -17,6 +17,12 @@ export class NotificationHelper {
             case 'placeOfWork':
                 return 'Место работы';
 
+            case 'birthYearFrom':
+                return 'Год рождения с'
+
+            case 'birthYearTo':
+                return 'Год рождения по'
+
             default:
                 return '-';
         }

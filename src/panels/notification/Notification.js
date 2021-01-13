@@ -63,7 +63,6 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             });
     }
 
-    // TODO: добавить обработку полей birthYearFrom и birthYearTo !
     const getDescriptionForSearchQuery = (query) => {
         let result = '';
 
@@ -101,7 +100,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
         if (!notificationIsAdded) {
             return (
                 <Div className="pt-0 mt-4">
-                    <Div className="NotificationDescription">
+                    <Div className="NotificationDescription pb-0">
                         <Div className="pt-0 pb-0">
                             <span className="semibold">{firstName}</span>, Вы можете подписаться на уведомления по вашему запросу:
                         </Div>
@@ -113,7 +112,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                         </Div>
                     </Div>
 
-                    <Div className=" pt-0 mt-3 d-flex justify-content-center">
+                    <Div className=" pt-0 mt-46 d-flex justify-content-center">
                         <Button size="l" onClick={doNotification}>Уведомить о новых записях</Button>
                     </Div>
                 </Div>
