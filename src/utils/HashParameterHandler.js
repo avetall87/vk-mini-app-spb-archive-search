@@ -1,8 +1,4 @@
 export class HashParameterHandler {
-    constructor() {
-
-    }
-
     static getLocationHash() {
         return window.location.hash.replace('#','');
     }

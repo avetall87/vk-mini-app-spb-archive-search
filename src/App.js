@@ -33,7 +33,6 @@ const App = () => {
     const [urlSnippetTitle, setUrlSnippetTitle] = useState('');
     const [urlSnippetImageLink, setUrlSnippetImageLink] = useState('');
     const [notificationSearchQuery, setNotificationSearchQuery] = useState('');
-    const [hashParameters, setHashParameters] = useState({});
 
 
     useEffect(() => {
@@ -75,8 +74,6 @@ const App = () => {
             setVkAppId(appId);
 
             let hashParameters = HashParameterHandler.getParametersFromHash(HashParameterHandler.getLocationHash());
-
-            setHashParameters(hashParameters);
 
             if (hashParameters !== null) {
                 if (hashParameters.hasOwnProperty('active_panel')) {
