@@ -142,7 +142,7 @@ const App = () => {
 
         fetchUserInfo();
         fetchLaunchParameters();
-    }, []);
+    }, [personTotalCount]);
 
     const go = e => {
         setActivePanel(e.currentTarget.dataset.to);
