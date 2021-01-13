@@ -1,14 +1,4 @@
-.PageHeaderContent {
-    text-align: center;
-    font-weight: 600;
-}
-
 @media (max-width: 576px) {
-    .PageHeaderContent {
-        font-size: 13px;
-        font-weight: 500;
-    }
-
     .SearchButton {
         width: 100%;
         cursor: pointer;
@@ -21,7 +11,17 @@
 }
 
 .MainContainer {
+    margin-top: 0;
     padding-top: 0;
+}
+
+@media (min-width: 576px) {
+    .MainContainer {
+        margin-top: 0;
+        padding-top: 0;
+        position: relative;
+        bottom: 27px;
+    }
 }
 
 .SearchLabel {
@@ -67,4 +67,31 @@
 .Link:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SearchBlock-wrapper {
+    z-index: 2;
+    position: relative;
+    bottom: 55px;
+    background-color: white;
+    width: 90%;
+    border-radius: 4px;
+}
+
+@media (min-width: 576px) {
+    .SearchBlock-wrapper {
+        z-index: 2;
+        position: relative;
+        bottom: 65px;
+        background-color: white;
+        width: 82%;
+        border-radius: 4px;
+    }
 }

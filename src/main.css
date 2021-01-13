@@ -5,8 +5,61 @@
 
 .PanelHeader__separator {
     display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.error-snake-bar-color {
+    background-color: var(--accent)
 }
 
 .spinner-loading {
     margin: 20% 0
+}
+
+.PanelHeader__content {
+    text-align: center;
+    font-weight: 600;
+    flex-grow: 0 !important;
+}
+
+.PanelHeaderContent__children-in {
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 576px) {
+    .PanelHeader__content, .PanelHeaderContent__children-in {
+        font-weight: 500;
+    }
+}
+
+.PanelHeader__in {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.HomeHeader-mobile {
+    font-size: 14px;
+}
+
+.px-38 {
+    padding-left: 2.375rem !important;
+    padding-right: 2.375rem !important;
+}
+
+.pl-20 {
+    padding-left: 1.25rem !important;
+}
+
+.pb-20 {
+    padding-bottom: 1.25rem !important;
+}
+
+.pb-40 {
+    padding-bottom: 2.5rem !important;
+}
+
+.pt-112 {
+    padding-top: 7rem !important;
 }
