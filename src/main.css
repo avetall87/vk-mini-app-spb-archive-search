@@ -57,8 +57,16 @@
     padding-right: 2.375rem !important;
 }
 
+.pt-38 {
+    padding-top: 2.375rem !important;
+}
+
 .pl-20 {
     padding-left: 1.25rem !important;
+}
+
+.pb-10 {
+    padding-bottom: 0.625rem !important;
 }
 
 .pb-20 {

@@ -6,42 +6,40 @@ import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderConte
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
-import Snackbar from "@vkontakte/vkui/dist/components/Snackbar/Snackbar";
 import Avatar from "@vkontakte/vkui/dist/components/Avatar/Avatar";
-import {Icon16Done, Icon16ErrorCircleFill} from "@vkontakte/icons";
 import Banner from "@vkontakte/vkui/dist/components/Banner/Banner";
 import Link from "@vkontakte/vkui/dist/components/Link/Link";
 import Radio from "@vkontakte/vkui/dist/components/Radio/Radio";
-import {FormItem} from "@vkontakte/vkui";
-import MixedTags from "@yaireo/tagify/dist/react.tagify"
+import {FormItem, Text, Textarea} from "@vkontakte/vkui";
 import "@yaireo/tagify/dist/tagify.css"
 import BridgeErrorHandler from "../../utils/BridgeErrorHandler";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
-
-const tagifySettings = {
-    mode: "mix"
-}
+import Div from "@vkontakte/vkui/dist/components/Div/Div";
+import {Icon28CheckCircleFill} from "@vkontakte/icons";
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
-    const [postMessage, setPostMessage] = useState('#МедальЗаОборонуЛенинграда #MedalSpb');
+    const [postMessage, setPostMessage] = useState('');
+    const [wallPostLink, setWallPostLink] = useState('');
 
     const [error, setError] = useState(null);
     const [postWasPosted, setPostWasPosted] = useState(false);
 
     const vkUserId = UserInfoService.getUserId(userInfo);
+    const firstName = UserInfoService.getUserFirstName(userInfo);
     const link = personLink.replace("http:", "https:");
     const title = snippetTitle;
     const imageLink = snippetImageLink.replace("http:", "https:");
 
     const doPost = () => {
+        setError(null);
         bridge.send("VKWebAppShowWallPostBox", {
             "attachments": [
                 link
             ],
-            "message": `${postMessage}`
+            "message": `${postMessage}\n#МедальЗаОборонуЛенинграда #MedalSpb`
         })
         .then(response => {
           PostApiService.savePostInfo(vkUserId, response.post_id, postMessage, link)
@@ -51,6 +49,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
           });
 
           setPostWasPosted(true);
+          setWallPostLink("https://vk.com/id" + vkUserId + "?w=wall" +vkUserId + "_" + response.post_id);
         })
         .catch(e => {
           let errorCode = e.error_data.error_code;
@@ -62,21 +61,13 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     }
 
     const handlePostMessage = (event) => {
-      setPostMessage(event.detail.textContent);
+      setPostMessage(event.target.value);
     }
-
-  const getDefaultPostMessage = () => {
-    let newLineCharacter = '&#10;';
-    let readonlyHashtags = '[[{"value":"#МедальЗаОборонуЛенинграда", "readonly":true}]] [[{"value":"#MedalSpb", "readonly":true}]]';
-
-    return newLineCharacter + newLineCharacter + newLineCharacter + newLineCharacter +
-        newLineCharacter + newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtags;
-  }
 
     return (<Panel id={id}>
         <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
             <PanelHeaderContent>
-                Рассказ о герое
+                История о герое
             </PanelHeaderContent>
         </PanelHeader>
         <Group>
@@ -87,46 +78,46 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                 <Radio name="radio" value="2">Отправить личным сообщением</Radio>
               </FormItem>
 
-              <FormItem className="pt-4">
-                <MixedTags
-                    autoFocus={true}
-                    settings={tagifySettings}
-                    onInput={handlePostMessage}
-                    value={getDefaultPostMessage()}
-                />
+              <FormItem className="pt-4 mb-0 pb-10">
+                <Textarea autoFocus={true} onChange={handlePostMessage} value={postMessage}>
+                </Textarea>
+              </FormItem>
+
+              <FormItem className="pt-0 mt-0">
+                  <Div className="row pt-0 mt-0">
+                      <Text className="hashtag" weight="regular">#МедальЗаОборонуЛенинграда&nbsp;</Text>
+                      <Text className="hashtag" weight="regular">#MedalSpb</Text>
+                  </Div>
               </FormItem>
 
               <Link href={link} target="_blank"><Banner
+                    className="mb-0"
                     before={<Avatar size={100} mode="image" src={imageLink} />}
                     header={title}
                     subheader="medal.spbarchives.ru"/>
               </Link>
 
-              <div className="buttonWrapper">
-                <Button size="l" onClick={doPost}>Опубликовать</Button>
-              </div>
+              {error &&
+                <div className="d-flex justify-content-center align-items-center pt-38">
+                  <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
+                  <Text weight="regular">Во время публикации поста произошла ошибка, пожалуйста попробуйте повторить.</Text>
+                </div>
+              }
+
+              {!postWasPosted &&
+                <div className="d-flex justify-content-center pt-38">
+                  <Button size="l" onClick={doPost}>Опубликовать</Button>
+                </div>
+              }
+
+              {postWasPosted &&
+                <div className="d-flex justify-content-center align-items-center pt-38">
+                    <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill fill='#fff' width={32} height={32}/></Div>
+                    <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
+                </div>
+              }
 
             </FormLayout>
-
-            {error &&
-            <Snackbar
-                layout='vertical'
-                onClose={() => setError(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
-                duration={10000}>
-              {error}
-            </Snackbar>
-            }
-
-          {postWasPosted &&
-          <Snackbar
-              layout='vertical'
-              onClose={() => setPostWasPosted(null)}
-              before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16Done fill='#fff' width={16} height={16}/></Avatar>}
-              duration={10000}>
-            Пост успешно опубликован!
-          </Snackbar>
-          }
         </Group>
     </Panel>)
 }

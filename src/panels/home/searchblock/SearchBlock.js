@@ -24,7 +24,7 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
 
     const getSearchTitle = () => {
         if (personTotalCount !== null && personTotalCount !== undefined && personTotalCount !== '0') {
-            return <span className="description-search">В базу внесены данные на <span className="semibold">{personTotalCount}</span> из 600 тысяч награжденных медалью <span className="semibold">гражданских лиц</span> </span>;
+            return <span className="description-search">В базу внесены данные на <span className="semibold">{personTotalCount}</span> из более 600 тысяч награжденных медалью <span className="semibold">гражданских лиц</span> </span>;
         } else {
             return <span className="description-search">В базу внесены данные по гражданским лицам</span>;
         }
