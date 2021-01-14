@@ -111,10 +111,12 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               }
 
               {postWasPosted &&
-                <div className="d-flex justify-content-center align-items-center pt-38">
-                    <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill fill='#fff' width={32} height={32}/></Div>
-                    <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
-                </div>
+                  <FormItem className="pt-0">
+                      <div className="d-flex justify-content-center align-items-center pt-38">
+                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill fill='#fff' width={32} height={32}/></Div>
+                          <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
+                      </div>
+                  </FormItem>
               }
 
             </FormLayout>
