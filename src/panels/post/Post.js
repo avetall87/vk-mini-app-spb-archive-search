@@ -42,7 +42,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
             "message": `${postMessage}\n#МедальЗаОборонуЛенинграда #MedalSpb`
         })
         .then(response => {
-          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage, link)
+          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n#МедальЗаОборонуЛенинграда #MedalSpb', link)
           .catch(e => {
             console.log("Ошибка при сохранении информации о посте");
             console.log(JSON.stringify(e));
