@@ -186,7 +186,7 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                 className="SearchButton"
                                 title="Получить и сохранить токен доступа в хранилище"
                                 onClick={getCommunityAccessToken}
-                                before={<Icon24Linked/>}>Получить и сохранить токен доступа в хранилище113</Button>
+                                before={<Icon24Linked/>}>Получить и сохранить токен доступа в хранилище</Button>
                     </Div>
                 </FormLayout>}
             </Group>
