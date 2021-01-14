@@ -2,11 +2,6 @@
     cursor: pointer;
 }
 
-.buttonWrapper {
-    display: flex;
-    justify-content: center;
-}
-
 .tagify__tag[readonly]>div::before {
     background: none;
 }
@@ -22,5 +17,13 @@
 
 .Banner__content {
     justify-content: start;
+}
+
+.hashtag {
+    color: var(--accent);
+}
+
+.Textarea__el {
+    min-height: 220px;
 }
 

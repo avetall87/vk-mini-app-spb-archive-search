@@ -1,4 +1,5 @@
 class BridgeErrorHandler {
+
     static getClientErrorDescriptionByErrorCode (errorCode) {
         let map = new Map();
 

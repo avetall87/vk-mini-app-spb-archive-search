@@ -9,7 +9,10 @@
     "predeploy": "npm run build",
     "deploy": "vk-miniapps-deploy",
     "deployDev": "cpx config/dev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
-    "deployProd": "cpx config/prod/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://medal.spbarchives.ru' react-scripts build && vk-miniapps-deploy"
+    "deployProd": "cpx config/prod/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://medal.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
+
+    "startYakovlev": "cpx config/yakovlev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' PORT=10888 HTTPS=true react-scripts start",
+    "deployYakovlev": "cpx config/yakovlev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy"
   },
   "keywords": [],
   "author": "",

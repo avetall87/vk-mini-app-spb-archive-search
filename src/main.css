@@ -1,3 +1,7 @@
+:root {
+    --brick: #B33D2F;
+}
+
 .Group__inner {
     padding-top: 0;
     padding-bottom: 0;
@@ -15,6 +19,15 @@
 
 .spinner-loading {
     margin: 20% 0
+}
+
+
+.mt-46 {
+    margin-top: 2.875rem !important;
+}
+
+.pt-46 {
+    padding-top: 2.875rem !important;
 }
 
 .PanelHeader__content {
@@ -43,13 +56,25 @@
     font-size: 14px;
 }
 
+.error-text {
+    color: var(--brick);
+}
+
 .px-38 {
     padding-left: 2.375rem !important;
     padding-right: 2.375rem !important;
 }
 
+.pt-38 {
+    padding-top: 2.375rem !important;
+}
+
 .pl-20 {
     padding-left: 1.25rem !important;
+}
+
+.pb-10 {
+    padding-bottom: 0.625rem !important;
 }
 
 .pb-20 {
