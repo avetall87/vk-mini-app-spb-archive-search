@@ -1,12 +1,10 @@
-const url = "https://special.spbarchives.ru";
-
 export class RemoteAPI {
     static get (subUrl) {
-        return fetch(url + subUrl);
+        return fetch(process.env.REACT_APP_API_URL + subUrl);
     }
 
     static post(subUrl, body) {
-        return fetch(url + subUrl, {
+        return fetch(process.env.REACT_APP_API_URL + subUrl, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -21,7 +19,7 @@ export class RemoteAPI {
     }
 
     static openSearchWindow (searchToken) {
-        window.open(`${url}/search?query=${searchToken}&advancedSearch=false&from=vk`);
+        window.open(`${process.env.REACT_APP_API_URL}/search?query=${searchToken}&advancedSearch=false&from=vk`);
     }
 
 }

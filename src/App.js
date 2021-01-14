@@ -12,6 +12,7 @@ import Notification from "./panels/notification/Notification";
 import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
 import {RemoteAPI} from "./utils/RemoteAPI";
+import {HashParameterHandler} from "./utils/HashParameterHandler";
 
 const App = () => {
 
@@ -32,32 +33,18 @@ const App = () => {
     const [urlSnippetTitle, setUrlSnippetTitle] = useState('');
     const [urlSnippetImageLink, setUrlSnippetImageLink] = useState('');
     const [notificationSearchQuery, setNotificationSearchQuery] = useState('');
-    const [hashParameters, setHashParameters] = useState({});
 
 
     useEffect(() => {
         bridge.subscribe(({detail: {type, data}}) => {
             if (type === 'VKWebAppUpdateConfig') {
                 const schemeAttribute = document.createAttribute('scheme');
-                // TODO: при включении темной темы не весь контейнер меняет цвет на темный, часть остается светлой (в модильном отображении) !!!
+                // TODO: при включении темной темы не весь контейнер меняет цвет на темный, часть остается светлой (в мобильном отображении) !!!
                 // schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
                 schemeAttribute.value = 'client_light';
                 document.body.attributes.setNamedItem(schemeAttribute);
             }
         });
-
-        function getLocationHash() {
-            return window.location.hash.replace('#','');
-        }
-
-        function getParametersFromHash(string) {
-            let search = string
-            return search === "" ? null : search.split("&").reduce((prev, curr) => {
-                const [key, value] = curr.split("=");
-                prev[decodeURIComponent(key)] = decodeURIComponent(value);
-                return prev;
-            }, {})
-        }
 
         function fetchUserInfo() {
             UserInfoService.getUserInfoPromise().then(data => {
@@ -86,10 +73,7 @@ const App = () => {
             const appId = fetchAppId[0];
             setVkAppId(appId);
 
-            let locationHash = getLocationHash();
-            let hashParameters = getParametersFromHash(locationHash);
-
-            setHashParameters(hashParameters);
+            let hashParameters = HashParameterHandler.getParametersFromHash(HashParameterHandler.getLocationHash());
 
             if (hashParameters !== null) {
                 if (hashParameters.hasOwnProperty('active_panel')) {
@@ -115,9 +99,7 @@ const App = () => {
 
             if (appId !== null && groupId !== null) {
                 const storageKey = appId + "_" + groupId + "_" + STORE_WIDGET_SCOPE;
-
                 setWidgetCommunityTokenStorageKey(storageKey);
-
                 await fetchStorageData(storageKey);
             }
 
@@ -126,10 +108,8 @@ const App = () => {
                 let json = await response.json();
 
                 if (json.hasOwnProperty('count') && json.count !== 'undefined' && json.count > 0) {
-                    let formattedResult = new Intl.NumberFormat('ru-RU').format(json.count);
-
-                    setPersonTotalCount(formattedResult);
-                    console.log(formattedResult)
+                    setPersonTotalCount(new Intl.NumberFormat('ru-RU').format(json.count));
+                    console.log(personTotalCount)
                 }
             } catch (e) {
                 console.log("Fail to fetch persons count by last_name" + e);
@@ -159,7 +139,7 @@ const App = () => {
 
         fetchUserInfo();
         fetchLaunchParameters();
-    }, []);
+    }, [personTotalCount]);
 
     const go = e => {
         setActivePanel(e.currentTarget.dataset.to);

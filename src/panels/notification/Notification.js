@@ -98,6 +98,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
     const notificationContent = () => {
         if (!notificationIsAdded) {
+
             return (
                 <Div className="pt-0 mt-4">
                     <Div className="NotificationDescription pb-0">
@@ -129,10 +130,10 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack className="ChevronBack"
+            <PanelHeader left={<Icon28ChevronBack className="chevron-back"
                                                   onClick={go}
                                                   data-to="home"/>}>
-                <span className="PageHeaderContent">Уведомления</span>
+                Уведомления
             </PanelHeader>
             <Group>
                 <FormLayout>
@@ -145,7 +146,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             <Snackbar
                 layout='vertical'
                 onClose={() => setError(null)}
-                before={<Avatar size={16} className="notification-error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} className="error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
                 duration={10000}>
                 {error}
             </Snackbar>

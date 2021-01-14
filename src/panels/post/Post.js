@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import bridge from "@vkontakte/vk-bridge";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
@@ -21,7 +21,7 @@ import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 
 const tagifySettings = {
-  mode: "mix"
+    mode: "mix"
 }
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
@@ -32,9 +32,9 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     const [postWasPosted, setPostWasPosted] = useState(false);
 
     const vkUserId = UserInfoService.getUserId(userInfo);
-    const link = personLink;
+    const link = personLink.replace("http:", "https:");
     const title = snippetTitle;
-    const imageLink = snippetImageLink;
+    const imageLink = snippetImageLink.replace("http:", "https:");
 
     const doPost = () => {
         bridge.send("VKWebAppShowWallPostBox", {
@@ -69,13 +69,14 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     let newLineCharacter = '&#10;';
     let readonlyHashtags = '[[{"value":"#МедальЗаОборонуЛенинграда", "readonly":true}]] [[{"value":"#MedalSpb", "readonly":true}]]';
 
-    return newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtags;
+    return newLineCharacter + newLineCharacter + newLineCharacter + newLineCharacter +
+        newLineCharacter + newLineCharacter + newLineCharacter + newLineCharacter + readonlyHashtags;
   }
 
     return (<Panel id={id}>
         <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
             <PanelHeaderContent>
-                <span class="PageHeaderContent">Рассказ о герое</span>
+                Рассказ о герое
             </PanelHeaderContent>
         </PanelHeader>
         <Group>
@@ -86,7 +87,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                 <Radio name="radio" value="2">Отправить личным сообщением</Radio>
               </FormItem>
 
-              <FormItem>
+              <FormItem className="pt-4">
                 <MixedTags
                     autoFocus={true}
                     settings={tagifySettings}
@@ -96,13 +97,13 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               </FormItem>
 
               <Link href={link} target="_blank"><Banner
-                    before={<Avatar size={90} mode="image" src={imageLink} />}
+                    before={<Avatar size={100} mode="image" src={imageLink} />}
                     header={title}
                     subheader="medal.spbarchives.ru"/>
               </Link>
 
               <div className="buttonWrapper">
-                <Button size="l" onClick={doPost}>Опубликовать в VK</Button>
+                <Button size="l" onClick={doPost}>Опубликовать</Button>
               </div>
 
             </FormLayout>
