@@ -1,6 +1,5 @@
-.notification-description {
-    text-align: center;
-}
+.NotificationDescription {
+    text-align: left;
 
 .chevron-back {
     cursor: pointer;
