@@ -79,7 +79,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               </FormItem>
 
               <FormItem className="pt-4 mb-0 pb-10">
-                <Textarea autoFocus={true} onChange={handlePostMessage} value={postMessage}>
+                <Textarea className="post-textarea" autoFocus={true} onChange={handlePostMessage} value={postMessage}>
                 </Textarea>
               </FormItem>
 

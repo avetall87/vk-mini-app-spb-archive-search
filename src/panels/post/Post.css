@@ -23,7 +23,7 @@
     color: var(--accent);
 }
 
-.Textarea__el {
+.post-textarea {
     min-height: 220px;
 }
 
