@@ -100,7 +100,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               {error &&
                 <div className="d-flex justify-content-center align-items-center pt-38">
                   <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
-                  <Text weight="regular">Во время публикации поста произошла ошибка, пожалуйста попробуйте повторить.</Text>
+                  <Text className="error-text" weight="regular">Во время публикации поста произошла ошибка, пожалуйста попробуйте повторить.</Text>
                 </div>
               }
 
