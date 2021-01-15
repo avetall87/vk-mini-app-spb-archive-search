@@ -30,10 +30,10 @@ export class NotificationHelper {
         }
     }
 
-    static getNullValue = (rowValue) => {
+    static stringifyAndReplaceNull = (rowValue) => {
         try {
             if (!rowValue) {
-                return rowValue;
+                return '';
             }
 
             if (typeof rowValue === 'string') {
