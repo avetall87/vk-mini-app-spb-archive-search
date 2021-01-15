@@ -43,7 +43,7 @@ export class NotificationHelper {
             }
 
         } catch (e) {
-            console.log('getNullValue exception - ' + e);
+            console.log('getNullValue exception - ' + e.name + ":" + e.message + "\n" + e.stack);
             return '';
         }
     }
