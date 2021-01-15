@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export class NotificationHelper {
+export default class NotificationHelper {
 
     static mapSearchKeyToHumanName = (key) =>  {
         switch (key) {
