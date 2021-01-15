@@ -68,7 +68,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
         const delimiter = '; ';
 
         _.forEach(_.keys(parsedQuery), (key) => {
-            const value = decodeURIComponent(NotificationHelper.getNullValue(_.get(parsedQuery, key, '')));
+            const value = decodeURIComponent(NotificationHelper.stringifyAndReplaceNull(_.get(parsedQuery, key, '')));
 
             if (value !== '') {
                 const labelName = NotificationHelper.mapSearchKeyToHumanName(key);

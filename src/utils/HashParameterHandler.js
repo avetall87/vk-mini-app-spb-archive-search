@@ -1,6 +1,13 @@
 export class HashParameterHandler {
     static getLocationHash() {
-        return window.location.hash.replace('#/','');
+        const locationHash = window.location.hash;
+
+        if (locationHash.includes('#/')) {
+            return locationHash.replace('#/','');
+        } else {
+            return locationHash.replace('#','');
+        }
+
     }
 
     static getParametersFromHash(string) {

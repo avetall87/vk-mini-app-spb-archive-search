@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export class NotificationHelper {
 
     static mapSearchKeyToHumanName = (key) =>  {
@@ -28,12 +30,22 @@ export class NotificationHelper {
         }
     }
 
-    static getNullValue = (rowValue) => {
-        if (!rowValue) {
-            return rowValue;
-        }
+    static stringifyAndReplaceNull = (rowValue) => {
+        try {
+            if (!rowValue) {
+                return '';
+            }
 
-        return rowValue.replaceAll('null', '');
+            if (typeof rowValue === 'string') {
+                return _.replace(rowValue, 'null', '');
+            } else {
+                return _.replace(rowValue.toString(), 'null', '');
+            }
+
+        } catch (e) {
+            console.log('getNullValue exception - ' + e.name + ":" + e.message + "\n" + e.stack);
+            return '';
+        }
     }
 
 }
