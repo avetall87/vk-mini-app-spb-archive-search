@@ -44,7 +44,7 @@ export class NotificationHelper {
 
         } catch (e) {
             console.log('getNullValue cast exception - ' + e);
-            return typeof rowValue + ' - ' + e.toString + ' - ' + e;
+            return '';
         }
     }
 
