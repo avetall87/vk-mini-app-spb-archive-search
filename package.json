@@ -12,8 +12,8 @@
     "deployProd": "cpx config/prod/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://medal.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
     "startYakovlev": "cpx config/yakovlev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' PORT=10888 HTTPS=true react-scripts start",
     "deployYakovlev": "cpx config/yakovlev/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
-    "startAleksandrov": "cpx config/aleknsadrov/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' PORT=10888 HTTPS=true react-scripts start",
-    "deployAleksandrov": "cpx config/aleknsadrov/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
+    "startAleksandrov": "cpx config/aleksandrov/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' PORT=10888 HTTPS=true react-scripts start",
+    "deployAleksandrov": "cpx config/aleksandrov/vk-hosting-config.json . && cross-env REACT_APP_API_URL='https://special.spbarchives.ru' react-scripts build && vk-miniapps-deploy",
     "test": "jest"
   },
   "keywords": [],
