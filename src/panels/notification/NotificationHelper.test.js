@@ -1,4 +1,4 @@
-import NotificationHelper from './NotificationHelper'
+const {NotificationHelper} = require("./NotificationHelper");
 
 test("string as 'null' to equal ''", () => {
     expect(NotificationHelper.stringifyAndReplaceNull('null')).toBe('');
