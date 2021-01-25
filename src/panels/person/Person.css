@@ -1,0 +1,61 @@
+.PanelHeaderContent__children-in {
+    font-weight: 700 !important;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0.25px;
+    color: #142245;
+}
+
+.Header.red-underline {
+    margin-bottom: 20px;
+}
+
+.Header.red-underline > .Header__in {
+    flex-flow: column;
+}
+
+.Header.red-underline > .Header__in::after {
+    content: '';
+    height: 3px;
+    width: 42px;
+    background-color: #B33D2F;
+}
+
+.Header__main {
+    margin-bottom: 5px !important;
+}
+
+.Header__content {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #142245;
+}
+
+.SimpleCell {
+    min-height: 0;
+}
+
+
+.SimpleCell__children {
+    font-size: 14px;
+    font-weight: 600;
+    color: #142245;
+}
+
+.SimpleCell__after {
+    color: #142245;
+    font-size: 14px;
+    padding-bottom: 8px;
+}
+
+.SimpleCell__main {
+    flex-grow: unset;
+    margin-right: 8px;
+    padding-top: 0 !important;
+    padding-bottom: 8px !important;
+}
+
+.List {
+    margin-bottom: 40px;
+}

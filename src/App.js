@@ -13,6 +13,8 @@ import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
 import {RemoteAPI} from "./utils/RemoteAPI";
 import {HashParameterHandler} from "./utils/HashParameterHandler";
+import Person from './panels/person/Person';
+import doc from './awardedDoc.json';
 
 const App = () => {
 
@@ -33,7 +35,7 @@ const App = () => {
     const [urlSnippetTitle, setUrlSnippetTitle] = useState('');
     const [urlSnippetImageLink, setUrlSnippetImageLink] = useState('');
     const [notificationSearchQuery, setNotificationSearchQuery] = useState('');
-
+    const [awardedDoc, setAwardedDoc] = useState(doc);
 
     useEffect(() => {
         bridge.subscribe(({detail: {type, data}}) => {
@@ -193,6 +195,12 @@ const App = () => {
                            bridgeErrorMessage={bridgeErrorMessage}
                            personTotalCount={personTotalCount}/>
 
+            <Person id={'person'} go={go}
+                    awardedDoc={awardedDoc}
+                    setActivePanel={setActivePanel}
+                    setUrlPersonLink={setUrlPersonLink}
+                    setUrlSnippetTitle={setUrlSnippetTitle}
+                    setUrlSnippetImageLink={setUrlSnippetImageLink}/>
         </View>
     );
 }

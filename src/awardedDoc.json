@@ -1,0 +1,76 @@
+{
+  "docId": "168490",
+  "entityId": 168490,
+  "fio": "Иванов Анатолий Петрович",
+  "birthYear": 1913,
+  "placeOfWork": "Ленинградская Высоковольтная Сеть - Ленэнерго",
+  "decisionNumber": "№92 п.34",
+  "decisionDate": "03.06.1943",
+  "documentNumber": "А-44770",
+  "awardingPlace": "Ленинград",
+  "awardingDocs": [
+    {
+      "docType": "DECISION",
+      "cipher": "ф.Р-7384 оп.38 д.1",
+      "name": "Решения исполкома Ленгорсовета депутатов трудящихся о вручении медали «За оборону Ленинграда»",
+      "images": [
+        {
+          "entityImageId": 204798,
+          "objectOrder": 10,
+          "view": {
+            "id": 394889,
+            "path": "arm/archive_store/root/000/004/019/202.dat"
+          },
+          "img": {
+            "id": 394738,
+            "path": "arm/archive_store/root/000/004/019/051.dat"
+          },
+          "availableForView": true,
+          "availableImagesForView": true
+        }
+      ]
+    },
+    {
+      "docType": "LIST",
+      "cipher": "ф.Р-7384 оп.38 д.121",
+      "name": "Списки рабочих и служащих предприятий и учреждений Дзержинского района, награжденных медалью «За оборону Ленинграда», Т. 1",
+      "images": [
+        {
+          "entityImageId": 555385,
+          "objectOrder": 0,
+          "view": {
+            "id": 466717,
+            "path": "arm/archive_store/root/000/004/229/098.dat"
+          },
+          "img": {
+            "id": 466407,
+            "path": "arm/archive_store/root/000/004/228/044.dat"
+          },
+          "availableForView": true,
+          "availableImagesForView": true
+        }
+      ]
+    },
+    {
+      "docType": "ACT",
+      "cipher": "ф.Р-7384 оп.38 д.885",
+      "name": "Акты вручения медали «За оборону Ленинграда» рабочим и служащим предприятий и учреждений Дзержинского района",
+      "images": [
+        {
+          "entityImageId": 383031,
+          "objectOrder": 0,
+          "view": {
+            "id": 430908,
+            "path": "arm/archive_store/root/000/004/112/251.dat"
+          },
+          "img": {
+            "id": 430010,
+            "path": "arm/archive_store/root/000/004/109/121.dat"
+          },
+          "availableForView": true,
+          "availableImagesForView": true
+        }
+      ]
+    }
+  ]
+}
