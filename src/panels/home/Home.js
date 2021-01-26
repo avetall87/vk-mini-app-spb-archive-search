@@ -26,7 +26,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     const MAX_MOBILE_SCREEN_WIDTH = 576;
 
     const [personCount, setPersonCount] = useState(0);
-    const [searchText, setSearchTest] = useState('');
+    const [searchText, setSearchText] = useState('');
 
     const [widgetError, setWidgetError] = useState(false);
     const [widgetErrorMessage, setWidgetErrorMessage] = useState(false);
@@ -58,9 +58,9 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
         RemoteAPI.openSearchWindow(searchToken);
     }
 
-    const showFoundedRecords = () => {
-        openSearchWindow(lastName);
-    }
+    // const showFoundedRecords = () => {
+    //     openSearchWindow(lastName);
+    // }
 
     const search = () => {
         openSearchWindow(searchText);
@@ -73,7 +73,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     }
 
     const onLabelChange = (event) => {
-        setSearchTest(event.target.value);
+        setSearchText(event.target.value);
     };
 
     const isMobileDevice = () => {
@@ -82,6 +82,11 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
     const showWidgetConfiguration = () => {
         return vkGroupId && isCommunityAdmin;
+    }
+
+    const getSearchUrl = (searchToken) => {
+        console.log("RemoteAPI.getSearchUrl(searchToken) - " + RemoteAPI.getSearchUrl(searchToken));
+        return RemoteAPI.getSearchUrl(searchToken);
     }
 
 
@@ -105,6 +110,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                                      handleKeyDown={_handleKeyDown}
                                      isMobileDevice={isMobileDevice}
                                      onLabelChange={onLabelChange}
+                                     searchUrl={getSearchUrl(searchText)}
                                      personTotalCount={personTotalCount}/>
                     </Div>
 
@@ -127,7 +133,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                                       firstName={firstName}
                                       lastName={lastName}
                                       personCount={personCount}
-                                      searchButton={showFoundedRecords}/>}
+                                      getSearchUrl={getSearchUrl}/>}
 
                         <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !isMobileDevice(), "pt-112": !isMobileDevice() && (personCount <= 0)})}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
