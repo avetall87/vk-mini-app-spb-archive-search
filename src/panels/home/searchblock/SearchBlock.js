@@ -39,7 +39,7 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
                 <Div className="col-12 col-md-10 m-0 p-0">
                     {getSearchField()}
                 </Div>
-                <Div className="col-12 col-md-2 m-0 pt-0 pb-0 pl-sm-0">
+                <Div className="col-12 col-md-2 m-0 pt-0 pb-0 pl-md-0 pt-3 pt-md-0">
                     <Button className="SearchButton main-search-button mt-1 mt-sm-0"
                             title="Искать на сайте: Медаль «За оборону Ленинграда»"
                             onClick={searchButton}>
