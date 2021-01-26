@@ -32,7 +32,8 @@ const SearchBanner = ({isMobileDevice, firstName, lastName, personCount, searchB
                         className="SearchButton"
                         mode="outline"
                         title="Посмотреть однофамильцев"
-                        onClick={searchButton}>
+                        onClick={searchButton}
+                        data-to="searchResults">
                     Посмотреть однофамильцев
                 </Button>
             </Div>

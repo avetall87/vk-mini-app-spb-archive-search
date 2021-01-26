@@ -19,6 +19,8 @@ import BackgroundImage from './../../img/background_search_main.jpg'
 import MedalImage from '../../img/Medal_vk(2x).png'
 import SearchBlock from "./searchblock/SearchBlock";
 import classNames from 'classnames';
+import _ from "lodash";
+import useSearchResults from "../searchresults/useSearchResults";
 
 
 const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount}) => {
@@ -26,10 +28,11 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     const MAX_MOBILE_SCREEN_WIDTH = 576;
 
     const [personCount, setPersonCount] = useState(0);
-    const [searchText, setSearchTest] = useState('');
 
     const [widgetError, setWidgetError] = useState(false);
     const [widgetErrorMessage, setWidgetErrorMessage] = useState(false);
+
+    const {setSearchQuery} = useSearchResults();
 
     const firstName = UserInfoService.getUserFirstName(userInfo);
     const lastName = UserInfoService.getUserLastName(userInfo);
@@ -54,27 +57,23 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
         console.log(e);
     });
 
-    const openSearchWindow = (searchToken) => {
-        RemoteAPI.openSearchWindow(searchToken);
-    }
-
-    const showFoundedRecords = () => {
-        openSearchWindow(lastName);
-    }
-
-    const search = () => {
-        openSearchWindow(searchText);
-    }
-
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            openSearchWindow(searchText);
+            let searchQuery = _.get(e.target, 'value', '');
+            setSearchQuery(searchQuery);
+            go(e);
         }
     }
 
     const onLabelChange = (event) => {
-        setSearchTest(event.target.value);
+        let searchQuery = _.get(event.target, 'value', '');
+        setSearchQuery(searchQuery);
     };
+
+    const openSearchResultsWithLastName = (event) => {
+        setSearchQuery(lastName);
+        go(event);
+    }
 
     const isMobileDevice = () => {
         return document.body.clientWidth <= MAX_MOBILE_SCREEN_WIDTH;
@@ -101,7 +100,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                         <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
                     </Div>
                     <Div className="m-0 p-0 SearchBlock-wrapper">
-                        <SearchBlock searchButton={search}
+                        <SearchBlock go={go}
                                      handleKeyDown={_handleKeyDown}
                                      isMobileDevice={isMobileDevice}
                                      onLabelChange={onLabelChange}
@@ -127,7 +126,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                                       firstName={firstName}
                                       lastName={lastName}
                                       personCount={personCount}
-                                      searchButton={showFoundedRecords}/>}
+                                      searchButton={openSearchResultsWithLastName}/>}
 
                         <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !isMobileDevice(), "pt-112": !isMobileDevice() && (personCount <= 0)})}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>

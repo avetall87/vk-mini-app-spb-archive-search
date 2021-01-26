@@ -4,8 +4,11 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './SearchBlock.css';
+import useSearchResults from "../../searchresults/useSearchResults";
 
-const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton, personTotalCount}) => {
+const SearchBlock = ({go, isMobileDevice, onLabelChange, handleKeyDown, personTotalCount}) => {
+
+    const {searchQuery} = useSearchResults();
 
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
@@ -18,8 +21,10 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
             placeholder={placeHolder}
             id="medalSearchId"
             type="text"
+            defaultValue={searchQuery}
             onChange={onLabelChange}
-            onKeyDown={handleKeyDown}/>;
+            onKeyDown={handleKeyDown}
+            data-to="searchResults"/>;
     }
 
     const getSearchTitle = () => {
@@ -42,7 +47,8 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton
                 <Div className="col-12 col-md-2 m-0 pt-0 pb-0 pl-sm-0">
                     <Button className="SearchButton main-search-button mt-1 mt-sm-0"
                             title="Искать на сайте: Медаль «За оборону Ленинграда»"
-                            onClick={searchButton}>
+                            onClick={go}
+                            data-to="searchResults">
                         Искать
                     </Button>
                 </Div>

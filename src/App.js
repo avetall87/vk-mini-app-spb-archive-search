@@ -13,6 +13,8 @@ import "./panels/post/Post.css"
 import {UserInfoService} from "./utils/UserInfoService";
 import {RemoteAPI} from "./utils/RemoteAPI";
 import {HashParameterHandler} from "./utils/HashParameterHandler";
+import SearchResults from "./panels/searchresults/SearchResults";
+import {SearchResultsProvider} from "./context/SearchResultsContext";
 
 const App = () => {
 
@@ -163,37 +165,43 @@ const App = () => {
     }
 
     return (
-        <View activePanel={activePanel} popout={popout}>
+        <SearchResultsProvider>
+            <View activePanel={activePanel} popout={popout}>
 
-            <Notification id='notification'
-                          go={go}
-                          userInfo={userInfo}
-                          searchQuery={notificationSearchQuery}/>
+                <Notification id='notification'
+                              go={go}
+                              userInfo={userInfo}
+                              searchQuery={notificationSearchQuery}/>
 
-            <Post id='post'
-                  go={go}
-                  userInfo={userInfo}
-                  personLink={urlPersonLink}
-                  snippetTitle={urlSnippetTitle}
-                  snippetImageLink={urlSnippetImageLink}/>
+                <Post id='post'
+                      go={go}
+                      userInfo={userInfo}
+                      personLink={urlPersonLink}
+                      snippetTitle={urlSnippetTitle}
+                      snippetImageLink={urlSnippetImageLink}/>
 
-            <Home id='home'
-                  go={go}
-                  userInfo={userInfo}
-                  vkGroupId={vkGroupId}
-                  isCommunityAdmin={isCommunityAdmin}
-                  personTotalCount={personTotalCount}/>
+                <Home id='home'
+                      go={go}
+                      userInfo={userInfo}
+                      vkGroupId={vkGroupId}
+                      isCommunityAdmin={isCommunityAdmin}
+                      personTotalCount={personTotalCount}/>
 
-            <Configuration id='configuration' go={go}
-                           vkGroupId={vkGroupId}
-                           communityToken={communityToken}
-                           vkAppId={vkAppId}
-                           getCommunityAccessToken={getCommunityAccessToken}
-                           bridgeError={bridgeError}
-                           bridgeErrorMessage={bridgeErrorMessage}
-                           personTotalCount={personTotalCount}/>
+                <SearchResults id='searchResults'
+                               go={go}
+                />
 
-        </View>
+                <Configuration id='configuration' go={go}
+                               vkGroupId={vkGroupId}
+                               communityToken={communityToken}
+                               vkAppId={vkAppId}
+                               getCommunityAccessToken={getCommunityAccessToken}
+                               bridgeError={bridgeError}
+                               bridgeErrorMessage={bridgeErrorMessage}
+                               personTotalCount={personTotalCount}/>
+
+            </View>
+        </SearchResultsProvider>
     );
 }
 
