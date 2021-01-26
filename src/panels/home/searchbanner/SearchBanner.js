@@ -4,7 +4,7 @@ import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import classNames from 'classnames';
 import Link from "@vkontakte/vkui/dist/components/Link/Link";
 
-const SearchBanner = ({isMobileDevice, firstName, personCount, getSearchUrl}) => {
+const SearchBanner = ({isMobileDevice, firstName, personCount, searchUrl}) => {
 
     const declOfNum = (n, text_forms) => {
         n = Math.abs(n) % 100;
@@ -29,7 +29,7 @@ const SearchBanner = ({isMobileDevice, firstName, personCount, getSearchUrl}) =>
                 </span>
             </Div>
             <Div className="pl-0 pt-sm-0 pb-sm-0">
-                <Link href={getSearchUrl(firstName)} target="_blank">
+                <Link href={searchUrl} target="_blank">
                     <Button size="l"
                             className="SearchButton"
                             mode="outline"

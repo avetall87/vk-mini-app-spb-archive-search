@@ -133,7 +133,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                                       firstName={firstName}
                                       lastName={lastName}
                                       personCount={personCount}
-                                      getSearchUrl={getSearchUrl}/>}
+                                      searchUrl={getSearchUrl(lastName)}/>}
 
                         <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !isMobileDevice(), "pt-112": !isMobileDevice() && (personCount <= 0)})}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
