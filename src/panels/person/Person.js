@@ -1,10 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import {
-  Button,
+  Button, Card, CardScroll,
   Group,
   Header,
-  HorizontalScroll,
   List,
   Panel,
   PanelHeader,
@@ -82,10 +81,26 @@ export default function({
         <Group mode="plain"
                separator={'hide'}>
           <Header>Архивные документы о награждении</Header>
-          <HorizontalScroll showArrows getScrollToLeft={i => i - 120}
-                            getScrollToRight={i => i + 120}>
-
-          </HorizontalScroll>
+          <CardScroll size="s">
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+            <Card>
+              <div style={{ paddingBottom: '66%' }} />
+            </Card>
+          </CardScroll>
         </Group>
         <Group
             separator={'hide'}>
