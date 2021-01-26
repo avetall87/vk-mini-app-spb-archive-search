@@ -27,10 +27,10 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
     const [widgetError, setWidgetError] = useState(false);
     const [unsupportedPlatform, setUnsupportedPlatform] = useState(false);
 
-    const [title, setTitle] = useState('Медаль «За оборону Ленинграда»');
-    const [text, setText] = useState('Архивные документы о награжденных медалью');
-    const [descr, setDescr] = useState(`В базу внесены данные на ${personTotalCount} гражданских лиц`);
-    const [more, setMore] = useState('найди своих однофамильцев в архивных документах');
+    const [title, setTitle] = useState('Найди однофамильцев в архивных документах');
+    const [text, setText] = useState('Медаль «За оборону Ленинграда»');
+    const [descr, setDescr] = useState(`В базе данных ${personTotalCount} гражданских лиц`);
+
     const [activeTab, setActiveTab] = useState('widget');
     const [moreUrl, setMoreUrl] = useState(APP_LINK);
 
@@ -46,10 +46,6 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
         setDescr(event.target.value);
     };
 
-    const onMoreChange = (event) => {
-        setMore(event.target.value);
-    };
-
     const onMoreUrlChange = (event) => {
         setMoreUrl(event.target.value);
     };
@@ -57,18 +53,18 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
     const addWidget = () => {
         try {
             let groupId = Number(vkGroupId);
-
             bridge.send("VKWebAppShowCommunityWidgetPreviewBox",
                 {
-                    "group_id": groupId, "type": "text", "code": `var first_name = API.users.get({})@.first_name;
+                    "group_id": groupId, "type": "cover_list", "code": `var first_name = API.users.get({})@.first_name;
 
-                                                                      if (first_name) { 
-                                                                         first_name = first_name + ", ";
-                                                                      } else {
-                                                                         first_name = "Авторизуйся и ";
-                                                                      }
+                                                                          if (first_name) { 
+                                                                             first_name = first_name + ", ";
+                                                                          } else {
+                                                                             first_name = "Авторизуйся и ";
+                                                                          }
                                                                               
-                                                                       return { title: '${title}', title_url: '${moreUrl}', text: '${text}', descr: '${descr}', more: first_name + '${more}', more_url: '${moreUrl}' };`
+                                                                        return {"title": first_name + '${title}',"title_url": '${moreUrl}',"rows": [{"title": '${text}',"descr": '${descr}',"cover_id": '7643740_899857', "url": '${moreUrl}'}]};`
+
                 })
                 .then(r => console.log(r.result))
                 .catch(e => {
@@ -142,14 +138,6 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                   onChange={onDescrChange}/>
                     </FormItem>
 
-                    <FormItem top="Текст в футере, до 100 символов" bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
-                              status={more ? 'valid' : 'error'}>
-                        <Input id="moreId"
-                               maxLength="100"
-                               value={more}
-                               onChange={onMoreChange}/>
-                    </FormItem>
-
                     <FormItem top="URL для футера. Обязателен, если указан текст в футере" bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
                               status={moreUrl ? 'valid' : 'error'}>
                         <Input id="moreUrlId"
@@ -212,13 +200,13 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
             }
 
             {bridgeError &&
-                <Snackbar
-                    layout='vertical'
-                    onClose={() => setWidgetError(null)}
-                    before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
-                    duration={10000}>
-                    {bridgeErrorMessage}
-                </Snackbar>
+            <Snackbar
+                layout='vertical'
+                onClose={() => setWidgetError(null)}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                duration={10000}>
+                {bridgeErrorMessage}
+            </Snackbar>
             }
 
         </Panel>
