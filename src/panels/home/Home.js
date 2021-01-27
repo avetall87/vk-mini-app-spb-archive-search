@@ -84,7 +84,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                 before={<Icon28SettingsOutline/>}
                 mode="tertiary">
             </Button>}>
-                <PanelHeaderTextContent title={'Медаль «За оборону Ленинграда»'}/>
+                <PanelHeaderTextContent title={'Поиск героев'}/>
             </PanelHeader>
             <Group>
                 <Div className="m-0 p-0 search-container h-100">
