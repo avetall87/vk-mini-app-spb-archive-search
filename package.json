@@ -9,7 +9,7 @@
     "predeploy": "npm run build",
     "deploy": "vk-miniapps-deploy",
     "deployDev": "copyfiles -f -a \"config/dev/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
-    "deployProd": "copyfiles -f -a \"config/prod/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
+    "deployProd": "copyfiles -f \"config/prod/index.html\" public/ && copyfiles -f -a \"config/prod/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
     "startYakovlev": "copyfiles -f -a \"config/yakovlev/*\" ./ && cross-env PORT=10888 HTTPS=true react-scripts start",
     "deployYakovlev": "copyfiles -f -a \"config/yakovlev/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
     "startAleksandrov": "copyfiles -f -a \"config/aleksandrov/*\" ./ && cross-env PORT=10888 HTTPS=true react-scripts start",
