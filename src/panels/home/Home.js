@@ -13,18 +13,16 @@ import {Icon16ErrorCircleFill} from "@vkontakte/icons";
 import SearchBanner from "./searchbanner/SearchBanner";
 import {RemoteAPI} from "../../utils/RemoteAPI";
 import {UserInfoService} from "../../utils/UserInfoService";
-
+import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
 import BackgroundImage from './../../img/background_search_main.jpg'
 
 import MedalImage from '../../img/Medal_vk(2x).png'
 import SearchBlock from "./searchblock/SearchBlock";
 import classNames from 'classnames';
+import {DeviceService} from '../../utils/DeviceService';
 
 
 const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount}) => {
-
-    const MAX_MOBILE_SCREEN_WIDTH = 576;
-
     const [personCount, setPersonCount] = useState(0);
     const [searchText, setSearchText] = useState('');
 
@@ -68,18 +66,15 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
         setSearchText(event.target.value);
     };
 
-    const isMobileDevice = () => {
-        return document.body.clientWidth <= MAX_MOBILE_SCREEN_WIDTH;
-    }
-
     const showWidgetConfiguration = () => {
         return vkGroupId && isCommunityAdmin;
     }
 
+    const mobileDevice = DeviceService.isMobileDevice();
+
     const getSearchUrl = (searchToken) => {
         return RemoteAPI.getSearchUrl(searchToken);
     }
-
 
     return (<Panel id={id}>
             <PanelHeader left={showWidgetConfiguration() &&
@@ -89,7 +84,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                 before={<Icon28SettingsOutline/>}
                 mode="tertiary">
             </Button>}>
-                <span className={classNames({"HomeHeader-mobile": isMobileDevice()})}>Медаль «За оборону Ленинграда»</span>
+                <PanelHeaderTextContent title={'Поиск героев'}/>
             </PanelHeader>
             <Group>
                 <Div className="m-0 p-0 search-container h-100">
@@ -98,7 +93,6 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                     </Div>
                     <Div className="m-0 p-0 SearchBlock-wrapper">
                         <SearchBlock handleKeyDown={_handleKeyDown}
-                                     isMobileDevice={isMobileDevice}
                                      onLabelChange={onLabelChange}
                                      searchUrl={getSearchUrl(searchText)}
                                      personTotalCount={personTotalCount}/>
@@ -106,8 +100,8 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
                 </Div>
 
-                <Div className={classNames("MainContainer d-flex justify-content-between", {"px-38": !isMobileDevice()})}>
-                    {document.body.clientWidth >= MAX_MOBILE_SCREEN_WIDTH &&
+                <Div className={classNames("MainContainer d-flex justify-content-between", {"px-38": !mobileDevice})}>
+                    {DeviceService.isDeviceWithMaxMobileSizeOrGreater() &&
                     <Div className="col-md-3 pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                         <Div className="pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
                             <Div className="pl-0 pr-0 ml-0 mr-0 mt-0 pt-0">
@@ -119,12 +113,15 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
 
                     <Div className="col-md-9 col-sm-12 mt-0 pt-0">
                         {personCount > 0 &&
-                        <SearchBanner isMobileDevice={isMobileDevice}
-                                      firstName={firstName}
-                                      personCount={personCount}
-                                      searchUrl={getSearchUrl(lastName)}/>}
+                        <SearchBanner
+                            firstName={firstName}
+                            personCount={personCount}
+                            searchUrl={getSearchUrl(lastName)}/>}
 
-                        <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !isMobileDevice(), "pt-112": !isMobileDevice() && (personCount <= 0)})}>
+                        <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {
+                            "pl-20": !mobileDevice,
+                            "pt-112": !mobileDevice && (personCount <= 0)
+                        })}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
                             <li>Рассказ истории о награжденном герое.</li>
                             <li className="pt-1">Подписка на уведомление о появлении новых данных.</li>
@@ -136,7 +133,9 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
             <Snackbar
                 layout='vertical'
                 onClose={() => setWidgetError(null)}
-                before={<Avatar size={16} className="error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} className="error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff'
+                                                                                                   width={16}
+                                                                                                   height={16}/></Avatar>}
                 duration={10000}>
                 {widgetErrorMessage}
             </Snackbar>

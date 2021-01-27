@@ -2,9 +2,10 @@ import React from "react";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import classNames from 'classnames';
+import {DeviceService} from '../../../utils/DeviceService';
 import Link from "@vkontakte/vkui/dist/components/Link/Link";
 
-const SearchBanner = ({isMobileDevice, firstName, personCount, searchUrl}) => {
+const SearchBanner = ({firstName, personCount, searchUrl}) => {
 
     const declOfNum = (n, text_forms) => {
         n = Math.abs(n) % 100;
@@ -21,11 +22,14 @@ const SearchBanner = ({isMobileDevice, firstName, personCount, searchUrl}) => {
         return text_forms[2];
     }
 
+    const mobileDevice = DeviceService.isMobileDevice();
+
     return (
-        <Div className={classNames("mt-0 pt-0 pl-sm-0", {"pb-40": !isMobileDevice()})}>
-            <Div className={classNames("pl-0 mt-0 pt-0", {"pb-20": !isMobileDevice()})}>
+        <Div className={classNames("mt-0 pt-0 pl-sm-0", {"pb-40": !mobileDevice})}>
+            <Div className={classNames("pl-0 mt-0 pt-0", {"pb-20": !mobileDevice})}>
                 <span>
-                    <span className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
+                    <span
+                        className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
                 </span>
             </Div>
             <Div className="pl-0 pt-sm-0 pb-sm-0">

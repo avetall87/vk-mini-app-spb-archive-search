@@ -4,14 +4,15 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './SearchBlock.css';
+import {DeviceService} from '../../../utils/DeviceService';
 import Link from "@vkontakte/vkui/dist/components/Link/Link";
 
-const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchUrl, personTotalCount}) => {
+const SearchBlock = ({onLabelChange, handleKeyDown, searchUrl, personTotalCount}) => {
 
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
 
-        if (!isMobileDevice()) {
+        if (!DeviceService.isMobileDevice()) {
             placeHolder += ", место работы";
         }
 
@@ -25,7 +26,9 @@ const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchUrl, p
 
     const getSearchTitle = () => {
         if (personTotalCount !== null && personTotalCount !== undefined && personTotalCount !== '0') {
-            return <span className="description-search">В базу внесены данные на <span className="semibold">{personTotalCount}</span> из более 600 тысяч награжденных медалью <span className="semibold">гражданских лиц</span> </span>;
+            return <span className="description-search">В базу внесены данные на <span
+                className="semibold">{personTotalCount}</span> из более 600 тысяч награжденных медалью <span
+                className="semibold">гражданских лиц</span> </span>;
         } else {
             return <span className="description-search">В базу внесены данные по гражданским лицам</span>;
         }
