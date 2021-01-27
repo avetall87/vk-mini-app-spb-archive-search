@@ -114,11 +114,14 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                     <Div className="col-md-9 col-sm-12 mt-0 pt-0">
                         {personCount > 0 &&
                         <SearchBanner
-                                      firstName={firstName}
-                                      personCount={personCount}
-                                      searchUrl={getSearchUrl(lastName)}/>}
+                            firstName={firstName}
+                            personCount={personCount}
+                            searchUrl={getSearchUrl(lastName)}/>}
 
-                        <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !mobileDevice, "pt-112": !mobileDevice && (personCount <= 0)})}>
+                        <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {
+                            "pl-20": !mobileDevice,
+                            "pt-112": !mobileDevice && (personCount <= 0)
+                        })}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>
                             <li>Рассказ истории о награжденном герое.</li>
                             <li className="pt-1">Подписка на уведомление о появлении новых данных.</li>
@@ -130,7 +133,9 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
             <Snackbar
                 layout='vertical'
                 onClose={() => setWidgetError(null)}
-                before={<Avatar size={16} className="error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} className="error-snake-bar-color"><Icon16ErrorCircleFill fill='#fff'
+                                                                                                   width={16}
+                                                                                                   height={16}/></Avatar>}
                 duration={10000}>
                 {widgetErrorMessage}
             </Snackbar>

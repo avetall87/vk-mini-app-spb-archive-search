@@ -28,7 +28,8 @@ const SearchBanner = ({firstName, personCount, searchUrl}) => {
         <Div className={classNames("mt-0 pt-0 pl-sm-0", {"pb-40": !mobileDevice})}>
             <Div className={classNames("pl-0 mt-0 pt-0", {"pb-20": !mobileDevice})}>
                 <span>
-                    <span className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
+                    <span
+                        className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
                 </span>
             </Div>
             <Div className="pl-0 pt-sm-0 pb-sm-0">

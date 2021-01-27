@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import PanelHeaderContent from '@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent';
 import bridge from '@vkontakte/vk-bridge';
 
 import './Configuration.css';
@@ -17,12 +16,21 @@ import Tabs from "@vkontakte/vkui/dist/components/Tabs/Tabs";
 import TabsItem from "@vkontakte/vkui/dist/components/TabsItem/TabsItem";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import Icon24Linked from "@vkontakte/icons/dist/24/linked";
-import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {FormItem} from "@vkontakte/vkui";
 import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
 import IconBack from '../common/IconBack';
 
-const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage, personTotalCount}) => {
+const Configuration = ({
+                           id,
+                           go,
+                           vkGroupId,
+                           communityToken,
+                           vkAppId,
+                           getCommunityAccessToken,
+                           bridgeError,
+                           bridgeErrorMessage,
+                           personTotalCount
+                       }) => {
 
     const APP_LINK = `https://vk.com/app${vkAppId}`;
 
@@ -100,7 +108,7 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
 
     return (<Panel id={id}>
             <PanelHeader left={<IconBack go={go} panelId="home"/>}>
-                <PanelHeaderTextContent title={'Настройки'} />
+                <PanelHeaderTextContent title={'Настройки'}/>
             </PanelHeader>
             <Tabs>
                 <TabsItem
@@ -118,7 +126,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
             <Group>
                 {activeTab === 'widget' &&
                 <FormLayout>
-                    <FormItem top="Заголовок виджета, до 100 символов" bottom={title ? '' : 'Пожалуйста, укажите что-то в заголовке виджета'}
+                    <FormItem top="Заголовок виджета, до 100 символов"
+                              bottom={title ? '' : 'Пожалуйста, укажите что-то в заголовке виджета'}
                               status={title ? 'valid' : 'error'}>
                         <Input id="titleId"
                                maxLength="100"
@@ -126,7 +135,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                onChange={onTitleChange}/>
                     </FormItem>
 
-                    <FormItem top="Текст для отображения в виджете, до 200 символов" bottom={text ? '' : 'Пожалуйста, заполните текст в виджите'}
+                    <FormItem top="Текст для отображения в виджете, до 200 символов"
+                              bottom={text ? '' : 'Пожалуйста, заполните текст в виджите'}
                               status={text ? 'valid' : 'error'}>
                         <Textarea id="textId"
                                   maxLength="200"
@@ -134,7 +144,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                   onChange={onTextChange}/>
                     </FormItem>
 
-                    <FormItem top="Описание для отображения в виджете, до 200 символов" bottom={descr ? '' : 'Пожалуйста, заполните описание'}
+                    <FormItem top="Описание для отображения в виджете, до 200 символов"
+                              bottom={descr ? '' : 'Пожалуйста, заполните описание'}
                               status={descr ? 'valid' : 'error'}>
                         <Textarea id="descrId"
                                   maxLength="200"
@@ -142,7 +153,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                   onChange={onDescrChange}/>
                     </FormItem>
 
-                    <FormItem top="Текст в футере, до 100 символов" bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
+                    <FormItem top="Текст в футере, до 100 символов"
+                              bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
                               status={more ? 'valid' : 'error'}>
                         <Input id="moreId"
                                maxLength="100"
@@ -150,7 +162,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                                onChange={onMoreChange}/>
                     </FormItem>
 
-                    <FormItem top="URL для футера. Обязателен, если указан текст в футере" bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
+                    <FormItem top="URL для футера. Обязателен, если указан текст в футере"
+                              bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
                               status={moreUrl ? 'valid' : 'error'}>
                         <Input id="moreUrlId"
                                maxLength="10000"
@@ -160,7 +173,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
                     </FormItem>
 
                     <Div style={{display: "flex", justifyContent: "space-between"}}>
-                        <Button mode="primary" size="l" className="SearchButton" title="Опубликовать виджет" onClick={addWidget} before={<Icon24ListAdd/>}>Опубликовать виджет</Button>
+                        <Button mode="primary" size="l" className="SearchButton" title="Опубликовать виджет"
+                                onClick={addWidget} before={<Icon24ListAdd/>}>Опубликовать виджет</Button>
                     </Div>
                 </FormLayout>}
                 {activeTab === 'appConfig' &&
@@ -195,7 +209,9 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
             <Snackbar
                 layout='vertical'
                 onClose={() => setWidgetError(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff'
+                                                                                                            width={16}
+                                                                                                            height={16}/></Avatar>}
                 duration={10000}>
                 Произошла ошибка при добавлении виджета !
             </Snackbar>
@@ -205,20 +221,24 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
             <Snackbar
                 layout='vertical'
                 onClose={() => setWidgetError(null)}
-                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16InfoCirle fill='#fff' width={16} height={16}/></Avatar>}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16InfoCirle fill='#fff'
+                                                                                                      width={16}
+                                                                                                      height={16}/></Avatar>}
                 duration={10000}>
                 Данная платформа не поддерживается
             </Snackbar>
             }
 
             {bridgeError &&
-                <Snackbar
-                    layout='vertical'
-                    onClose={() => setWidgetError(null)}
-                    before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff' width={16} height={16}/></Avatar>}
-                    duration={10000}>
-                    {bridgeErrorMessage}
-                </Snackbar>
+            <Snackbar
+                layout='vertical'
+                onClose={() => setWidgetError(null)}
+                before={<Avatar size={16} style={{backgroundColor: 'var(--accent)'}}><Icon16ErrorCircleFill fill='#fff'
+                                                                                                            width={16}
+                                                                                                            height={16}/></Avatar>}
+                duration={10000}>
+                {bridgeErrorMessage}
+            </Snackbar>
             }
 
         </Panel>

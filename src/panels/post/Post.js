@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import bridge from "@vkontakte/vk-bridge";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import PanelHeader from "@vkontakte/vkui/dist/components/PanelHeader/PanelHeader";
-import PanelHeaderContent from "@vkontakte/vkui/dist/components/PanelHeaderContent/PanelHeaderContent";
 import Panel from "@vkontakte/vkui/dist/components/Panel/Panel";
 import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import FormLayout from "@vkontakte/vkui/dist/components/FormLayout/FormLayout";
@@ -13,11 +12,10 @@ import Radio from "@vkontakte/vkui/dist/components/Radio/Radio";
 import {FormItem, Text, Textarea} from "@vkontakte/vkui";
 import "@yaireo/tagify/dist/tagify.css"
 import BridgeErrorHandler from "../../utils/BridgeErrorHandler";
-import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
-import {Icon28CheckCircleFill, Icon24Info} from "@vkontakte/icons";
+import {Icon24Info, Icon28CheckCircleFill} from "@vkontakte/icons";
 import classNames from 'classnames';
 import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
 import IconBack from '../common/IconBack';
@@ -47,94 +45,99 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
             ],
             "message": `${postMessage}\n` + hashTags
         })
-        .then(response => {
-          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n' + hashTags, link)
-          .catch(e => {
-            console.log("Ошибка при сохранении информации о посте");
-            console.log(JSON.stringify(e));
-          });
+            .then(response => {
+                PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n' + hashTags, link)
+                    .catch(e => {
+                        console.log("Ошибка при сохранении информации о посте");
+                        console.log(JSON.stringify(e));
+                    });
 
-          setPostWasPosted(true);
-          setWallPostLink("https://vk.com/id" + vkUserId + "?w=wall" +vkUserId + "_" + response.post_id);
-        })
-        .catch(e => {
-          let errorCode = e.error_data.error_code;
+                setPostWasPosted(true);
+                setWallPostLink("https://vk.com/id" + vkUserId + "?w=wall" + vkUserId + "_" + response.post_id);
+            })
+            .catch(e => {
+                let errorCode = e.error_data.error_code;
 
-          if (errorCode !== 4) {
-            setError(BridgeErrorHandler.getClientErrorDescriptionByErrorCode(errorCode));
-          }
-        });
+                if (errorCode !== 4) {
+                    setError(BridgeErrorHandler.getClientErrorDescriptionByErrorCode(errorCode));
+                }
+            });
     }
 
     const handlePostMessage = (event) => {
-      setPostMessage(event.target.value);
+        setPostMessage(event.target.value);
     }
 
     return (<Panel id={id}>
         <PanelHeader className="post-panel-header" left={<IconBack go={go} panelId="home"/>}>
-          <PanelHeaderTextContent title={'История о герое'}/>
+            <PanelHeaderTextContent title={'История о герое'}/>
         </PanelHeader>
         <Group>
             <FormLayout>
 
-              <FormItem top="Запись будет доступна" style={{display: 'none'}}>
-                <Radio name="radio" value="1" defaultChecked>Друзья и подписчики</Radio>
-                <Radio name="radio" value="2">Отправить личным сообщением</Radio>
-              </FormItem>
+                <FormItem top="Запись будет доступна" style={{display: 'none'}}>
+                    <Radio name="radio" value="1" defaultChecked>Друзья и подписчики</Radio>
+                    <Radio name="radio" value="2">Отправить личным сообщением</Radio>
+                </FormItem>
 
-              <FormItem className="pt-3 mb-0 pb-10 px-38">
-                <Textarea className="post-textarea" autoFocus={true} onChange={handlePostMessage} value={postMessage}>
-                </Textarea>
-              </FormItem>
+                <FormItem className="pt-3 mb-0 pb-10 px-38">
+                    <Textarea className="post-textarea" autoFocus={true} onChange={handlePostMessage}
+                              value={postMessage}>
+                    </Textarea>
+                </FormItem>
 
-              <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
-                  <Div className="row pt-0 mt-0 pb-0 mb-0">
-                      <Text className="hashtag">#МедальЗаОборонуЛенинграда&nbsp;</Text>
-                      <Text className="hashtag">#MedalSpb&nbsp;</Text>
-                      <Text className="hashtag">#МедальМоейПамяти</Text>
-                  </Div>
-              </FormItem>
+                <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
+                    <Div className="row pt-0 mt-0 pb-0 mb-0">
+                        <Text className="hashtag">#МедальЗаОборонуЛенинграда&nbsp;</Text>
+                        <Text className="hashtag">#MedalSpb&nbsp;</Text>
+                        <Text className="hashtag">#МедальМоейПамяти</Text>
+                    </Div>
+                </FormItem>
 
-              <Link href={link} target="_blank"><Banner
+                <Link href={link} target="_blank"><Banner
                     className="mb-0 mt-4 px-38"
-                    before={<Avatar size={100} mode="image" src={imageLink} />}
+                    before={<Avatar size={100} mode="image" src={imageLink}/>}
                     header={title}
                     subheader="medal.spbarchives.ru"/>
-              </Link>
+                </Link>
 
                 {!error &&
-                    <FormItem className="pb-0 mb-0 pt-32 px-38">
-                        <div className="d-flex justify-content-center align-items-top">
-                            <Icon24Info className="info-icon mr-3 mt-1" width={32} height={32}/>
-                            <Text>
-                                Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль Моей Памяти»</Link>,
-                                если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
-                            </Text>
-                        </div>
-                    </FormItem>
+                <FormItem className="pb-0 mb-0 pt-32 px-38">
+                    <div className="d-flex justify-content-center align-items-top">
+                        <Icon24Info className="info-icon mr-3 mt-1" width={32} height={32}/>
+                        <Text>
+                            Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль
+                            Моей Памяти»</Link>,
+                            если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
+                        </Text>
+                    </div>
+                </FormItem>
                 }
 
-              {error &&
+                {error &&
                 <div className="d-flex justify-content-center align-items-center pt-32">
-                  <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
-                  <Text className="error-text text-center">В процессе публикации истории о герое произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
+                    <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
+                    <Text className="error-text text-center">В процессе публикации истории о герое произошла
+                        ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
                 </div>
-              }
+                }
 
-              {!postWasPosted &&
+                {!postWasPosted &&
                 <div className={classNames("d-flex justify-content-center", {"pt-44": !error, "pt-32": error})}>
-                  <Button size="l" onClick={doPost}>Опубликовать</Button>
+                    <Button size="l" onClick={doPost}>Опубликовать</Button>
                 </div>
-              }
+                }
 
-              {postWasPosted &&
-                  <FormItem className="pt-20 px-38">
-                      <div className="d-flex justify-content-left align-items-center">
-                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill className="check-circle-icon-custom" fill='#fff' width={27} height={27}/></Div>
-                          <Text>{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
-                      </div>
-                  </FormItem>
-              }
+                {postWasPosted &&
+                <FormItem className="pt-20 px-38">
+                    <div className="d-flex justify-content-left align-items-center">
+                        <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill className="check-circle-icon-custom"
+                                                                             fill='#fff' width={27} height={27}/></Div>
+                        <Text>{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank"
+                                                                                          href={wallPostLink}>Посмотреть</Link></Text>
+                    </div>
+                </FormItem>
+                }
 
             </FormLayout>
         </Group>

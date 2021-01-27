@@ -8,7 +8,6 @@ import {Icon28CheckCircleFill} from "@vkontakte/icons";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {NotificationApiService} from './NotificationApiService';
-import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
 import {NotificationHelper} from './NotificationHelper'
 
@@ -87,7 +86,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
         if (result !== '') {
             if (result.endsWith(delimiter)) {
-                result = result.substr(0,result.lastIndexOf(delimiter));
+                result = result.substr(0, result.lastIndexOf(delimiter));
             }
             result = '«' + result + '».';
         }
@@ -103,7 +102,8 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
                 <Div className="pt-0 mt-4">
                     <Div className="NotificationDescription pb-0">
                         <Div className="pt-0 pb-0">
-                            <span className="semibold">{firstName}</span>, Вы можете подписаться на уведомления по вашему запросу:
+                            <span className="semibold">{firstName}</span>, Вы можете подписаться на уведомления по
+                            вашему запросу:
                         </Div>
                         <Div className="pt-0 mt-2 pb-0">
                             <span className="semibold">{searchQuery && getDescriptionForSearchQuery(searchQuery)}</span>
@@ -115,7 +115,8 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
                     {error &&
                     <div className="pt-4">
-                        <Text className="text-center error-text" weight="regular">В процессе подписки на уведомления произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
+                        <Text className="text-center error-text" weight="regular">В процессе подписки на уведомления
+                            произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
                     </div>
                     }
 
@@ -128,7 +129,8 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
             return (
                 <Div className="pt-38 pb-0 d-flex justify-content-center">
                     <Div className="p-0 m-0"> <Icon28CheckCircleFill fill='#fff' width={40} height={40}/> </Div>
-                    <Div className="pl-3 pt-2 m-0"> <span className="p-0 semibold">{firstName}</span>, Вы успешно подписаны на уведомления! </Div>
+                    <Div className="pl-3 pt-2 m-0"> <span className="p-0 semibold">{firstName}</span>, Вы успешно
+                        подписаны на уведомления! </Div>
                 </Div>
             );
         }
@@ -137,7 +139,7 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
     return (
         <Panel id={id}>
             <PanelHeader left={<IconBack go={go} panelId="home"/>}>
-                <PanelHeaderTextContent title='Уведомления' />
+                <PanelHeaderTextContent title='Уведомления'/>
             </PanelHeader>
             <Group>
                 <FormLayout>
