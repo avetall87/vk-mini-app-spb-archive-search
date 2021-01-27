@@ -40,9 +40,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     const doPost = () => {
         setError(null);
         bridge.send("VKWebAppShowWallPostBox", {
-            "attachments": [
-                link
-            ],
+            "attachments": link,
             "message": `${postMessage}\n` + hashTags
         })
         .then(response => {
