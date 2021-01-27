@@ -17,7 +17,8 @@ import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
-import {Icon28CheckCircleFill} from "@vkontakte/icons";
+import {Icon28CheckCircleFill, Icon24Info} from "@vkontakte/icons";
+import classNames from 'classnames';
 import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
 import IconBack from '../common/IconBack';
 
@@ -35,16 +36,19 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     const title = snippetTitle;
     const imageLink = snippetImageLink.replace("http:", "https:");
 
+    const myMemoryLink = "https://vk.com/mymemory_medal";
+    const hashTags = "#МедальЗаОборонуЛенинграда #MedalSpb #МедальМоейПамяти";
+
     const doPost = () => {
         setError(null);
         bridge.send("VKWebAppShowWallPostBox", {
             "attachments": [
                 link
             ],
-            "message": `${postMessage}\n#МедальЗаОборонуЛенинграда #MedalSpb`
+            "message": `${postMessage}\n` + hashTags
         })
         .then(response => {
-          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n#МедальЗаОборонуЛенинграда #MedalSpb', link)
+          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n' + hashTags, link)
           .catch(e => {
             console.log("Ошибка при сохранении информации о посте");
             console.log(JSON.stringify(e));
@@ -67,8 +71,8 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     }
 
     return (<Panel id={id}>
-        <PanelHeader left={<IconBack go={go} panelId="home"/>}>
-              <PanelHeaderTextContent title={'История о герое'}/>
+        <PanelHeader className="post-panel-header" left={<IconBack go={go} panelId="home"/>}>
+          <PanelHeaderTextContent title={'История о герое'}/>
         </PanelHeader>
         <Group>
             <FormLayout>
@@ -78,43 +82,56 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                 <Radio name="radio" value="2">Отправить личным сообщением</Radio>
               </FormItem>
 
-              <FormItem className="pt-4 mb-0 pb-10">
+              <FormItem className="pt-3 mb-0 pb-10 px-38">
                 <Textarea className="post-textarea" autoFocus={true} onChange={handlePostMessage} value={postMessage}>
                 </Textarea>
               </FormItem>
 
-              <FormItem className="pt-0 mt-0">
-                  <Div className="row pt-0 mt-0">
-                      <Text className="hashtag" weight="regular">#МедальЗаОборонуЛенинграда&nbsp;</Text>
-                      <Text className="hashtag" weight="regular">#MedalSpb</Text>
+              <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
+                  <Div className="row pt-0 mt-0 pb-0 mb-0">
+                      <Text className="hashtag">#МедальЗаОборонуЛенинграда&nbsp;</Text>
+                      <Text className="hashtag">#MedalSpb&nbsp;</Text>
+                      <Text className="hashtag">#МедальМоейПамяти</Text>
                   </Div>
               </FormItem>
 
               <Link href={link} target="_blank"><Banner
-                    className="mb-0"
+                    className="mb-0 mt-4 px-38"
                     before={<Avatar size={100} mode="image" src={imageLink} />}
                     header={title}
                     subheader="medal.spbarchives.ru"/>
               </Link>
 
+                {!error &&
+                    <FormItem className="pb-0 mb-0 pt-32 px-38">
+                        <div className="d-flex justify-content-center align-items-top">
+                            <Icon24Info className="info-icon mr-3 mt-1" width={32} height={32}/>
+                            <Text>
+                                Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль Моей Памяти»</Link>,
+                                если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
+                            </Text>
+                        </div>
+                    </FormItem>
+                }
+
               {error &&
-                <div className="d-flex justify-content-center align-items-center pt-38">
+                <div className="d-flex justify-content-center align-items-center pt-32">
                   <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
-                  <Text className="error-text" weight="regular">Во время публикации поста произошла ошибка, пожалуйста попробуйте повторить.</Text>
+                  <Text className="error-text text-center">В процессе публикации истории о герое произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
                 </div>
               }
 
               {!postWasPosted &&
-                <div className="d-flex justify-content-center pt-38">
+                <div className={classNames("d-flex justify-content-center", {"pt-44": !error, "pt-32": error})}>
                   <Button size="l" onClick={doPost}>Опубликовать</Button>
                 </div>
               }
 
               {postWasPosted &&
-                  <FormItem className="pt-0">
-                      <div className="d-flex justify-content-center align-items-center pt-38">
-                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill fill='#fff' width={32} height={32}/></Div>
-                          <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
+                  <FormItem className="pt-20 px-38">
+                      <div className="d-flex justify-content-left align-items-center">
+                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill className="check-circle-icon-custom" fill='#fff' width={27} height={27}/></Div>
+                          <Text>{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
                       </div>
                   </FormItem>
               }

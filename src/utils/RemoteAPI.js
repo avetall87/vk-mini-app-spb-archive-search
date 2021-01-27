@@ -18,6 +18,10 @@ export class RemoteAPI {
         })
     }
 
+    static getSearchUrl(searchToken) {
+        return `${process.env.REACT_APP_API_URL}/search?query=${searchToken}&advancedSearch=false&from=vk`;
+    }
+
     static openSearchWindow (searchToken) {
         window.open(`${process.env.REACT_APP_API_URL}/search?query=${searchToken}&advancedSearch=false&from=vk`);
     }

@@ -16,6 +16,7 @@
     "deployAleksandrov": "copyfiles -f -a \"config/aleksandrov/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
     "startMironov": "copyfiles -f -a \"config/mironov/*\" ./ && cross-env PORT=10888 HTTPS=true react-scripts start",
     "deployMironov": "copyfiles -f -a \"config/mironov/*\" ./ && cross-env react-scripts build && vk-miniapps-deploy",
+
     "test": "jest"
   },
   "keywords": [],

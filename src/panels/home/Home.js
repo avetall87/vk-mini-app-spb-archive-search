@@ -24,7 +24,7 @@ import {DeviceService} from '../../utils/DeviceService';
 
 const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount}) => {
     const [personCount, setPersonCount] = useState(0);
-    const [searchText, setSearchTest] = useState('');
+    const [searchText, setSearchText] = useState('');
 
     const [widgetError, setWidgetError] = useState(false);
     const [widgetErrorMessage, setWidgetErrorMessage] = useState(false);
@@ -56,14 +56,6 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
         RemoteAPI.openSearchWindow(searchToken);
     }
 
-    const showFoundedRecords = () => {
-        openSearchWindow(lastName);
-    }
-
-    const search = () => {
-        openSearchWindow(searchText);
-    }
-
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             openSearchWindow(searchText);
@@ -71,7 +63,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     }
 
     const onLabelChange = (event) => {
-        setSearchTest(event.target.value);
+        setSearchText(event.target.value);
     };
 
     const showWidgetConfiguration = () => {
@@ -79,6 +71,10 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     }
 
     const mobileDevice = DeviceService.isMobileDevice();
+
+    const getSearchUrl = (searchToken) => {
+        return RemoteAPI.getSearchUrl(searchToken);
+    }
 
     return (<Panel id={id}>
             <PanelHeader left={showWidgetConfiguration() &&
@@ -96,9 +92,9 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                         <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
                     </Div>
                     <Div className="m-0 p-0 SearchBlock-wrapper">
-                        <SearchBlock searchButton={search}
-                                     handleKeyDown={_handleKeyDown}
+                        <SearchBlock handleKeyDown={_handleKeyDown}
                                      onLabelChange={onLabelChange}
+                                     searchUrl={getSearchUrl(searchText)}
                                      personTotalCount={personTotalCount}/>
                     </Div>
 
@@ -119,9 +115,8 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                         {personCount > 0 &&
                         <SearchBanner
                                       firstName={firstName}
-                                      lastName={lastName}
                                       personCount={personCount}
-                                      searchButton={showFoundedRecords}/>}
+                                      searchUrl={getSearchUrl(lastName)}/>}
 
                         <ul className={classNames("mt-2 mt-sm-0 ml-0 mr-0", {"pl-20": !mobileDevice, "pt-112": !mobileDevice && (personCount <= 0)})}>
                             <li className="pb-1">Поиск архивных документов о награжденных медалью.</li>

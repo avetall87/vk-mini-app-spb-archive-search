@@ -5,8 +5,9 @@ import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './SearchBlock.css';
 import {DeviceService} from '../../../utils/DeviceService';
+import Link from "@vkontakte/vkui/dist/components/Link/Link";
 
-const SearchBlock = ({onLabelChange, handleKeyDown, searchButton, personTotalCount}) => {
+const SearchBlock = ({onLabelChange, handleKeyDown, searchUrl, personTotalCount}) => {
 
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
@@ -16,11 +17,11 @@ const SearchBlock = ({onLabelChange, handleKeyDown, searchButton, personTotalCou
         }
 
         return <Search className="pt-sm-0"
-            placeholder={placeHolder}
-            id="medalSearchId"
-            type="text"
-            onChange={onLabelChange}
-            onKeyDown={handleKeyDown}/>;
+                       placeholder={placeHolder}
+                       id="medalSearchId"
+                       type="text"
+                       onChange={onLabelChange}
+                       onKeyDown={handleKeyDown}/>;
     }
 
     const getSearchTitle = () => {
@@ -41,11 +42,12 @@ const SearchBlock = ({onLabelChange, handleKeyDown, searchButton, personTotalCou
                     {getSearchField()}
                 </Div>
                 <Div className="col-12 col-md-2 m-0 pb-0 pl-md-0 pt-0 pt-sm-3 pt-md-0">
-                    <Button className="SearchButton main-search-button mt-1 mt-sm-0"
-                            title="Искать на сайте: Медаль «За оборону Ленинграда»"
-                            onClick={searchButton}>
-                        Искать
-                    </Button>
+                    <Link href={searchUrl} target="_blank">
+                        <Button className="SearchButton main-search-button mt-1 mt-sm-0"
+                                title="Искать на сайте: Медаль «За оборону Ленинграда»">
+                            Искать
+                        </Button>
+                    </Link>
                 </Div>
             </Div>
         </Div>

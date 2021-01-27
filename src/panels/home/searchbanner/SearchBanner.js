@@ -3,8 +3,9 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import classNames from 'classnames';
 import {DeviceService} from '../../../utils/DeviceService';
+import Link from "@vkontakte/vkui/dist/components/Link/Link";
 
-const SearchBanner = ({firstName, lastName, personCount, searchButton}) => {
+const SearchBanner = ({firstName, personCount, searchUrl}) => {
 
     const declOfNum = (n, text_forms) => {
         n = Math.abs(n) % 100;
@@ -31,13 +32,15 @@ const SearchBanner = ({firstName, lastName, personCount, searchButton}) => {
                 </span>
             </Div>
             <Div className="pl-0 pt-sm-0 pb-sm-0">
-                <Button size="l"
-                        className="SearchButton"
-                        mode="outline"
-                        title="Посмотреть однофамильцев"
-                        onClick={searchButton}>
-                    Посмотреть однофамильцев
-                </Button>
+                <Link href={searchUrl} target="_blank">
+                    <Button size="l"
+                            className="SearchButton"
+                            mode="outline"
+                            title="Посмотреть однофамильцев">
+                        Посмотреть однофамильцев
+                    </Button>
+                </Link>
+
             </Div>
         </Div>
 
