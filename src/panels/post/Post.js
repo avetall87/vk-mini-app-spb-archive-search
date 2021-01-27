@@ -104,8 +104,8 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
                 {!error &&
                     <FormItem className="pb-0 mb-0 pt-32 px-38">
-                        <div className="d-flex justify-content-center align-items-center">
-                            <Icon24Info className="info-icon mr-3" width={32} height={32}/>
+                        <div className="d-flex justify-content-center align-items-top">
+                            <Icon24Info className="info-icon mr-3 mt-1" width={32} height={32}/>
                             <Text weight="regular">
                                 Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль Моей Памяти»</Link>,
                                 если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
