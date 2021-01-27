@@ -149,15 +149,6 @@ const Configuration = ({
                                   onChange={onDescrChange}/>
                     </FormItem>
 
-                    <FormItem top="Текст в футере, до 100 символов"
-                              bottom={more ? '' : 'Пожалуйста, укажите наименование ссылки'}
-                              status={more ? 'valid' : 'error'}>
-                        <Input id="moreId"
-                               maxLength="100"
-                               value={more}
-                               onChange={onMoreChange}/>
-                    </FormItem>
-
                     <FormItem top="URL для футера. Обязателен, если указан текст в футере"
                               bottom={moreUrl ? '' : 'Ссылка на приложение должно быть обязательна'}
                               status={moreUrl ? 'valid' : 'error'}>
