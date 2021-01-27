@@ -58,14 +58,6 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
         RemoteAPI.openSearchWindow(searchToken);
     }
 
-    // const showFoundedRecords = () => {
-    //     openSearchWindow(lastName);
-    // }
-
-    const search = () => {
-        openSearchWindow(searchText);
-    }
-
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             openSearchWindow(searchText);
@@ -85,7 +77,6 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
     }
 
     const getSearchUrl = (searchToken) => {
-        console.log("RemoteAPI.getSearchUrl(searchToken) - " + RemoteAPI.getSearchUrl(searchToken));
         return RemoteAPI.getSearchUrl(searchToken);
     }
 
@@ -106,8 +97,7 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                         <img className="w-100 p-0 m-0" src={BackgroundImage} alt="Logo"/>
                     </Div>
                     <Div className="m-0 p-0 SearchBlock-wrapper">
-                        <SearchBlock searchButton={search}
-                                     handleKeyDown={_handleKeyDown}
+                        <SearchBlock handleKeyDown={_handleKeyDown}
                                      isMobileDevice={isMobileDevice}
                                      onLabelChange={onLabelChange}
                                      searchUrl={getSearchUrl(searchText)}
@@ -131,7 +121,6 @@ const Home = ({id, go, userInfo, vkGroupId, isCommunityAdmin, personTotalCount})
                         {personCount > 0 &&
                         <SearchBanner isMobileDevice={isMobileDevice}
                                       firstName={firstName}
-                                      lastName={lastName}
                                       personCount={personCount}
                                       searchUrl={getSearchUrl(lastName)}/>}
 
