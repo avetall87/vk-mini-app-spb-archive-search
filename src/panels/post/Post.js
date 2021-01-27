@@ -89,9 +89,9 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
 
               <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
                   <Div className="row pt-0 mt-0 pb-0 mb-0">
-                      <Text className="hashtag" weight="regular">#МедальЗаОборонуЛенинграда&nbsp;</Text>
-                      <Text className="hashtag" weight="regular">#MedalSpb&nbsp;</Text>
-                      <Text className="hashtag" weight="regular">#МедальМоейПамяти</Text>
+                      <Text className="hashtag">#МедальЗаОборонуЛенинграда&nbsp;</Text>
+                      <Text className="hashtag">#MedalSpb&nbsp;</Text>
+                      <Text className="hashtag">#МедальМоейПамяти</Text>
                   </Div>
               </FormItem>
 
@@ -106,7 +106,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                     <FormItem className="pb-0 mb-0 pt-32 px-38">
                         <div className="d-flex justify-content-center align-items-top">
                             <Icon24Info className="info-icon mr-3 mt-1" width={32} height={32}/>
-                            <Text weight="regular">
+                            <Text>
                                 Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль Моей Памяти»</Link>,
                                 если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
                             </Text>
@@ -117,7 +117,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               {error &&
                 <div className="d-flex justify-content-center align-items-center pt-32">
                   <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
-                  <Text className="error-text text-center" weight="regular">В процессе публикации истории о герое произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
+                  <Text className="error-text text-center">В процессе публикации истории о герое произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
                 </div>
               }
 
@@ -131,7 +131,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                   <FormItem className="pt-20 px-38">
                       <div className="d-flex justify-content-left align-items-center">
                           <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill className="check-circle-icon-custom" fill='#fff' width={27} height={27}/></Div>
-                          <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
+                          <Text>{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
                       </div>
                   </FormItem>
               }
