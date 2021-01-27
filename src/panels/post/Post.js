@@ -18,6 +18,7 @@ import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {Icon28CheckCircleFill, Icon24Info} from "@vkontakte/icons";
+import classNames from 'classnames';
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
@@ -34,6 +35,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     const imageLink = snippetImageLink.replace("http:", "https:");
 
     const myMemoryLink = "https://vk.com/mymemory_medal";
+    const hashTags = "#МедальЗаОборонуЛенинграда #MedalSpb #МедальМоейПамяти";
 
     const doPost = () => {
         setError(null);
@@ -41,10 +43,10 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
             "attachments": [
                 link
             ],
-            "message": `${postMessage}\n#МедальЗаОборонуЛенинграда #MedalSpb`
+            "message": `${postMessage}\n` + hashTags
         })
         .then(response => {
-          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n#МедальЗаОборонуЛенинграда #MedalSpb', link)
+          PostApiService.savePostInfo(vkUserId, response.post_id, postMessage + '\n' + hashTags, link)
           .catch(e => {
             console.log("Ошибка при сохранении информации о посте");
             console.log(JSON.stringify(e));
@@ -88,7 +90,8 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
               <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
                   <Div className="row pt-0 mt-0 pb-0 mb-0">
                       <Text className="hashtag" weight="regular">#МедальЗаОборонуЛенинграда&nbsp;</Text>
-                      <Text className="hashtag" weight="regular">#MedalSpb</Text>
+                      <Text className="hashtag" weight="regular">#MedalSpb&nbsp;</Text>
+                      <Text className="hashtag" weight="regular">#МедальМоейПамяти</Text>
                   </Div>
               </FormItem>
 
@@ -99,36 +102,35 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                     subheader="medal.spbarchives.ru"/>
               </Link>
 
-                {(!error && !postWasPosted) &&
-                    <FormItem className="pb-0 mb-0 pt-44 px-38">
+                {!error &&
+                    <FormItem className="pb-0 mb-0 pt-32 px-38">
                         <div className="d-flex justify-content-center align-items-center">
                             <Icon24Info className="info-icon mr-3" width={32} height={32}/>
                             <Text weight="regular">
-                                Пожалуйста, не меняйте настройки видимости поста,
-                                чтобы он был доступен всем. Так история сможет принять участие в акции <Link href={myMemoryLink} target="_blank">"Медаль Моей Памяти"</Link>,
-                                и о подвиге Вашего героя сможет узнать как можно больше людей!
+                                Ваша история может принять участие в акции <Link href={myMemoryLink} target="_blank">«Медаль Моей Памяти»</Link>,
+                                если пост будет доступен без ограничений. Так о подвиге героя узнает больше людей!
                             </Text>
                         </div>
                     </FormItem>
                 }
 
               {error &&
-                <div className="d-flex justify-content-center align-items-center pt-38">
+                <div className="d-flex justify-content-center align-items-center pt-32">
                   <Icon28CheckCircleFill className="p-0 m-0 invisible" width={32} height={32}/>
-                  <Text className="error-text" weight="regular">Во время публикации поста произошла ошибка, пожалуйста попробуйте повторить.</Text>
+                  <Text className="error-text text-center" weight="regular">В процессе публикации истории о герое произошла ошибка.<br/> Пожалуйста, попробуйте еще раз.</Text>
                 </div>
               }
 
               {!postWasPosted &&
-                <div className="d-flex justify-content-center pt-38">
+                <div className={classNames("d-flex justify-content-center", {"pt-44": !error, "pt-32": error})}>
                   <Button size="l" onClick={doPost}>Опубликовать</Button>
                 </div>
               }
 
               {postWasPosted &&
-                  <FormItem className="pt-0">
-                      <div className="d-flex justify-content-center align-items-center pt-38">
-                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill fill='#fff' width={32} height={32}/></Div>
+                  <FormItem className="pt-20 px-38">
+                      <div className="d-flex justify-content-left align-items-center">
+                          <Div className="p-0 m-0 pr-3"><Icon28CheckCircleFill className="check-circle-icon-custom" fill='#fff' width={27} height={27}/></Div>
                           <Text weight="regular">{firstName}, Вы успешно опубликовали историю о герое! <Link target="_blank" href={wallPostLink}>Посмотреть</Link></Text>
                       </div>
                   </FormItem>
