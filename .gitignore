@@ -16,3 +16,7 @@ package-lock.json
 
 .vscode
 .idea
+
+# custom user properties
+vk-hosting-config.json
+.env
