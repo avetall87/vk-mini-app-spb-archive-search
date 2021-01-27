@@ -19,6 +19,8 @@ import Group from "@vkontakte/vkui/dist/components/Group/Group";
 import Icon24Linked from "@vkontakte/icons/dist/24/linked";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {FormItem} from "@vkontakte/vkui";
+import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
+import IconBack from '../common/IconBack';
 
 const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunityAccessToken, bridgeError, bridgeErrorMessage, personTotalCount}) => {
 
@@ -97,10 +99,8 @@ const Configuration = ({id, go, vkGroupId, communityToken, vkAppId, getCommunity
     }
 
     return (<Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
-                <PanelHeaderContent>
-                    Настройки
-                </PanelHeaderContent>
+            <PanelHeader left={<IconBack go={go} panelId="home"/>}>
+                <PanelHeaderTextContent title={'Настройки'} />
             </PanelHeader>
             <Tabs>
                 <TabsItem

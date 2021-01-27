@@ -2,8 +2,9 @@ import React from "react";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Button from "@vkontakte/vkui/dist/components/Button/Button";
 import classNames from 'classnames';
+import {DeviceService} from '../../../utils/DeviceService';
 
-const SearchBanner = ({isMobileDevice, firstName, lastName, personCount, searchButton}) => {
+const SearchBanner = ({firstName, lastName, personCount, searchButton}) => {
 
     const declOfNum = (n, text_forms) => {
         n = Math.abs(n) % 100;
@@ -20,9 +21,11 @@ const SearchBanner = ({isMobileDevice, firstName, lastName, personCount, searchB
         return text_forms[2];
     }
 
+    const mobileDevice = DeviceService.isMobileDevice();
+
     return (
-        <Div className={classNames("mt-0 pt-0 pl-sm-0", {"pb-40": !isMobileDevice()})}>
-            <Div className={classNames("pl-0 mt-0 pt-0", {"pb-20": !isMobileDevice()})}>
+        <Div className={classNames("mt-0 pt-0 pl-sm-0", {"pb-40": !mobileDevice})}>
+            <Div className={classNames("pl-0 mt-0 pt-0", {"pb-20": !mobileDevice})}>
                 <span>
                     <span className="semibold">{firstName}</span>, в базе награжденных гражданских лиц найдено {personCount} Ваших {declOfNum(personCount, ['однофамильца', 'однофамильца', 'однофамильцев'])}.
                 </span>

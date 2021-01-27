@@ -45,6 +45,10 @@
     .PanelHeader__content, .PanelHeaderContent__children-in {
         font-weight: 500;
     }
+
+    .PanelHeader__in {
+        min-height: 65px;
+    }
 }
 
 .PanelHeader__in {

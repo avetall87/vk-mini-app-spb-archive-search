@@ -17,6 +17,8 @@ import './Notification.css'
 import BackgroundImage from './../../img/background_search_main.jpg'
 import {Spinner, Text} from "@vkontakte/vkui";
 import _ from "lodash";
+import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
+import IconBack from '../common/IconBack';
 
 const Notification = ({id, go, userInfo, searchQuery}) => {
 
@@ -134,10 +136,8 @@ const Notification = ({id, go, userInfo, searchQuery}) => {
 
     return (
         <Panel id={id}>
-            <PanelHeader left={<Icon28ChevronBack className="chevron-back"
-                                                  onClick={go}
-                                                  data-to="home"/>}>
-                Уведомления
+            <PanelHeader left={<IconBack go={go} panelId="home"/>}>
+                <PanelHeaderTextContent title='Уведомления' />
             </PanelHeader>
             <Group>
                 <FormLayout>

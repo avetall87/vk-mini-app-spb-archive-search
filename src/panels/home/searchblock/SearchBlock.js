@@ -4,13 +4,14 @@ import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import Search from "@vkontakte/vkui/dist/components/Search/Search";
 
 import './SearchBlock.css';
+import {DeviceService} from '../../../utils/DeviceService';
 
-const SearchBlock = ({isMobileDevice, onLabelChange, handleKeyDown, searchButton, personTotalCount}) => {
+const SearchBlock = ({onLabelChange, handleKeyDown, searchButton, personTotalCount}) => {
 
     const getSearchField = () => {
         let placeHolder = "ФИО, год рождения";
 
-        if (!isMobileDevice()) {
+        if (!DeviceService.isMobileDevice()) {
             placeHolder += ", место работы";
         }
 

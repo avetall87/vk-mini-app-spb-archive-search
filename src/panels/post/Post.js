@@ -18,6 +18,8 @@ import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
 import {Icon28CheckCircleFill} from "@vkontakte/icons";
+import PanelHeaderTextContent from '../common/PanelHeaderTextContent';
+import IconBack from '../common/IconBack';
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
@@ -65,10 +67,8 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     }
 
     return (<Panel id={id}>
-        <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
-            <PanelHeaderContent>
-                История о герое
-            </PanelHeaderContent>
+        <PanelHeader left={<IconBack go={go} panelId="home"/>}>
+              <PanelHeaderTextContent title={'История о герое'}/>
         </PanelHeader>
         <Group>
             <FormLayout>
