@@ -27,3 +27,12 @@
     min-height: 220px;
 }
 
+.info-icon {
+    color: var(--accent);
+}
+
+.post-panel-header .PanelHeader__in {
+    padding-left: 2.375rem !important;
+    padding-right: 2.375rem !important;
+}
+

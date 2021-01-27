@@ -17,7 +17,7 @@ import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import {UserInfoService} from "../../utils/UserInfoService";
 import {PostApiService} from "./PostApiService";
 import Div from "@vkontakte/vkui/dist/components/Div/Div";
-import {Icon28CheckCircleFill} from "@vkontakte/icons";
+import {Icon28CheckCircleFill, Icon24Info} from "@vkontakte/icons";
 
 const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) => {
 
@@ -32,6 +32,8 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     const link = personLink.replace("http:", "https:");
     const title = snippetTitle;
     const imageLink = snippetImageLink.replace("http:", "https:");
+
+    const myMemoryLink = "https://vk.com/mymemory_medal";
 
     const doPost = () => {
         setError(null);
@@ -65,7 +67,7 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
     }
 
     return (<Panel id={id}>
-        <PanelHeader left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
+        <PanelHeader className="post-panel-header" left={<Icon28ChevronBack style={{cursor: "pointer"}} onClick={go} data-to="home"/>}>
             <PanelHeaderContent>
                 История о герое
             </PanelHeaderContent>
@@ -78,24 +80,37 @@ const Post = ({id, go, userInfo, personLink, snippetTitle, snippetImageLink}) =>
                 <Radio name="radio" value="2">Отправить личным сообщением</Radio>
               </FormItem>
 
-              <FormItem className="pt-4 mb-0 pb-10">
+              <FormItem className="pt-3 mb-0 pb-10 px-38">
                 <Textarea className="post-textarea" autoFocus={true} onChange={handlePostMessage} value={postMessage}>
                 </Textarea>
               </FormItem>
 
-              <FormItem className="pt-0 mt-0">
-                  <Div className="row pt-0 mt-0">
+              <FormItem className="pt-0 mt-0 px-38 pb-0 mb-0">
+                  <Div className="row pt-0 mt-0 pb-0 mb-0">
                       <Text className="hashtag" weight="regular">#МедальЗаОборонуЛенинграда&nbsp;</Text>
                       <Text className="hashtag" weight="regular">#MedalSpb</Text>
                   </Div>
               </FormItem>
 
               <Link href={link} target="_blank"><Banner
-                    className="mb-0"
+                    className="mb-0 mt-4 px-38"
                     before={<Avatar size={100} mode="image" src={imageLink} />}
                     header={title}
                     subheader="medal.spbarchives.ru"/>
               </Link>
+
+                {(!error && !postWasPosted) &&
+                    <FormItem className="pb-0 mb-0 pt-44 px-38">
+                        <div className="d-flex justify-content-center align-items-center">
+                            <Icon24Info className="info-icon mr-3" width={32} height={32}/>
+                            <Text weight="regular">
+                                Пожалуйста, не меняйте настройки видимости поста,
+                                чтобы он был доступен всем. Так история сможет принять участие в акции <Link href={myMemoryLink} target="_blank">"Медаль Моей Памяти"</Link>,
+                                и о подвиге Вашего героя сможет узнать как можно больше людей!
+                            </Text>
+                        </div>
+                    </FormItem>
+                }
 
               {error &&
                 <div className="d-flex justify-content-center align-items-center pt-38">
